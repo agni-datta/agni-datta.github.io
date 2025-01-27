@@ -2,8 +2,8 @@
 title: README
 linter-yaml-title-alias: README
 date created: Saturday, May 4th 2024, 20:27:22
-date modified: Friday, January 17th 2025, 18:54:48
-aliases: [README]
+date modified: Thursday, January 23rd 2025, 13:22:38
+aliases: README
 ---
 
 # README
