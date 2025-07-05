@@ -81,7 +81,7 @@ The website follows a **minimal design philosophy** with:
 
 ```
 academic-website/
-├── index.html           # Main website content
+├── index.html           # Main website content (GitHub Pages entry point)
 ├── styles.css           # Complete styling with themes
 └── README.md           # This file
 ```
@@ -124,13 +124,30 @@ academic-website/
 - Safari (latest)
 - Mobile browsers
 
-## Getting Starteds
+## Getting Started
 
 1. Clone or download this template
 2. Update personal information in `index.html`
 3. Customize styling in `styles.css`
 4. Replace placeholder content with your own
 5. Deploy to your preferred hosting service
+
+### GitHub Pages Deployment
+
+To deploy this template on GitHub Pages:
+
+1. **Fork or clone** this repository to your GitHub account
+2. **Rename** the repository to `yourusername.github.io` (replace `yourusername` with your actual GitHub username)
+3. **Update** the content in `index.html` with your personal information
+4. **Customize** the styling in `styles.css` as needed
+5. **Commit and push** your changes
+6. **Enable GitHub Pages** in your repository settings:
+   - Go to Settings → Pages
+   - Select "Deploy from a branch"
+   - Choose "main" branch and "/ (root)" folder
+   - Click "Save"
+
+Your website will be available at `https://yourusername.github.io`
 
 ## License
 
