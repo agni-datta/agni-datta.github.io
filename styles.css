@@ -1425,16 +1425,16 @@ section p:last-child,
 .content p:last-child,
 section ul:last-child,
 .content ul:last-child {
-    margin-bottom: 0.25em !important;
+    margin-bottom: 0.5em !important;
 }
 
 /* Remove spacing from research areas list */
 .research-areas {
-    margin-bottom: 0.25em !important;
+    margin-bottom: 0.5em !important;
 }
 
 .research-areas li:last-child {
-    margin-bottom: 0.25em !important;
+    margin-bottom: 0.5em !important;
 }
 
 /* Aggressive spacing removal for sections */
@@ -1444,7 +1444,7 @@ section,
 section *,
 .content *,
 .publication-section * {
-    margin-bottom: 0.25em !important;
+    margin-bottom: 0.5em !important;
     padding-bottom: 0.5em !important;
 }
 
@@ -1458,7 +1458,7 @@ section li,
 .publication-section p,
 .publication-section ul,
 .publication-section li {
-    margin-bottom: 0.25em !important;
+    margin-bottom: 0.5em !important;
     padding-bottom: 0.5em !important;
 }
 
@@ -1466,7 +1466,7 @@ section li,
 section:last-child,
 .content:last-child,
 .publication-section:last-child {
-    margin-bottom: 0.25em !important;
+    margin-bottom: 0.5em !important;
     padding-bottom: 0.5em !important;
 }
 
