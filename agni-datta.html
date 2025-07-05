@@ -1,53 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grad Student Personal Webpage</title>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Agni Datta - Academic Profile</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ysabeau:ital,wght@0,1..1000;1,1..1000&family=Fira+Code:ital,wght@0,300..700;1,300..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
+    <!-- Fixed Header with Inline Navigation -->
     <header>
-        <h1>Your Name</h1>
-        <p>Grad Student</p>
+        <div class="header-content">
+            <div class="header-left">
+                <img src="https://cdn.dribbble.com/userupload/42271382/file/original-1c91516baf29f473718e99d52c958b6c.jpg?format=webp&resize=400x300&vertical=center"
+                    alt="Agni Datta" class="profile-image">
+                <div>
+                    <h1>Agni Datta</h1>
+                    <div class="email">agnidatta [dot] org [at] gmail.com</div>
+                </div>
+            </div>
+            <nav class="nav-inline">
+                <a href="#about">About</a>
+                <a href="#research">Research</a>
+                <a href="#publications">Publications</a>
+                <a href="#experience">Experience</a>
+                <a href="#talks">Talks</a>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+                    <svg class="theme-icon light-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="theme-icon dark-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </nav>
+        </div>
     </header>
-    <nav>
-        <a href="#about">About Me</a>
-        <a href="#publications">Publications</a>
-        <a href="#projects">Projects</a>
-        <a href="#teaching">Teaching</a>
-        <a href="#leadership">Leadership</a>
-        <a href="#talks">Talks</a>
-    </nav>
+
     <div class="container">
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Write a brief introduction about yourself here.</p>
+        <!-- About Section -->
+        <section id="about" class="content">
+            <h2>About</h2>
+            <p>I am a graduate student completing my master's in computer science, with a minor in cybersecurity, at VIT
+                Bhopal University in India. I did my master's thesis under the mentorship of <a
+                    href="https://binarywhales.com/" target="_blank">Matteo Campanelli</a>. This
+                summer, I'm at CISPA as a research assistant, hosted by <a href="https://doreenriepel.me/"
+                    target="_blank">Doreen Riepel</a>.</p>
         </section>
-        <section id="publications">
+
+        <!-- Research Section -->
+        <section id="research" class="content">
+            <h2>Research Interests</h2>
+            <p>My research lies in theoretical computer science, focusing on the foundations of cryptography and its
+                interface with neighboring areas. I study proof systems and advanced cryptographic primitives, including
+                non-interactive zero-knowledge proofs and indistinguishability obfuscation. I am also beginning to
+                explore quantum-native cryptography.</p>
+
+            <p>Research areas:</p>
+            <ul class="research-areas">
+                <li>Foundations of Cryptography</li>
+                <li>Quantum Cryptography</li>
+                <li>Probabilistic Proofs</li>
+                <li>Property Testing</li>
+            </ul>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="content">
             <h2>Publications</h2>
-            <p>List your publications here.</p>
+
+            <div class="publication-section">
+                <h3>Preprints</h3>
+                <div class="publication">
+                    <div class="pub-title">Fiat-Shamir Goes Rational</div>
+                    <div class="pub-authors">Matteo Campanelli, Agni Datta</div>
+                    <div class="pub-venue">Cryptology ePrint Archive, Paper 2024/1645</div>
+                    <div class="pub-links">
+                        <a href="https://eprint.iacr.org/2024/1645" target="_blank"
+                            class="mdc-button mdc-button--text">ePrint</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="publication-section">
+                <h3>Books</h3>
+                <div class="publication">
+                    <div class="pub-title">Digital Resilience: Navigating Disruption and Safeguarding Data Privacy</div>
+                    <div class="pub-authors">Shishir Kumar Shandilya, Agni Datta, Yash Kartik, Atulya Kumar Nagar</div>
+                    <div class="pub-venue">Springer Nature Switzerland, 2024</div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10/gtsk62" target="_blank" class="mdc-button mdc-button--text">DOI</a>
+                    </div>
+                </div>
+
+                <div class="publication">
+                    <div class="pub-title">A Nature-Inspired Approach to Cryptology</div>
+                    <div class="pub-authors">Shishir Kumar Shandilya, Agni Datta, Atulya Kumar Nagar</div>
+                    <div class="pub-venue">Springer Nature Singapore, 2023</div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10/gtkmh4" target="_blank" class="mdc-button mdc-button--text">DOI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="publication-section">
+                <h3>Conference Papers</h3>
+                <div class="publication">
+                    <div class="pub-title">GPT Based Malware: Unveiling Vulnerabilities and Creating a Way Forward in
+                        Digital Space</div>
+                    <div class="pub-authors">Shishir Kumar Shandilya, G.S.V. Prharsha, Agni Datta, Gaurav Choudhary,
+                        Hoonyong Park, Ilsun You</div>
+                    <div class="pub-venue">IEEE DSPP 2023</div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10/gtkmjf" target="_blank" class="mdc-button mdc-button--text">DOI</a>
+                    </div>
+                </div>
+
+                <div class="publication">
+                    <div class="pub-title">Securing Advanced Metering Infrastructure Using Blockchain for Effective
+                        Energy Trading</div>
+                    <div class="pub-authors">Yuvraj Singh, Agni Datta, Smita Shandilya, Shishir Kumar Shandilya</div>
+                    <div class="pub-venue">Springer AMLD 2023</div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10/kcw2" target="_blank" class="mdc-button mdc-button--text">DOI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="publication-section">
+                <h3>Journal Articles</h3>
+                <div class="publication">
+                    <div class="pub-title">YOLO-Based Segmented Dataset for Drone Vs. Bird Detection for Deep and
+                        Machine Learning Algorithms</div>
+                    <div class="pub-authors">Shishir Kumar Shandilya, Aditya Srivastav, Kyrylo Yemets, Agni Datta,
+                        Atulya Kumar Nagar</div>
+                    <div class="pub-venue">Data in Brief, 2023</div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10/kg3x" target="_blank" class="mdc-button mdc-button--text">DOI</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="publication-section">
+                <h3>Thesis</h3>
+                <div class="publication">
+                    <div class="pub-title">On the Construction of Non-Interactive Proofs with Sublinear Verification
+                        Complexity</div>
+                    <div class="pub-authors">Agni Datta</div>
+                    <div class="pub-venue">Master's Thesis, VIT Bhopal University, 2025</div>
+                </div>
+            </div>
         </section>
-        <section id="projects">
-            <h2>Projects</h2>
-            <p>Describe your projects here.</p>
-        </section>
-        <section id="teaching">
+
+        <!-- Experience Section -->
+        <section id="experience" class="content">
+            <h2>Research Experience</h2>
+
+            <div class="mdc-card">
+                <div class="mdc-card__content">
+                    <h3>Research Assistant</h3>
+                    <p><strong>CISPA Helmholtz Center for Information Security</strong> | June 2025 - September 2025</p>
+                    <p><strong>Supervisor:</strong> <a href="https://doreenriepel.me/" target="_blank">Doreen Riepel</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="mdc-card">
+                <div class="mdc-card__content">
+                    <h3>Research Intern</h3>
+                    <p><strong>SECURE--Centre of Excellence in Cyber Security</strong> | November 2021 - October 2023
+                    </p>
+                    <p><strong>Supervisor:</strong> <a href="https://in.linkedin.com/in/sks1809" target="_blank">Shishir
+                            Kumar Shandilya</a></p>
+                </div>
+            </div>
+
+            <h2>Education</h2>
+            <div class="mdc-card">
+                <div class="mdc-card__content">
+                    <h3>Integrated Master of Technology in Computer Science & Engineering</h3>
+                    <p><strong>VIT Bhopal University, India</strong> | July 2020 - July 2025</p>
+                    <ul>
+                        <li>Major: Computer Science | Minor: Cybersecurity</li>
+                        <li>GPA: 9.09/10</li>
+                        <li>Thesis Advisor: <a href="https://binarywhales.com/" target="_blank">Matteo Campanelli</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <h2>Teaching</h2>
-            <p>Provide information about your teaching experience here.</p>
+            <div class="mdc-card">
+                <div class="mdc-card__content">
+                    <h3>Teaching Assistant</h3>
+                    <p><strong>Principles of Digital Forensics (CSD1001)</strong> | Fall 2023</p>
+                    <p><strong>VIT Bhopal University, India</strong></p>
+                </div>
+            </div>
         </section>
-        <section id="leadership">
-            <h2>Leadership</h2>
-            <p>Highlight your leadership roles and experiences here.</p>
-        </section>
-        <section id="talks">
-            <h2>Talks</h2>
-            <p>Detail any talks or presentations you have given here.</p>
+
+        <!-- Talks Section -->
+        <section id="talks" class="content">
+            <h2>Invited Talks</h2>
+            <ul class="talk-list">
+                <li>
+                    <strong>Fiat-Shamir Goes Rational</strong><br>
+                    <em>Cryptography Group, Bar-Ilan University, Israel</em><br>
+                    <span class="text-muted">May 2025</span>
+                </li>
+                <li>
+                    <strong>Fiat-Shamir Goes Rational</strong><br>
+                    <em>Cryptography & Security Group, Aarhus University, Denmark</em><br>
+                    <span class="text-muted">December 2024</span>
+                </li>
+                <li>
+                    <strong>Windows Registry Forensic Analysis</strong><br>
+                    <em>Workshop on Windows Forensics, Central Academy for Police Training, India</em><br>
+                    <span class="text-muted">June 2023</span>
+                </li>
+            </ul>
+
+            <h2>Academic Training</h2>
+            <ul class="talk-list">
+                <li>
+                    <strong>ACM Winter School on Modern Cryptography</strong><br>
+                    <em>Indian Institute of Technology Madras</em><br>
+                    <span class="text-muted">December 2024</span>
+                </li>
+                <li>
+                    <strong>ACM Summer School on Algorithmic Game Theory</strong><br>
+                    <em>Institute of Mathematical Sciences</em><br>
+                    <span class="text-muted">July 2024</span>
+                </li>
+            </ul>
         </section>
     </div>
+
     <footer>
-        <p>&copy; 2024 Your Name</p>
+        <div class="footer-content">
+            <p>&copy; 2024 Agni Datta. All rights reserved.</p>
+        </div>
     </footer>
+
+    <script>
+        // Theme switching functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+
+        // Update button state
+        function updateThemeButton() {
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            const lightIcon = themeToggle.querySelector('.light-icon');
+            const darkIcon = themeToggle.querySelector('.dark-icon');
+
+            if (isDark) {
+                lightIcon.style.display = 'none';
+                darkIcon.style.display = 'block';
+            } else {
+                lightIcon.style.display = 'block';
+                darkIcon.style.display = 'none';
+            }
+        }
+
+        // Toggle theme
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeButton();
+        }
+
+        // Event listeners
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // Initialize button state
+        updateThemeButton();
+    </script>
 </body>
+
 </html>
