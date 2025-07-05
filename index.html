@@ -12,45 +12,45 @@
         href="https://fonts.googleapis.com/css2?family=Ysabeau:ital,wght@0,1..1000;1,1..1000&family=Fira+Code:ital,wght@0,300..700;1,300..700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
     <!-- Fixed Header with Inline Navigation -->
     <header>
         <div class="header-content">
+            <!-- Left side - Navigation trigger -->
             <div class="header-left">
                 <img src="https://cdn.dribbble.com/userupload/42271382/file/original-1c91516baf29f473718e99d52c958b6c.jpg?format=webp&resize=400x300&vertical=center"
-                    alt="Agni Datta" class="profile-image">
-                <div>
+                    alt="Agni Datta" class="profile-image" id="profile-drawer">
+            </div>
+
+            <!-- Center - Header text -->
+            <div class="header-center">
+                <div class="header-text" id="scroll-to-top">
                     <h1>Agni Datta</h1>
                     <div class="email">agnidatta [dot] org [at] gmail.com</div>
                 </div>
             </div>
-            <nav class="nav-inline">
-                <a href="#about">About</a>
-                <a href="#research">Research</a>
-                <a href="#publications">Publications</a>
-                <a href="#experience">Experience</a>
-                <a href="#talks">Talks</a>
+
+            <!-- Right side - Theme toggle -->
+            <div class="header-right">
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
-                    <svg class="theme-icon light-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                    <svg class="theme-icon dark-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
+                    <span class="material-icons light-icon">light_mode</span>
+                    <span class="material-icons dark-icon">dark_mode</span>
                 </button>
+            </div>
+
+            <!-- Navigation Drawer -->
+            <nav id="mobile-nav" class="mobile-nav">
+                <div class="drawer-header">
+                    <h3>Agni Datta</h3>
+                </div>
+                <a href="#about"><span class="material-icons">person</span>About</a>
+                <a href="#research"><span class="material-icons">science</span>Research</a>
+                <a href="#publications"><span class="material-icons">article</span>Publications</a>
+                <a href="#experience"><span class="material-icons">work</span>Experience</a>
+                <a href="#talks"><span class="material-icons">record_voice_over</span>Talks</a>
             </nav>
         </div>
     </header>
@@ -95,7 +95,8 @@
                     <div class="pub-venue">Cryptology ePrint Archive, Paper 2024/1645</div>
                     <div class="pub-links">
                         <a href="https://eprint.iacr.org/2024/1645" target="_blank"
-                            class="mdc-button mdc-button--text">ePrint</a>
+                            class="mdc-button mdc-button--text"><span
+                                class="material-icons">open_in_new</span>ePrint</a>
                     </div>
                 </div>
             </div>
@@ -107,7 +108,8 @@
                     <div class="pub-authors">Shishir Kumar Shandilya, Agni Datta, Yash Kartik, Atulya Kumar Nagar</div>
                     <div class="pub-venue">Springer Nature Switzerland, 2024</div>
                     <div class="pub-links">
-                        <a href="https://doi.org/10/gtsk62" target="_blank" class="mdc-button mdc-button--text">DOI</a>
+                        <a href="https://doi.org/10/gtsk62" target="_blank" class="mdc-button mdc-button--text"><span
+                                class="material-icons">link</span>DOI</a>
                     </div>
                 </div>
 
@@ -116,7 +118,8 @@
                     <div class="pub-authors">Shishir Kumar Shandilya, Agni Datta, Atulya Kumar Nagar</div>
                     <div class="pub-venue">Springer Nature Singapore, 2023</div>
                     <div class="pub-links">
-                        <a href="https://doi.org/10/gtkmh4" target="_blank" class="mdc-button mdc-button--text">DOI</a>
+                        <a href="https://doi.org/10/gtkmh4" target="_blank" class="mdc-button mdc-button--text"><span
+                                class="material-icons">link</span>DOI</a>
                     </div>
                 </div>
             </div>
@@ -130,7 +133,8 @@
                         Hoonyong Park, Ilsun You</div>
                     <div class="pub-venue">IEEE DSPP 2023</div>
                     <div class="pub-links">
-                        <a href="https://doi.org/10/gtkmjf" target="_blank" class="mdc-button mdc-button--text">DOI</a>
+                        <a href="https://doi.org/10/gtkmjf" target="_blank" class="mdc-button mdc-button--text"><span
+                                class="material-icons">link</span>DOI</a>
                     </div>
                 </div>
 
@@ -140,7 +144,8 @@
                     <div class="pub-authors">Yuvraj Singh, Agni Datta, Smita Shandilya, Shishir Kumar Shandilya</div>
                     <div class="pub-venue">Springer AMLD 2023</div>
                     <div class="pub-links">
-                        <a href="https://doi.org/10/kcw2" target="_blank" class="mdc-button mdc-button--text">DOI</a>
+                        <a href="https://doi.org/10/kcw2" target="_blank" class="mdc-button mdc-button--text"><span
+                                class="material-icons">link</span>DOI</a>
                     </div>
                 </div>
             </div>
@@ -154,7 +159,8 @@
                         Atulya Kumar Nagar</div>
                     <div class="pub-venue">Data in Brief, 2023</div>
                     <div class="pub-links">
-                        <a href="https://doi.org/10/kg3x" target="_blank" class="mdc-button mdc-button--text">DOI</a>
+                        <a href="https://doi.org/10/kg3x" target="_blank" class="mdc-button mdc-button--text"><span
+                                class="material-icons">link</span>DOI</a>
                     </div>
                 </div>
             </div>
@@ -261,44 +267,378 @@
     </footer>
 
     <script>
-        // Theme switching functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
+        // Theme Toggle - Initialize immediately
+        (function () {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
 
-        // Check for saved theme preference or default to light
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        html.setAttribute('data-theme', currentTheme);
+            // Check for saved theme preference or default to light mode
+            const savedTheme = localStorage.getItem('theme') || 'light';
 
-        // Update button state
-        function updateThemeButton() {
-            const isDark = html.getAttribute('data-theme') === 'dark';
+            // Apply theme to both body and document element
+            body.setAttribute('data-theme', savedTheme);
+            document.documentElement.setAttribute('data-theme', savedTheme);
+
+            // Ensure theme toggle shows correct icon
             const lightIcon = themeToggle.querySelector('.light-icon');
             const darkIcon = themeToggle.querySelector('.dark-icon');
 
-            if (isDark) {
+            if (savedTheme === 'dark') {
                 lightIcon.style.display = 'none';
                 darkIcon.style.display = 'block';
             } else {
                 lightIcon.style.display = 'block';
                 darkIcon.style.display = 'none';
             }
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = body.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+                // Update theme attributes
+                body.setAttribute('data-theme', newTheme);
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+
+                // Update icon display
+                if (newTheme === 'dark') {
+                    lightIcon.style.display = 'none';
+                    darkIcon.style.display = 'block';
+                } else {
+                    lightIcon.style.display = 'block';
+                    darkIcon.style.display = 'none';
+                }
+            });
+        })();
+
+        // Mobile Navigation Drawer
+        const profileDrawer = document.getElementById('profile-drawer');
+        const mobileNav = document.getElementById('mobile-nav');
+        const headerContent = document.querySelector('.header-content');
+        let isDrawerOpen = false;
+
+        profileDrawer.addEventListener('click', () => {
+            if (isDrawerOpen) {
+                closeDrawer();
+            } else {
+                openDrawer();
+            }
+        });
+
+        function openDrawer() {
+            mobileNav.classList.add('active');
+            headerContent.classList.add('collapsed');
+            profileDrawer.classList.add('active');
+            isDrawerOpen = true;
+            document.body.style.overflow = 'hidden';
         }
 
-        // Toggle theme
-        function toggleTheme() {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeButton();
+        function closeDrawer() {
+            mobileNav.classList.remove('active');
+            headerContent.classList.remove('collapsed');
+            profileDrawer.classList.remove('active');
+            isDrawerOpen = false;
+            document.body.style.overflow = '';
         }
 
-        // Event listeners
-        themeToggle.addEventListener('click', toggleTheme);
+        // Close drawer when clicking on navigation links
+        const navLinks = mobileNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeDrawer();
+            });
+        });
 
-        // Initialize button state
-        updateThemeButton();
+        // Close drawer when clicking outside
+        document.addEventListener('click', (e) => {
+            if (isDrawerOpen && !mobileNav.contains(e.target) && !profileDrawer.contains(e.target)) {
+                closeDrawer();
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight - 20;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll to top functionality
+        const scrollToTop = document.getElementById('scroll-to-top');
+        scrollToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Mobile-specific enhancements
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        // Handle swipe gestures for mobile
+        document.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartY - touchEndY;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0 && isDrawerOpen) {
+                    // Swipe up - close drawer
+                    closeDrawer();
+                } else if (diff < 0 && !isDrawerOpen) {
+                    // Swipe down - open drawer
+                    openDrawer();
+                }
+            }
+        }
+
+        // Add mobile-specific scroll behavior
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Hide/show header on scroll for mobile
+            if (window.innerWidth <= 768) {
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    // Scrolling down
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    // Scrolling up
+                    header.style.transform = 'translateY(0)';
+                }
+            }
+
+            lastScrollTop = scrollTop;
+        });
+
+        // Add loading animation for mobile
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+
+        // Mobile-specific touch feedback
+        const touchElements = document.querySelectorAll('.mdc-button, .pub-links a, .mobile-nav a');
+        touchElements.forEach(element => {
+            element.addEventListener('touchstart', () => {
+                element.style.transform = 'scale(0.95)';
+            });
+
+            element.addEventListener('touchend', () => {
+                setTimeout(() => {
+                    element.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Optimize for mobile performance
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => {
+                    // Service worker registration failed
+                });
+            });
+        }
+
+        // Add mobile-specific CSS classes
+        function updateMobileClasses() {
+            if (window.innerWidth <= 768) {
+                document.body.classList.add('mobile');
+            } else {
+                document.body.classList.remove('mobile');
+            }
+        }
+
+        // Dynamic padding for all elements with classes
+        function applyDynamicPadding() {
+            const elementsWithClasses = document.querySelectorAll('[class]');
+            const xsPadding = getComputedStyle(document.documentElement).getPropertyValue('--space-xs').trim();
+            const smPadding = getComputedStyle(document.documentElement).getPropertyValue('--space-sm').trim();
+            const mdPadding = getComputedStyle(document.documentElement).getPropertyValue('--space-md').trim();
+
+            elementsWithClasses.forEach(element => {
+                // Skip elements that already have padding applied
+                if (element.dataset.paddingApplied) return;
+
+                const currentPadding = getComputedStyle(element).padding;
+                const currentMargin = getComputedStyle(element).margin;
+                const tagName = element.tagName.toLowerCase();
+                const className = element.className;
+
+                // Skip certain elements that shouldn't have padding
+                if (tagName === 'html' || tagName === 'body' || tagName === 'head' ||
+                    tagName === 'script' || tagName === 'style' || tagName === 'meta' ||
+                    tagName === 'link' || tagName === 'title') {
+                    return;
+                }
+
+                // Apply different padding strategies based on element type
+                if (tagName === 'section' || tagName === 'article' || tagName === 'div') {
+                    // Container elements get more padding
+                    if (currentPadding === '0px' || currentPadding === '0px 0px 0px 0px') {
+                        element.style.padding = `${mdPadding} ${mdPadding}`;
+                        element.dataset.paddingApplied = 'true';
+                    }
+                } else if (tagName === 'p' || tagName === 'span' || tagName === 'a') {
+                    // Text elements get subtle padding
+                    if (currentPadding === '0px' || currentPadding === '0px 0px 0px 0px') {
+                        element.style.padding = `0 ${smPadding}`;
+                        element.dataset.paddingApplied = 'true';
+                    }
+                } else if (tagName === 'h1' || tagName === 'h2' || tagName === 'h3' ||
+                    tagName === 'h4' || tagName === 'h5' || tagName === 'h6') {
+                    // Headings get top/bottom padding
+                    if (currentPadding === '0px' || currentPadding === '0px 0px 0px 0px') {
+                        element.style.padding = `${smPadding} 0`;
+                        element.dataset.paddingApplied = 'true';
+                    }
+                } else if (tagName === 'li') {
+                    // List items get left padding
+                    if (currentPadding === '0px' || currentPadding === '0px 0px 0px 0px') {
+                        element.style.padding = `0 0 0 ${smPadding}`;
+                        element.dataset.paddingApplied = 'true';
+                    }
+                } else {
+                    // Default padding for other elements
+                    if (currentPadding === '0px' || currentPadding === '0px 0px 0px 0px') {
+                        element.style.padding = smPadding;
+                        element.dataset.paddingApplied = 'true';
+                    }
+                }
+
+                // Add subtle margin for elements that need spacing
+                if ((tagName === 'p' || tagName === 'div' || tagName === 'section') &&
+                    (currentMargin === '0px' || currentMargin === '0px 0px 0px 0px')) {
+                    element.style.margin = `0 0 ${smPadding} 0`;
+                }
+            });
+        }
+
+        // Apply padding on page load
+        window.addEventListener('load', () => {
+            setTimeout(applyDynamicPadding, 100);
+
+            // Apply special padding to specific classes
+            applySpecialClassPadding();
+        });
+
+        // Special padding for specific classes
+        function applySpecialClassPadding() {
+            const smPadding = getComputedStyle(document.documentElement).getPropertyValue('--space-sm').trim();
+            const mdPadding = getComputedStyle(document.documentElement).getPropertyValue('--space-md').trim();
+            const lgPadding = getComputedStyle(document.documentElement).getPropertyValue('--space-lg').trim();
+
+            // Publication elements
+            const publications = document.querySelectorAll('.publication');
+            publications.forEach(pub => {
+                if (!pub.dataset.specialPaddingApplied) {
+                    pub.style.padding = `${mdPadding} ${mdPadding}`;
+                    pub.dataset.specialPaddingApplied = 'true';
+                }
+            });
+
+            // Card elements
+            const cards = document.querySelectorAll('.mdc-card, .google-card');
+            cards.forEach(card => {
+                if (!card.dataset.specialPaddingApplied) {
+                    card.style.padding = `${mdPadding} ${mdPadding}`;
+                    card.dataset.specialPaddingApplied = 'true';
+                }
+            });
+
+            // Navigation elements
+            const navElements = document.querySelectorAll('.mobile-nav a, .nav-inline a');
+            navElements.forEach(nav => {
+                if (!nav.dataset.specialPaddingApplied) {
+                    nav.style.padding = `${smPadding} ${smPadding}`;
+                    nav.dataset.specialPaddingApplied = 'true';
+                }
+            });
+
+            // Button elements
+            const buttons = document.querySelectorAll('.mdc-button, .google-button');
+            buttons.forEach(button => {
+                if (!button.dataset.specialPaddingApplied) {
+                    button.style.padding = `${smPadding} ${smPadding}`;
+                    button.dataset.specialPaddingApplied = 'true';
+                }
+            });
+
+            // Link elements
+            const links = document.querySelectorAll('.pub-links a');
+            links.forEach(link => {
+                if (!link.dataset.specialPaddingApplied) {
+                    link.style.padding = `${smPadding} ${smPadding}`;
+                    link.dataset.specialPaddingApplied = 'true';
+                }
+            });
+
+            // Section elements
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                if (!section.dataset.specialPaddingApplied) {
+                    section.style.padding = `${lgPadding} 0`;
+                    section.dataset.specialPaddingApplied = 'true';
+                }
+            });
+
+            // Content elements
+            const contentElements = document.querySelectorAll('.content');
+            contentElements.forEach(content => {
+                if (!content.dataset.specialPaddingApplied) {
+                    content.style.padding = `${mdPadding} ${mdPadding}`;
+                    content.dataset.specialPaddingApplied = 'true';
+                }
+            });
+        }
+
+        // Apply padding when new content is added (for dynamic content)
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'childList') {
+                    setTimeout(applyDynamicPadding, 50);
+                }
+            });
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+
+        // Reapply padding on window resize
+        window.addEventListener('resize', () => {
+            setTimeout(applyDynamicPadding, 100);
+        });
+
+        window.addEventListener('resize', updateMobileClasses);
+        updateMobileClasses();
+
+        // Apply dynamic padding
+        applyDynamicPadding();
+
+        // Initialize theme
+        initializeTheme();
     </script>
 </body>
 
