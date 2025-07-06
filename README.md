@@ -1,9 +1,9 @@
 ---
-title: README
-linter-yaml-title-alias: README
+title: Academic Website Template
+linter-yaml-title-alias: Academic Website Template
 date created: Saturday, May 4th 2024, 20:27:22
-date modified: Friday, June 13th 2025, 23:26:57
-aliases: README
+date modified: Sunday, July 6th 2025, 01:42:10
+aliases: Academic Website Template
 ---
 
 # Academic Website Template
@@ -143,9 +143,9 @@ To deploy this template on GitHub Pages:
 5. **Commit and push** your changes
 6. **Enable GitHub Pages** in your repository settings:
    - Go to Settings → Pages
-   - Select "Deploy from a branch"
-   - Choose "main" branch and "/ (root)" folder
-   - Click "Save"
+   - Select “Deploy from a branch”
+   - Choose “main” branch and “/ (root)” folder
+   - Click “Save”
 
 Your website will be available at `https://yourusername.github.io`
 
