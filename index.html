@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agni Datta - Academic Profile</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -266,14 +266,18 @@
         </div>
     </footer>
 
+    <!-- Theme and nav logic -->
     <script>
         // Theme Toggle - Initialize immediately
         (function () {
             const themeToggle = document.getElementById('theme-toggle');
             const body = document.body;
 
-            // Check for saved theme preference or default to light mode
-            const savedTheme = localStorage.getItem('theme') || 'light';
+            // Check for saved theme preference or use system preference
+            let savedTheme = localStorage.getItem('theme');
+            if (!savedTheme) {
+                savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
 
             // Apply theme to both body and document element
             body.setAttribute('data-theme', savedTheme);
@@ -311,7 +315,7 @@
             });
         })();
 
-        // Mobile Navigation Drawer
+        // Drawer only opens on profile image click. Do not open on scroll or swipe.
         const profileDrawer = document.getElementById('profile-drawer');
         const mobileNav = document.getElementById('mobile-nav');
         const headerContent = document.querySelector('.header-content');
@@ -382,36 +386,6 @@
             });
         });
 
-        // Mobile-specific enhancements
-        let touchStartY = 0;
-        let touchEndY = 0;
-
-        // Handle swipe gestures for mobile - DISABLED to prevent auto-opening
-        // document.addEventListener('touchstart', (e) => {
-        //     touchStartY = e.changedTouches[0].screenY;
-        // });
-
-        // document.addEventListener('touchend', (e) => {
-        //     touchEndY = e.changedTouches[0].screenY;
-        //     handleSwipe();
-        // });
-
-        // function handleSwipe() {
-        //     const swipeThreshold = 50;
-        //     const diff = touchStartY - touchEndY;
-
-        //     if (Math.abs(diff) > swipeThreshold) {
-        //         if (diff > 0 && isDrawerOpen) {
-        //             // Swipe up - close drawer
-        //             closeDrawer();
-        //         }
-        //         // else if (diff < 0 && !isDrawerOpen) {
-        //         //     // Swipe down - open drawer (DISABLED: only open via profile image click)
-        //         //     openDrawer();
-        //         // }
-        //     }
-        // }
-
         // Add mobile-specific scroll behavior
         let lastScrollTop = 0;
         const header = document.querySelector('header');
@@ -470,175 +444,11 @@
             }
         }
 
-        // Dynamic padding for all elements with classes
-        function applyDynamicPadding() {
-            const elementsWithClasses = document.querySelectorAll('[class]');
-            const xsPadding = getComputedStyle(document.documentElement).getPropertyValue('--space-xs').trim();
-            const smPadding = getComputedStyle(document.documentElement).getPropertyValue('--space-sm').trim();
-            const mdPadding = getComputedStyle(document.documentElement).getPropertyValue('--space-md').trim();
-
-            elementsWithClasses.forEach(element => {
-                // Skip elements that already have padding applied
-                if (element.dataset.paddingApplied) return;
-
-                const currentPadding = getComputedStyle(element).padding;
-                const currentMargin = getComputedStyle(element).margin;
-                const tagName = element.tagName.toLowerCase();
-                const className = element.className;
-
-                // Skip certain elements that shouldn't have padding
-                if (tagName === 'html' || tagName === 'body' || tagName === 'head' ||
-                    tagName === 'script' || tagName === 'style' || tagName === 'meta' ||
-                    tagName === 'link' || tagName === 'title') {
-                    return;
-                }
-
-                // Apply different padding strategies based on element type
-                if (tagName === 'section' || tagName === 'article' || tagName === 'div') {
-                    // Container elements get more padding
-                    if (currentPadding === '0px' || currentPadding === '0px 0px 0px 0px') {
-                        element.style.padding = `${mdPadding} ${mdPadding}`;
-                        element.dataset.paddingApplied = 'true';
-                    }
-                } else if (tagName === 'p' || tagName === 'span' || tagName === 'a') {
-                    // Text elements get subtle padding
-                    if (currentPadding === '0px' || currentPadding === '0px 0px 0px 0px') {
-                        element.style.padding = `0 ${smPadding}`;
-                        element.dataset.paddingApplied = 'true';
-                    }
-                } else if (tagName === 'h1' || tagName === 'h2' || tagName === 'h3' ||
-                    tagName === 'h4' || tagName === 'h5' || tagName === 'h6') {
-                    // Headings get top/bottom padding
-                    if (currentPadding === '0px' || currentPadding === '0px 0px 0px 0px') {
-                        element.style.padding = `${smPadding} 0`;
-                        element.dataset.paddingApplied = 'true';
-                    }
-                } else if (tagName === 'li') {
-                    // List items get left padding
-                    if (currentPadding === '0px' || currentPadding === '0px 0px 0px 0px') {
-                        element.style.padding = `0 0 0 ${smPadding}`;
-                        element.dataset.paddingApplied = 'true';
-                    }
-                } else {
-                    // Default padding for other elements
-                    if (currentPadding === '0px' || currentPadding === '0px 0px 0px 0px') {
-                        element.style.padding = smPadding;
-                        element.dataset.paddingApplied = 'true';
-                    }
-                }
-
-                // Add subtle margin for elements that need spacing
-                if ((tagName === 'p' || tagName === 'div' || tagName === 'section') &&
-                    (currentMargin === '0px' || currentMargin === '0px 0px 0px 0px')) {
-                    element.style.margin = `0 0 ${smPadding} 0`;
-                }
-            });
-        }
-
-        // Apply padding on page load
-        window.addEventListener('load', () => {
-            setTimeout(applyDynamicPadding, 100);
-
-            // Apply special padding to specific classes
-            applySpecialClassPadding();
-        });
-
-        // Special padding for specific classes
-        function applySpecialClassPadding() {
-            const smPadding = getComputedStyle(document.documentElement).getPropertyValue('--space-sm').trim();
-            const mdPadding = getComputedStyle(document.documentElement).getPropertyValue('--space-md').trim();
-            const lgPadding = getComputedStyle(document.documentElement).getPropertyValue('--space-lg').trim();
-
-            // Publication elements
-            const publications = document.querySelectorAll('.publication');
-            publications.forEach(pub => {
-                if (!pub.dataset.specialPaddingApplied) {
-                    pub.style.padding = `${mdPadding} ${mdPadding}`;
-                    pub.dataset.specialPaddingApplied = 'true';
-                }
-            });
-
-            // Card elements
-            const cards = document.querySelectorAll('.mdc-card, .google-card');
-            cards.forEach(card => {
-                if (!card.dataset.specialPaddingApplied) {
-                    card.style.padding = `${mdPadding} ${mdPadding}`;
-                    card.dataset.specialPaddingApplied = 'true';
-                }
-            });
-
-            // Navigation elements
-            const navElements = document.querySelectorAll('.mobile-nav a, .nav-inline a');
-            navElements.forEach(nav => {
-                if (!nav.dataset.specialPaddingApplied) {
-                    nav.style.padding = `${smPadding} ${smPadding}`;
-                    nav.dataset.specialPaddingApplied = 'true';
-                }
-            });
-
-            // Button elements
-            const buttons = document.querySelectorAll('.mdc-button, .google-button');
-            buttons.forEach(button => {
-                if (!button.dataset.specialPaddingApplied) {
-                    button.style.padding = `${smPadding} ${smPadding}`;
-                    button.dataset.specialPaddingApplied = 'true';
-                }
-            });
-
-            // Link elements
-            const links = document.querySelectorAll('.pub-links a');
-            links.forEach(link => {
-                if (!link.dataset.specialPaddingApplied) {
-                    link.style.padding = `${smPadding} ${smPadding}`;
-                    link.dataset.specialPaddingApplied = 'true';
-                }
-            });
-
-            // Section elements
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                if (!section.dataset.specialPaddingApplied) {
-                    section.style.padding = `${lgPadding} 0`;
-                    section.dataset.specialPaddingApplied = 'true';
-                }
-            });
-
-            // Content elements
-            const contentElements = document.querySelectorAll('.content');
-            contentElements.forEach(content => {
-                if (!content.dataset.specialPaddingApplied) {
-                    content.style.padding = `${mdPadding} ${mdPadding}`;
-                    content.dataset.specialPaddingApplied = 'true';
-                }
-            });
-        }
-
-        // Apply padding when new content is added (for dynamic content)
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.type === 'childList') {
-                    setTimeout(applyDynamicPadding, 50);
-                }
-            });
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-
-        // Reapply padding on window resize
-        window.addEventListener('resize', () => {
-            setTimeout(applyDynamicPadding, 100);
-        });
-
-        window.addEventListener('resize', updateMobileClasses);
+        // Initialize mobile classes
         updateMobileClasses();
 
-        // Apply dynamadd     applyDynamicPadding();
-
-        // Initialize theme
-        initializeTheme();
+        // Update mobile classes on resize
+        window.addEventListener('resize', updateMobileClasses);
     </script>
 </body>
 

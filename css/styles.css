@@ -1,23 +1,22 @@
-/* Ultra-Clean Minimal Design with Ysabeau Font */
+/* ==========================================================================
+   BASE STYLES - CSS Variables, Reset, and Fundamentals
+   ========================================================================== */
+
 :root {
-    /* Pastel Color Palette */
-    --primary: #4169e1;
-    --primary-light: #5a7de8;
-    --primary-dark: #2e4db8;
-    --primary-pastel: #e6edff;
-
-    --text-primary: #374151;
-    --text-secondary: #6b7280;
-    --text-muted: #9ca3af;
-
-    --bg-primary: #f8fafc;
-    --bg-secondary: #f1f5f9;
-    --bg-tertiary: #e2e8f0;
-
-    --border-light: rgba(65, 105, 225, 0.15);
-    --border-medium: rgba(65, 105, 225, 0.25);
-
-    /* Minimal Spacing */
+    /* Shared variables: typography, spacing, breakpoints */
+    --font-family: 'Ysabeau', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'Fira Code', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+    --font-size-caption: 0.75em;
+    --font-size-body2: 0.875em;
+    --font-size-body1: 1em;
+    --font-size-subtitle2: 1.125em;
+    --font-size-subtitle1: 1.25em;
+    --font-size-h6: 1.375em;
+    --font-size-h5: 1.5em;
+    --font-size-h4: 1.75em;
+    --font-size-h3: 2em;
+    --font-size-h2: 2.25em;
+    --font-size-h1: 2.5em;
     --space-xs: 4px;
     --space-sm: 8px;
     --space-md: 16px;
@@ -25,48 +24,58 @@
     --space-xl: 32px;
     --space-2xl: 48px;
     --space-3xl: 64px;
-
-    /* Minimal Typography */
-    --font-family: 'Ysabeau', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'Fira Code', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
-    --font-size-xs: 0.75rem;
-    --font-size-sm: 0.875rem;
-    --font-size-base: 1rem;
-    --font-size-lg: 1.125rem;
-    --font-size-xl: 1.25rem;
-    --font-size-2xl: 1.5rem;
-    --font-size-3xl: 2rem;
-
-    /* Minimal Shadows */
     --shadow-none: none;
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-
-    /* Snappy Animations */
     --transition-fast: 0.1s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-base: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     --transition-elastic: 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-    --space-uniform: 12px;
+    --breakpoint-xs: 480px;
+    --breakpoint-sm: 600px;
+    --breakpoint-md: 840px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1440px;
 }
 
-/* Dark Theme */
+[data-theme="light"] {
+    --primary: #4169e1;
+    --primary-light: #5a7de8;
+    --primary-dark: #2e4db8;
+    --primary-pastel: #e6edff;
+    --primary-rgb: 65, 105, 225;
+    --text-primary: #374151;
+    --text-secondary: #6b7280;
+    --text-muted: #9ca3af;
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --bg-tertiary: #e2e8f0;
+    --border-light: rgba(65, 105, 225, 0.15);
+    --border-medium: rgba(65, 105, 225, 0.25);
+    --shadow-primary: 0 2px 8px rgba(65, 105, 225, 0.2);
+    --shadow-primary-hover: 0 4px 12px rgba(65, 105, 225, 0.15);
+    --shadow-primary-button: 0 2px 8px rgba(65, 105, 225, 0.4);
+}
+
 [data-theme="dark"] {
-    --text-primary: #f1f5f9;
-    --text-secondary: #cbd5e1;
-    --text-muted: #94a3b8;
-
-    --bg-primary: #11131a;
-    --bg-secondary: #1a1a1a;
-    --bg-tertiary: #2a2a2a;
-
-    --border-light: rgba(65, 105, 225, 0.2);
-    --border-medium: rgba(65, 105, 225, 0.35);
-
-    --primary-pastel: #1e3a8a;
+    --primary: #22d3ee;
+    --primary-light: #67e8f9;
+    --primary-dark: #0e7490;
+    --primary-pastel: #164e63;
+    --primary-rgb: 34, 211, 238;
+    --text-primary: #e0f2fe;
+    --text-secondary: #bae6fd;
+    --text-muted: #7dd3fc;
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --border-light: rgba(34, 211, 238, 0.15);
+    --border-medium: rgba(34, 211, 238, 0.25);
+    --shadow-primary: 0 2px 8px rgba(34, 211, 238, 0.2);
+    --shadow-primary-hover: 0 4px 12px rgba(34, 211, 238, 0.15);
+    --shadow-primary-button: 0 2px 8px rgba(34, 211, 238, 0.4);
 }
 
 /* Universal uniform spacing - everything uses minimal spacing */
@@ -128,6 +137,16 @@ body {
     color: var(--text-primary);
 }
 
+[data-theme="dark"] ::selection {
+    background: rgba(32, 201, 151, 0.1);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] ::-moz-selection {
+    background: rgba(32, 201, 151, 0.1);
+    color: var(--text-primary);
+}
+
 /* Clean Typography */
 h1,
 h2,
@@ -150,7 +169,7 @@ h1 {
 
 h2 {
     font-size: 1.8em;
-    border-bottom: 1px solid rgba(65, 105, 225, 0.2);
+    border-bottom: 1px solid var(--border-light);
     padding-bottom: 0.5em;
     margin-top: 0.3em;
 }
@@ -219,15 +238,15 @@ header {
     left: 0;
     right: 0;
     z-index: 1000;
-    border-bottom: 1px solid rgba(65, 105, 225, 0.15);
+    border-bottom: 1px solid var(--border-light);
     transition: all var(--transition-base);
     min-height: 36px !important;
 }
 
 [data-theme="dark"] header {
-    background: rgba(65, 105, 225, 0.15);
+    background: rgba(32, 201, 151, 0.15);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(65, 105, 225, 0.25);
+    border-bottom: 1px solid var(--border-medium);
 }
 
 .header-content {
@@ -317,13 +336,13 @@ header {
 .profile-image:hover {
     transform: scale(1.05);
     border-color: var(--primary);
-    box-shadow: 0 2px 8px rgba(65, 105, 225, 0.3);
+    box-shadow: var(--shadow-primary);
 }
 
 .profile-image.active {
     transform: scale(1.1);
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px var(--primary-pastel), 0 4px 12px rgba(65, 105, 225, 0.4);
+    box-shadow: 0 0 0 3px var(--primary-pastel), var(--shadow-primary-button);
 }
 
 /* Clean Navigation */
@@ -375,7 +394,7 @@ header {
     background: var(--primary-pastel);
     color: var(--primary);
     transform: scale(1.05);
-    box-shadow: 0 2px 8px rgba(65, 105, 225, 0.3);
+    box-shadow: var(--shadow-primary);
 }
 
 .theme-toggle:focus {
@@ -495,7 +514,7 @@ header {
 
 [data-theme="dark"] .mobile-nav {
     background: #181c2a;
-    border-right: 1px solid rgba(65, 105, 225, 0.25);
+    border-right: 1px solid var(--border-medium);
 }
 
 [data-theme="dark"] .drawer-header h3 {
@@ -546,7 +565,7 @@ header {
     color: var(--primary-light);
     border-color: var(--border-light);
     transform: translateX(4px);
-    box-shadow: 0 2px 8px rgba(65, 105, 225, 0.2);
+    box-shadow: var(--shadow-primary);
 }
 
 .mobile-nav a:hover .material-icons {
@@ -575,8 +594,8 @@ header {
 .mdc-card:hover,
 .google-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(65, 105, 225, 0.15);
-    border-color: rgba(65, 105, 225, 0.3);
+    box-shadow: var(--shadow-primary-hover);
+    border-color: var(--border-medium);
 }
 
 .mdc-card__content,
@@ -611,7 +630,7 @@ header {
     background: var(--primary);
     color: white;
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(65, 105, 225, 0.4);
+    box-shadow: var(--shadow-primary-button);
 }
 
 .mdc-button:active,
@@ -665,7 +684,7 @@ header {
 
 .publication-section:hover {
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(65, 105, 225, 0.1);
+    box-shadow: var(--shadow-primary);
     background: var(--bg-secondary);
 }
 
@@ -741,7 +760,7 @@ header {
     background: var(--primary) !important;
     color: white !important;
     transform: translateY(-1px) !important;
-    box-shadow: 0 2px 8px rgba(65, 105, 225, 0.3) !important;
+    box-shadow: var(--shadow-primary) !important;
 }
 
 .pub-links a:hover .material-icons {
@@ -763,7 +782,7 @@ header {
 .service-list li {
     margin-bottom: var(--space-md);
     padding-bottom: var(--space-md);
-    border-bottom: 1px solid rgba(65, 105, 225, 0.15);
+    border-bottom: 1px solid var(--border-light);
     transition: all var(--transition-base);
 }
 

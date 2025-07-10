@@ -6,153 +6,191 @@ date modified: Sunday, July 6th 2025, 01:42:10
 aliases: Academic Website Template
 ---
 
-# Academic Website Template
+# Agni Datta - Academic Website
 
-A clean, minimal academic website template showcasing research, publications, and experience. Perfect for researchers, academics, and graduate students.
+A modern, responsive academic website built with HTML5, CSS3, and JavaScript. Features a clean design with light and dark theme support, mobile-first responsive design, and smooth animations.
 
 ## Features
 
-### Design & Styling
+- **Dual Theme System**: Light theme with royalblue4 palette and dark theme with bluish teal accents
+- **System Preference Detection**: Automatically detects and applies user's system theme preference
+- **Mobile-First Design**: Fully responsive with optimized mobile navigation drawer
+- **Smooth Animations**: CSS transitions and JavaScript-powered smooth scrolling
+- **JavaScript Implementation**: Comprehensive JavaScript with detailed documentation
+- **Accessibility**: WCAG compliant with proper ARIA labels and keyboard navigation
+- **Performance Optimized**: Service worker support and optimized loading
 
-- **Ultra-clean minimal design** with pastel colors and RoyalBlue4 accents
-- **Ysabeau font** for elegant typography with small caps headers
-- **Fira Code** for monospace elements (email, publication links, code)
-- **Dark/Light theme toggle** with smooth transitions
-- **Responsive design** optimized for all devices
-- **Subtle hover animations** with raise effects
+## Theme System
 
-### Content Sections
+### Light Theme (royalblue4)
 
-- **About**: Academic background and current research position
-- **Research**: Research interests and areas of expertise
-- **Publications**: Organized by type (Preprints, Books, Conference Papers, Journal Articles, Thesis)
-- **Experience**: Research positions and education history
-- **Talks**: Invited talks and academic training
+- Primary: `#4169E1` (Royal Blue)
+- Secondary: `#1E3A8A` (Dark Blue)
+- Accent: `#3B82F6` (Blue)
+- Background: `#FFFFFF` (White)
+- Text: `#1F2937` (Dark Gray)
 
-### Technical Features
+### Dark Theme (bluish teal)
 
-- **Theme persistence** using localStorage
-- **Smooth scrolling** navigation
-- **Accessible design** with proper focus states
-- **Print-friendly** styling
-- **Cross-browser compatibility**
+- Primary: `#0F766E` (Teal)
+- Secondary: `#134E4A` (Dark Teal)
+- Accent: `#14B8A6` (Light Teal)
+- Background: `#0F172A` (Dark Blue)
+- Text: `#F1F5F9` (Light Gray)
 
-## Design Philosophy
-
-The website follows a **minimal design philosophy** with:
-
-- Maximum whitespace for content focus
-- Subtle pastel color palette
-- Clean typography hierarchy
-- Interactive elements with gentle feedback
-- Consistent spacing and layout
-
-## Color Scheme
-
-### Light Mode
-
-- **Primary**: RoyalBlue4 (#4169e1)
-- **Background**: Light grey (#f8fafc)
-- **Text**: Dark grey (#374151)
-- **Accents**: Pastel blue (#e6edff)
-
-### Dark Mode
-
-- **Primary**: RoyalBlue4 (#4169e1)
-- **Background**: Pure black (#000000)
-- **Text**: Light grey (#f1f5f9)
-- **Accents**: Dark blue (#1e3a8a)
-
-## Typography
-
-- **Headers**: Ysabeau with small caps styling
-- **Body text**: Ysabeau for clean readability
-- **Code/Email**: Fira Code for technical elements
-- **Publication links**: Fira Code in hollow pill design
-
-## Interactive Elements
-
-- **Hollow pill links** for publications with accent color borders
-- **Raise animations** on hover for cards and content
-- **Circular theme toggle** with smooth transitions
-- **Navigation links** with subtle hover effects
-
-## File Structure
+## Project Structure
 
 ```
-academic-website/
-├── index.html           # Main website content (GitHub Pages entry point)
-├── styles.css           # Complete styling with themes
-└── README.md           # This file
+agni-datta.github.io/
+├── index.html              # Main HTML file
+├── css/
+│   └── styles.css          # Main stylesheet with theme variables
+├── js/
+│   └── main.js            # Main JavaScript with comprehensive documentation
+└── README.md              # This file
+```
+
+## Development Setup
+
+### Prerequisites
+
+- Modern web browser with ES2020 support
+
+### Quick Start
+
+1. Clone the repository
+2. Serve the files using any HTTP server:
+
+   ```bash
+   # Using Python 3
+   python3 -m http.server 8000
+   
+   # Using Node.js (if available)
+   npx serve .
+   
+   # Using PHP
+   php -S localhost:8000
+   ```
+
+3. Open `http://localhost:8000` in your browser
+
+## Code Documentation
+
+### JavaScript Architecture
+
+The main JavaScript file (`js/main.js`) is organized into logical sections:
+
+#### 1. Theme Management
+
+- `initializeTheme()`: Sets up theme system with localStorage persistence
+- `getSystemThemePreference()`: Detects system dark/light mode preference
+- `applyTheme(theme)`: Applies theme to DOM elements
+- `updateThemeToggleIcons(theme)`: Updates toggle button display
+- `setupThemeToggle()`: Sets up theme toggle click handler
+
+#### 2. Mobile Navigation
+
+- `setupMobileNavigation()`: Initializes mobile drawer functionality
+- `openDrawer()`: Opens mobile navigation drawer
+- `closeDrawer()`: Closes mobile navigation drawer
+- `setupNavigationLinks()`: Sets up smooth scrolling navigation
+- `setupOutsideClickHandler()`: Closes drawer when clicking outside
+
+#### 3. Scroll Functionality
+
+- `setupScrollToTop()`: Scroll to top button functionality
+- `setupMobileScrollBehavior()`: Header hide/show on mobile scroll
+
+#### 4. Mobile Optimizations
+
+- `setupMobileTouchFeedback()`: Touch feedback for mobile interactions
+- `updateMobileClasses()`: Dynamic CSS class management
+- `setupMobileClassUpdates()`: Responsive class updates
+
+#### 5. Service Worker
+
+- `registerServiceWorker()`: Registers service worker for caching
+
+### CSS Architecture
+
+The CSS is organized with CSS custom properties for theming:
+
+```css
+:root {
+  /* Shared variables */
+  --transition-speed: 0.3s;
+  --border-radius: 8px;
+}
+
+[data-theme="light"] {
+  /* Light theme variables */
+  --primary-color: #4169E1;
+  --secondary-color: #1E3A8A;
+  /* ... */
+}
+
+[data-theme="dark"] {
+  /* Dark theme variables */
+  --primary-color: #0F766E;
+  --secondary-color: #134E4A;
+  /* ... */
+}
 ```
 
 ## Customization
 
-### Personal Information
+### Adding New Themes
 
-1. Update personal details in `index.html`
-2. Replace profile image
-3. Update contact information
-4. Modify research interests and publications
+1. Add new theme variables in `css/styles.css`
+2. Update the `applyTheme()` function in `js/main.js`
+3. Add theme toggle icons to the HTML
 
-### Styling
+### Modifying Colors
 
-1. Change accent color in CSS variables
-2. Adjust typography preferences
-3. Modify spacing and layout
-4. Customize hover animations
+Edit the CSS custom properties in the respective theme sections:
 
-### Content Sections
+- Light theme: `[data-theme="light"]` block
+- Dark theme: `[data-theme="dark"]` block
 
-- Add or remove sections as needed
-- Reorganize publication categories
-- Update navigation links
-- Modify section styling
+### Adding New Sections
 
-## Technologies Used
+1. Add HTML content to `index.html`
+2. Add navigation links
+3. Update mobile navigation if needed
 
-- **HTML5** for semantic structure
-- **CSS3** with custom properties for theming
-- **JavaScript** for theme switching
-- **Google Fonts** (Ysabeau, Fira Code)
-- **Font Awesome** for icons
+## Mobile Features
+
+- **Responsive Design**: Adapts to all screen sizes
+- **Touch Optimized**: Touch feedback and gesture support
+- **Mobile Navigation**: Slide-out drawer navigation
+- **Header Behavior**: Auto-hide/show on scroll
+- **Performance**: Optimized for mobile devices
 
 ## Browser Support
 
-- Chrome/Edge (latest)
-- Firefox (latest)
-- Safari (latest)
-- Mobile browsers
-
-## Getting Started
-
-1. Clone or download this template
-2. Update personal information in `index.html`
-3. Customize styling in `styles.css`
-4. Replace placeholder content with your own
-5. Deploy to your preferred hosting service
-
-### GitHub Pages Deployment
-
-To deploy this template on GitHub Pages:
-
-1. **Fork or clone** this repository to your GitHub account
-2. **Rename** the repository to `yourusername.github.io` (replace `yourusername` with your actual GitHub username)
-3. **Update** the content in `index.html` with your personal information
-4. **Customize** the styling in `styles.css` as needed
-5. **Commit and push** your changes
-6. **Enable GitHub Pages** in your repository settings:
-   - Go to Settings → Pages
-   - Select “Deploy from a branch”
-   - Choose “main” branch and “/ (root)” folder
-   - Click “Save”
-
-Your website will be available at `https://yourusername.github.io`
+- Chrome 80+
+- Firefox 75+
+- Safari 13+
+- Edge 80+
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## Contact
+
+- **Website**: [agni-datta.github.io](https://agni-datta.github.io)
+- **Email**: [Your Email]
+- **GitHub**: [@agni-datta](https://github.com/agni-datta)
+
 ---
 
-*This template is designed for academics and researchers who want a clean, professional online presence. Original design by Agni Datta.*
+**Note**: This website is designed for academic purposes and showcases research, publications, and professional experience in a clean, accessible format.
