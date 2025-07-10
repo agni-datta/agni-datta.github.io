@@ -404,10 +404,11 @@
                 if (diff > 0 && isDrawerOpen) {
                     // Swipe up - close drawer
                     closeDrawer();
-                } else if (diff < 0 && !isDrawerOpen) {
-                    // Swipe down - open drawer
-                    openDrawer();
                 }
+                // else if (diff < 0 && !isDrawerOpen) {
+                //     // Swipe down - open drawer (DISABLED: only open via profile image click)
+                //     openDrawer();
+                // }
             }
         }
 
