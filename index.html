@@ -386,31 +386,31 @@
         let touchStartY = 0;
         let touchEndY = 0;
 
-        // Handle swipe gestures for mobile
-        document.addEventListener('touchstart', (e) => {
-            touchStartY = e.changedTouches[0].screenY;
-        });
+        // Handle swipe gestures for mobile - DISABLED to prevent auto-opening
+        // document.addEventListener('touchstart', (e) => {
+        //     touchStartY = e.changedTouches[0].screenY;
+        // });
 
-        document.addEventListener('touchend', (e) => {
-            touchEndY = e.changedTouches[0].screenY;
-            handleSwipe();
-        });
+        // document.addEventListener('touchend', (e) => {
+        //     touchEndY = e.changedTouches[0].screenY;
+        //     handleSwipe();
+        // });
 
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartY - touchEndY;
+        // function handleSwipe() {
+        //     const swipeThreshold = 50;
+        //     const diff = touchStartY - touchEndY;
 
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0 && isDrawerOpen) {
-                    // Swipe up - close drawer
-                    closeDrawer();
-                }
-                // else if (diff < 0 && !isDrawerOpen) {
-                //     // Swipe down - open drawer (DISABLED: only open via profile image click)
-                //     openDrawer();
-                // }
-            }
-        }
+        //     if (Math.abs(diff) > swipeThreshold) {
+        //         if (diff > 0 && isDrawerOpen) {
+        //             // Swipe up - close drawer
+        //             closeDrawer();
+        //         }
+        //         // else if (diff < 0 && !isDrawerOpen) {
+        //         //     // Swipe down - open drawer (DISABLED: only open via profile image click)
+        //         //     openDrawer();
+        //         // }
+        //     }
+        // }
 
         // Add mobile-specific scroll behavior
         let lastScrollTop = 0;
@@ -635,8 +635,7 @@
         window.addEventListener('resize', updateMobileClasses);
         updateMobileClasses();
 
-        // Apply dynamic padding
-        applyDynamicPadding();
+        // Apply dynamadd     applyDynamicPadding();
 
         // Initialize theme
         initializeTheme();
