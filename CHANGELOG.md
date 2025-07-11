@@ -1,24 +1,15 @@
----
-title: CHANGELOG
-linter-yaml-title-alias: CHANGELOG
-date created: Friday, July 11th 2025, 18:55:48
-date modified: Friday, July 11th 2025, 19:17:22
-aliases: CHANGELOG
----
-
-# CHANGELOG
-
+- docs(README): Standardize README.md structure, update metadata, and improve clarity. NEI: Unified documentation, improved maintainability, and user experience. (Agni Datta, 2025-07-11)
 - Restructure website with organized CSS, JS, and partials directories (Agni Datta, 2025-07-11)
 - Completely disable touch/swipe gestures to prevent auto-opening navigation drawer (Agni Datta, 2025-07-10)
 - Fix mobile navigation drawer auto-open and improve dark mode colors (Agni Datta, 2025-07-10)
 - Update README metadata and formatting (Agni Datta, 2025-07-06)
 - Increase bottom margin for section and list elements (Agni Datta, 2025-07-05)
-- Add!important to mobile nav and hamburger menu styles (Agni Datta, 2025-07-05)
+- Add !important to mobile nav and hamburger menu styles (Agni Datta, 2025-07-05)
 - Revamp styles for compact, modern, and mobile-friendly UI (Agni Datta, 2025-07-05)
 - Redesign header and add mobile navigation drawer (Agni Datta, 2025-07-05)
 - Update README and rename main HTML file (Agni Datta, 2025-07-05)
 - Redesign academic website with new layout and theme (Agni Datta, 2025-07-05)
-- Create.gitignore (Agni Datta, 2025-06-16)
+- Create .gitignore (Agni Datta, 2025-06-16)
 - Update README.md (Agni Datta, 2025-06-14)
 - Update README.md (Agni Datta, 2025-02-22)
 - Update README.md (Agni Datta, 2025-01-30)
