@@ -1,9 +1,9 @@
 ---
-title: Academic Website Template
-linter-yaml-title-alias: Academic Website Template
+title: Agni Datta - Academic Website
+linter-yaml-title-alias: Agni Datta - Academic Website
 date created: Saturday, May 4th 2024, 20:27:22
-date modified: Sunday, July 6th 2025, 01:42:10
-aliases: Academic Website Template
+date modified: Friday, July 11th 2025, 19:17:23
+aliases: Agni Datta - Academic Website
 ---
 
 # Agni Datta - Academic Website
@@ -13,7 +13,7 @@ A modern, responsive academic website built with HTML5, CSS3, and JavaScript. Fe
 ## Features
 
 - **Dual Theme System**: Light theme with royalblue4 palette and dark theme with bluish teal accents
-- **System Preference Detection**: Automatically detects and applies user's system theme preference
+- **System Preference Detection**: Automatically detects and applies user’s system theme preference
 - **Mobile-First Design**: Fully responsive with optimized mobile navigation drawer
 - **Smooth Animations**: CSS transitions and JavaScript-powered smooth scrolling
 - **JavaScript Implementation**: Comprehensive JavaScript with detailed documentation
