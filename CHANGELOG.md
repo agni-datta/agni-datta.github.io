@@ -1,9 +1,9 @@
 ---
 title: CHANGELOG
-aliases: CHANGELOG
 linter-yaml-title-alias: CHANGELOG
 date created: Friday, July 11th 2025, 18:55:48
-date modified: Thursday, July 17th 2025, 22:39:58
+date modified: Friday, July 25th 2025, 21:56:07
+aliases: CHANGELOG
 ---
 
 # CHANGELOG
