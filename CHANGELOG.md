@@ -2,60 +2,45 @@
 title: CHANGELOG
 linter-yaml-title-alias: CHANGELOG
 date created: Friday, July 11th 2025, 18:55:48
-date modified: Friday, July 25th 2025, 21:56:07
+date modified: Friday, August 15th 2025, 19:23:50
 aliases: CHANGELOG
 ---
 
-# CHANGELOG
+## CHANGELOG
 
-- docs(README): Standardize README.md structure, update metadata, and improve clarity. NEI: Unified documentation, improved maintainability, and user experience. (Agni Datta, 2025-07-11)
-- Restructure website with organized CSS, JS, and partials directories (Agni Datta, 2025-07-11)
-- Completely disable touch/swipe gestures to prevent auto-opening navigation drawer (Agni Datta, 2025-07-10)
-- Fix mobile navigation drawer auto-open and improve dark mode colors (Agni Datta, 2025-07-10)
-- Update README metadata and formatting (Agni Datta, 2025-07-06)
-- Increase bottom margin for section and list elements (Agni Datta, 2025-07-05)
-- Add!important to mobile nav and hamburger menu styles (Agni Datta, 2025-07-05)
-- Revamp styles for compact, modern, and mobile-friendly UI (Agni Datta, 2025-07-05)
-- Redesign header and add mobile navigation drawer (Agni Datta, 2025-07-05)
-- Update README and rename main HTML file (Agni Datta, 2025-07-05)
-- Redesign academic website with new layout and theme (Agni Datta, 2025-07-05)
-- Create.gitignore (Agni Datta, 2025-06-16)
-- Update README.md (Agni Datta, 2025-06-14)
-- Update README.md (Agni Datta, 2025-02-22)
-- Update README.md (Agni Datta, 2025-01-30)
-- Update README.md (Agni Datta, 2025-01-27)
-- Updated. (Agni Datta, 2025-01-18)
-- Update README.md (Agni Datta, 2024-12-05)
-- Update README.md (Agni Datta, 2024-12-05)
-- Update README.md (Agni Datta, 2024-11-14)
-- Update README.md (Agni Datta, 2024-11-11)
-- Update README.md (Agni Datta, 2024-11-09)
-- Update README.md (Agni Datta, 2024-10-28)
-- Update README.md (Agni Datta, 2024-10-22)
-- Update README.md (Agni Datta, 2024-10-18)
-- Update README.md (Agni Datta, 2024-10-10)
-- Update README.md (Agni Datta, 2024-10-02)
-- Update README.md (Agni Datta, 2024-09-29)
-- Update README.md (Agni Datta, 2024-09-25)
-- Update README.md (Agni Datta, 2024-09-16)
-- Update README.md (Agni Datta, 2024-09-14)
-- Update README.md (Agni Datta, 2024-09-12)
-- Update README.md (Agni Datta, 2024-09-08)
-- Update README.md (Agni Datta, 2024-09-06)
-- Update README.md (Agni Datta, 2024-09-03)
-- Update README.md (Agni Datta, 2024-08-21)
-- Update README.md (Agni Datta, 2024-08-16)
-- Update README.md (Agni Datta, 2024-08-13)
-- Update README.md (Agni Datta, 2024-07-24)
-- Update README.md (Agni Datta, 2024-07-24)
-- Update README.md (Agni Datta, 2024-07-16)
-- Update README.md (Agni Datta, 2024-07-15)
-- Update README.md (Agni Datta, 2024-07-04)
-- Update README.md (Agni Datta, 2024-06-21)
-- Update README.md (Agni Datta, 2024-06-17)
-- Update README.md (Agni Datta, 2024-06-08)
-- Update README.md (Agni Datta, 2024-06-08)
-- Update README.md (Agni Datta, 2024-06-03)
-- Added initial files. (Agni Datta, 2024-05-22)
-- Update README.md (Agni Datta, 2024-05-03)
-- Initial commit (Agni Datta, 2024-04-28)
+### TL;DR - Important Changes Only
+
+#### **Major Website Redesign**
+
+- **2025-07-05**: Complete website redesign with new layout, theme, and mobile navigation
+- **2025-07-05**: Added mobile navigation drawer and responsive header
+- **2025-07-05**: Implemented modern, compact, and mobile-friendly UI design
+- **2025-07-05**: Renamed main HTML file and updated README structure
+
+#### **Technical Infrastructure**
+
+- **2025-07-11**: Restructured website with organized CSS, JS, and partials directories
+- **2025-07-10**: Fixed mobile navigation issues and improved dark mode colors
+- **2025-07-10**: Disabled touch/swipe gestures to prevent navigation drawer auto-open
+- **2025-06-16**: Created.gitignore for better repository management
+
+#### **Documentation & Maintenance**
+
+- **2025-07-11**: Added comprehensive CHANGELOG system and standardized README structure
+- **2025-07-06**: Updated README metadata and formatting
+- **2025-07-05**: Enhanced mobile navigation styles with!important declarations
+- **2025-07-05**: Improved spacing and margins for better visual hierarchy
+
+#### **Content & Structure**
+
+- **2025-01-18**: Major content updates and website improvements
+- **2024-12-05**: Multiple content updates and refinements
+- **2024-11-09**: Content updates and website enhancements
+- **2024-10-02**: Content improvements and website updates
+- **2024-09-03**: Content updates and website refinements
+- **2024-08-13**: Content updates and website improvements
+
+#### **Initial Setup**
+
+- **2024-05-22**: Added initial website files and structure
+- **2024-04-28**: Initial repository commit and website foundation

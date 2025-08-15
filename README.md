@@ -1,16 +1,16 @@
 ---
-title: Agni Datta - Academic Website
-linter-yaml-title-alias: Agni Datta - Academic Website
+title: README
+linter-yaml-title-alias: README
 date created: Saturday, May 4th 2024, 20:27:22
-date modified: Friday, July 25th 2025, 21:56:07
-aliases: Agni Datta - Academic Website
+date modified: Friday, August 15th 2025, 19:23:51
+aliases: README
 ---
 
-# Agni Datta - Academic Website
+## Agni Datta - Academic Website
 
 A modern, responsive academic website built with HTML5, CSS3, and JavaScript. Features a clean design with light and dark theme support, mobile-first responsive design, and smooth animations.
 
-## Features
+### Features
 
 - **Dual Theme System**: Light theme with royalblue4 palette and dark theme with bluish teal accents
 - **System Preference Detection**: Automatically detects and applies user’s system theme preference
@@ -20,9 +20,9 @@ A modern, responsive academic website built with HTML5, CSS3, and JavaScript. Fe
 - **Accessibility**: WCAG compliant with proper ARIA labels and keyboard navigation
 - **Performance Optimized**: Service worker support and optimized loading
 
-## Theme System
+### Theme System
 
-### Light Theme (royalblue4)
+#### Light Theme (royalblue4)
 
 - Primary: `#4169E1` (Royal Blue)
 - Secondary: `#1E3A8A` (Dark Blue)
@@ -30,7 +30,7 @@ A modern, responsive academic website built with HTML5, CSS3, and JavaScript. Fe
 - Background: `#FFFFFF` (White)
 - Text: `#1F2937` (Dark Gray)
 
-### Dark Theme (bluish teal)
+#### Dark Theme (bluish teal)
 
 - Primary: `#0F766E` (Teal)
 - Secondary: `#134E4A` (Dark Teal)
@@ -38,7 +38,7 @@ A modern, responsive academic website built with HTML5, CSS3, and JavaScript. Fe
 - Background: `#0F172A` (Dark Blue)
 - Text: `#F1F5F9` (Light Gray)
 
-## Project Structure
+### Project Structure
 
 ```
 agni-datta.github.io/
@@ -50,13 +50,13 @@ agni-datta.github.io/
 └── README.md              # This file
 ```
 
-## Development Setup
+### Development Setup
 
-### Prerequisites
+#### Prerequisites
 
 - Modern web browser with ES2020 support
 
-### Quick Start
+#### Quick Start
 
 1. Clone the repository
 2. Serve the files using any HTTP server:
@@ -74,13 +74,13 @@ agni-datta.github.io/
 
 3. Open `http://localhost:8000` in your browser
 
-## Code Documentation
+### Code Documentation
 
-### JavaScript Architecture
+#### JavaScript Architecture
 
 The main JavaScript file (`js/main.js`) is organized into logical sections:
 
-#### 1. Theme Management
+##### 1. Theme Management
 
 - `initializeTheme()`: Sets up theme system with localStorage persistence
 - `getSystemThemePreference()`: Detects system dark/light mode preference
@@ -88,7 +88,7 @@ The main JavaScript file (`js/main.js`) is organized into logical sections:
 - `updateThemeToggleIcons(theme)`: Updates toggle button display
 - `setupThemeToggle()`: Sets up theme toggle click handler
 
-#### 2. Mobile Navigation
+##### 2. Mobile Navigation
 
 - `setupMobileNavigation()`: Initializes mobile drawer functionality
 - `openDrawer()`: Opens mobile navigation drawer
@@ -96,22 +96,22 @@ The main JavaScript file (`js/main.js`) is organized into logical sections:
 - `setupNavigationLinks()`: Sets up smooth scrolling navigation
 - `setupOutsideClickHandler()`: Closes drawer when clicking outside
 
-#### 3. Scroll Functionality
+##### 3. Scroll Functionality
 
 - `setupScrollToTop()`: Scroll to top button functionality
 - `setupMobileScrollBehavior()`: Header hide/show on mobile scroll
 
-#### 4. Mobile Optimizations
+##### 4. Mobile Optimizations
 
 - `setupMobileTouchFeedback()`: Touch feedback for mobile interactions
 - `updateMobileClasses()`: Dynamic CSS class management
 - `setupMobileClassUpdates()`: Responsive class updates
 
-#### 5. Service Worker
+##### 5. Service Worker
 
 - `registerServiceWorker()`: Registers service worker for caching
 
-### CSS Architecture
+#### CSS Architecture
 
 The CSS is organized with CSS custom properties for theming:
 
@@ -137,28 +137,28 @@ The CSS is organized with CSS custom properties for theming:
 }
 ```
 
-## Customization
+### Customization
 
-### Adding New Themes
+#### Adding New Themes
 
 1. Add new theme variables in `css/styles.css`
 2. Update the `applyTheme()` function in `js/main.js`
 3. Add theme toggle icons to the HTML
 
-### Modifying Colors
+#### Modifying Colors
 
 Edit the CSS custom properties in the respective theme sections:
 
 - Light theme: `[data-theme="light"]` block
 - Dark theme: `[data-theme="dark"]` block
 
-### Adding New Sections
+#### Adding New Sections
 
 1. Add HTML content to `index.html`
 2. Add navigation links
 3. Update mobile navigation if needed
 
-## Mobile Features
+### Mobile Features
 
 - **Responsive Design**: Adapts to all screen sizes
 - **Touch Optimized**: Touch feedback and gesture support
@@ -166,18 +166,18 @@ Edit the CSS custom properties in the respective theme sections:
 - **Header Behavior**: Auto-hide/show on scroll
 - **Performance**: Optimized for mobile devices
 
-## Browser Support
+### Browser Support
 
 - Chrome 80+
 - Firefox 75+
 - Safari 13+
 - Edge 80+
 
-## License
+### License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contributing
+### Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -185,7 +185,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 4. Test thoroughly
 5. Submit a pull request
 
-## Contact
+### Contact
 
 - **Website**: [agni-datta.github.io](https://agni-datta.github.io)
 - **Email**: [Your Email]
