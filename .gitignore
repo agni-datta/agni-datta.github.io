@@ -1,0 +1,28 @@
+# OS Specific
+.DS_Store
+Thumbs.db
+*.swp
+
+# IDE Specific
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Rust
+target/
+debug/
+**/*.rs.bk
+*.pdb
+**/mutants.out*/
+rustc-ice-*.txt
+
+# Web / Node
+node_modules/
+dist/
+.env
+.env.local
+
+# Project Specific
+/public/
+/wasm/pkg/

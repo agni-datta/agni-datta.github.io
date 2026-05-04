@@ -1,0 +1,10 @@
+[workspace]
+members = ["sitegen", "wasm"]
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+license = "MIT"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"

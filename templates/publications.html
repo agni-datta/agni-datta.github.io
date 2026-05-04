@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Publications · {{ data.person.name }}{% endblock title %}
+{% block canonical_path %}/publications/{% endblock canonical_path %}
+{% block content %}
+<section class="shell page-grid">
+  <aside class="page-kicker">
+    <p class="eyebrow">Publications</p>
+    <h1>{{ data.publications.heading }}</h1>
+  </aside>
+  <div class="page-body">
+    <section class="section-block first">
+      <div class="section-head"><h2>Manuscripts</h2></div>
+      {% for paper in data.publications.manuscripts %}
+      <article class="paper">
+        <h3>{{ paper.title }}</h3>
+        <p class="authors">{% for author in paper.authors %}<a href="{{ author.url }}">{{ author.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+        <p class="meta">{{ paper.status }} · {{ paper.year }}</p>
+        {% if paper.links | length > 0 %}
+        <p class="links">{% for link in paper.links %}<a href="{{ link.url }}">{{ link.label }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </section>
+  </div>
+</section>
+{% endblock content %}

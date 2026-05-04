@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+{% block title %}Resources · {{ data.person.name }}{% endblock title %}
+{% block canonical_path %}/resources/{% endblock canonical_path %}
+{% block content %}
+<section class="shell page-grid">
+  <aside class="page-kicker">
+    <p class="eyebrow">Resources</p>
+    <h1>TCS Resources</h1>
+  </aside>
+  <div class="page-body">
+    <div class="prose lead-block">
+      <p>When I was starting out, these were the resources I found most helpful. After talking with other beginners in
+        the theory community, this list has become the standard go-to.</p>
+    </div>
+
+    <section class="section-block first">
+      <div class="section-head">
+        <h2>Textbooks</h2>
+      </div>
+      <ul class="resource-list">
+        <li>
+          <a href="https://theory.cs.princeton.edu/complexity/">Arora and Barak — Computational Complexity: A Modern
+            Approach</a>
+          <span class="resource-note">The definitive graduate-level text on complexity theory.</span>
+        </li>
+        <li>
+          <a href="https://www.cengage.com/c/introduction-to-the-theory-of-computation-3e-sipser/9781133187790/">Sipser
+            — Introduction to the Theory of Computation</a>
+          <span class="resource-note">Accessible undergraduate introduction to automata, computability, and
+            complexity.</span>
+        </li>
+        <li>
+          <a href="https://www.cambridge.org/core/books/randomized-algorithms/6A3E5CD760B0DDBA3794A100EE2843E8">Motwani
+            and Raghavan — Randomized Algorithms</a>
+          <span class="resource-note">The classic text on algorithms that use randomness.</span>
+        </li>
+        <li>
+          <a href="https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/">Cormen et al. — Introduction to
+            Algorithms (CLRS)</a>
+          <span class="resource-note">Essential reference for algorithms and data structures.</span>
+        </li>
+        <li>
+          <a
+            href="https://www.routledge.com/Introduction-to-Modern-Cryptography-Fourth-Edition/Katz-Lindell/p/book/9781032496795">Katz
+            and Lindell — Introduction to Modern Cryptography</a>
+          <span class="resource-note">A rigorous and widely used introduction to modern cryptography.</span>
+        </li>
+        <li>
+          <a href="https://www.wisdom.weizmann.ac.il/~oded/foc-book.html">Goldreich — Foundations of Cryptography (Vol.
+            1 &amp; 2)</a>
+          <span class="resource-note">Extensive treatment of the theoretical underpinnings of cryptography. Does not
+            cover the most recent developments.</span>
+        </li>
+        <li>
+          <a href="https://www.wisdom.weizmann.ac.il/~oded/cc-book.html">Goldreich — Computational Complexity: A
+            Conceptual Perspective</a>
+          <span class="resource-note">A conceptual approach to complexity theory.</span>
+        </li>
+        <li>
+          <a
+            href="https://www.cambridge.org/core/books/quantum-computing-since-democritus/197A4CD13738E10AAD787DBB78D8E92C">Aaronson
+            — Quantum Computing Since Democritus</a>
+          <span class="resource-note">Quantum computation and TCS more broadly. More engaging than Nielsen &amp; Chuang,
+            though the latter remains the standard reference.</span>
+        </li>
+        <li>
+          <a href="https://www.oreilly.com/library/view/concrete-mathematics-a/9780134389974/">Graham, Knuth, and
+            Patashnik — Concrete Mathematics</a>
+          <span class="resource-note">Essential mathematical foundations for computer science.</span>
+        </li>
+        <li>
+          <a href="https://www.math.ias.edu/avi/book">Wigderson — Mathematics and Computation</a>
+          <span class="resource-note">A comprehensive account of the connections between mathematics and theoretical
+            computer science.</span>
+        </li>
+        <li>
+          <a
+            href="https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE">Nielsen
+            and Chuang — Quantum Computation and Quantum Information</a>
+          <span class="resource-note">The standard textbook for quantum computation and information theory.</span>
+        </li>
+        <li>
+          <a href="https://www.wiley.com/en-us/The+Probabilistic+Method%2C+4th+Edition-p-9781119061953">Alon and Spencer
+            — The Probabilistic Method</a>
+          <span class="resource-note">The definitive reference on the probabilistic method in combinatorics and
+            TCS.</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section-block">
+      <div class="section-head">
+        <h2>Courses &amp; lecture notes</h2>
+      </div>
+      <ul class="resource-list">
+        <li>
+          <a href="https://www.cs.cmu.edu/~odonnell/toolkit20">O'Donnell — CS Theory Toolkit (CMU)</a>
+          <span class="resource-note">Essential mathematical tools for TCS.</span>
+        </li>
+        <li>
+          <a href="https://www.wisdom.weizmann.ac.il/~oded/books-and-papers.html">Goldreich — Lecture notes</a>
+          <span class="resource-note">In-depth notes on complexity, cryptography, and foundations.</span>
+        </li>
+        <li>
+          <a href="https://cs.uwaterloo.ca/~watrous/TQI/">Watrous — Theory of Quantum Information</a>
+          <span class="resource-note">Widely recommended for quantum computation.</span>
+        </li>
+        <li>
+          <a href="https://mzhandry.github.io/courses/2016-Fall-COS597C/">Zhandry — Recent Developments in Program
+            Obfuscation (Princeton)</a>
+          <span class="resource-note">Techniques and results in program obfuscation.</span>
+        </li>
+        <li>
+          <a href="https://mzhandry.github.io/courses/2018-Fall-COS597A/">Zhandry — Quantum Cryptography (Princeton)</a>
+          <span class="resource-note">Cryptography based on quantum mechanics.</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section-block">
+      <div class="section-head">
+        <h2>Research &amp; conferences</h2>
+      </div>
+      <ul class="resource-list">
+        <li>
+          <a href="https://eccc.weizmann.ac.il/">ECCC</a>
+          <span class="resource-note">Online archive of research reports in computational complexity.</span>
+        </li>
+        <li>
+          <a href="https://arxiv.org/list/cs/new">arXiv — cs.CC, cs.DS, cs.LO, cs.CR</a>
+          <span class="resource-note">Primary preprint server for complexity, logic, and cryptography.</span>
+        </li>
+        <li>
+          <a href="https://eprint.iacr.org/">IACR ePrint</a>
+          <span class="resource-note">Definitive archive of cryptography preprints.</span>
+        </li>
+        <li>
+          <a href="https://acm-stoc.org/">STOC</a>
+          <span class="resource-note">One of the two premier annual conferences in theoretical computer science.</span>
+        </li>
+        <li>
+          <a href="https://focs.computer.org/">FOCS</a>
+          <span class="resource-note">The other premier annual conference in TCS.</span>
+        </li>
+        <li>
+          <a href="https://iacr.org/conferences/">IACR Conferences — CRYPTO, EUROCRYPT, TCC</a>
+          <span class="resource-note">Main annual conferences of the International Association for Cryptologic
+            Research.</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section-block">
+      <div class="section-head">
+        <h2>Blogs</h2>
+      </div>
+      <ul class="resource-list">
+        <li>
+          <a href="https://scottaaronson.blog/">Shtetl-Optimized</a>
+          <span class="resource-note">Scott Aaronson on quantum computing and complexity theory.</span>
+        </li>
+        <li>
+          <a href="https://rjlipton.wordpress.com/">Gödel's Lost Letter and P=NP</a>
+          <span class="resource-note">Ken Regan and Dick Lipton on developments in complexity theory.</span>
+        </li>
+        <li>
+          <a href="https://windowsontheory.org/">Windows On Theory</a>
+          <span class="resource-note">Boaz Barak on complexity, cryptography, and foundations of machine
+            learning.</span>
+        </li>
+        <li>
+          <a href="https://blog.computationalcomplexity.org/">Computational Complexity</a>
+          <span class="resource-note">Lance Fortnow and Bill Gasarch on complexity theory and related topics.</span>
+        </li>
+        <li>
+          <a href="https://www.wisdom.weizmann.ac.il/~oded/my-choice.html">Goldreich — My Choices</a>
+          <span class="resource-note">Personal selections of interesting work in theoretical computer science.</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section-block">
+      <div class="section-head">
+        <h2>Reference &amp; Q&amp;A</h2>
+      </div>
+      <ul class="resource-list">
+        <li>
+          <a href="https://cstheory.stackexchange.com/">TCS Stack Exchange</a>
+          <span class="resource-note">Q&amp;A for students and researchers in theoretical computer science.</span>
+        </li>
+        <li>
+          <a href="https://crypto.stackexchange.com/">Cryptography Stack Exchange</a>
+          <span class="resource-note">Q&amp;A for cryptography and cryptanalysis.</span>
+        </li>
+        <li>
+          <a href="https://complexityzoo.net/Complexity_Zoo">The Complexity Zoo</a>
+          <span class="resource-note">Wiki cataloguing hundreds of computational complexity classes.</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section-block">
+      <div class="section-head">
+        <h2>Communities &amp; aggregators</h2>
+      </div>
+      <ul class="resource-list">
+        <li>
+          <a href="https://theory.report/">Theory of Computing Blog Aggregator</a>
+          <span class="resource-note">A single feed of posts from prominent TCS blogs.</span>
+        </li>
+        <li>
+          <a href="https://www.sigact.org/">SIGACT</a>
+          <span class="resource-note">ACM Special Interest Group on Algorithms and Computation Theory.</span>
+        </li>
+        <li>
+          <a href="https://iacr.org/">IACR</a>
+          <span class="resource-note">International Association for Cryptologic Research — news, publications, and
+            conferences.</span>
+        </li>
+      </ul>
+    </section>
+  </div>
+</section>
+{% endblock content %}

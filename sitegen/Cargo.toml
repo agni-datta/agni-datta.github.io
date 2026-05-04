@@ -1,0 +1,13 @@
+[package]
+name = "sitegen"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1"
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+pulldown-cmark = { version = "0.12", default-features = false, features = ["html"] }
+serde = { version = "1", features = ["derive"] }
+tera = "1"
+toml = "0.8"
+walkdir = "2"

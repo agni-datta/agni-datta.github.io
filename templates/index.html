@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}{{ data.person.name }}{% endblock title %}
+{% block canonical_path %}/{% endblock canonical_path %}
+{% block content %}
+<section class="shell home-grid">
+  <aside class="identity panel" aria-label="Identity">
+    {% if data.person.photo_path and data.person.photo_path != "" %}
+    <figure class="portrait-frame">
+      <img class="portrait" src="{{ data.person.photo_path }}" alt="{{ data.person.photo_alt }}" width="640" height="640" decoding="async">
+    </figure>
+    {% endif %}
+    <p class="eyebrow">{{ data.person.role }}</p>
+    <h1>{{ data.person.name }}</h1>
+    <p class="affiliation">{% if data.person.affiliation_url and data.person.affiliation_url != "" %}<a href="{{ data.person.affiliation_url }}">{{ data.person.affiliation }}</a>{% else %}{{ data.person.affiliation }}{% endif %} · {{ data.person.location }}</p>
+    <dl class="contact-list">
+      <div>
+        <dt>Email</dt>
+        <dd><a href="mailto:{{ data.person.email }}">{{ data.person.email_display }}</a></dd>
+      </div>
+      <div>
+        <dt>Advisors</dt>
+        <dd>{% for advisor in data.person.advisors %}<a href="{{ advisor.url }}">{{ advisor.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd>
+      </div>
+      <div>
+        <dt>Links</dt>
+        <dd>{% for link in data.person.links %}<a href="{{ link.url }}">{{ link.label }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</dd>
+      </div>
+    </dl>
+  </aside>
+
+  <section class="main-copy">
+    <div class="intro prose">
+      {{ data.about.intro | markdown | safe }}
+    </div>
+
+    <section class="section-block">
+      <div class="section-head">
+        <h2>Research interests</h2>
+      </div>
+      {% if data.about.interests_text and data.about.interests_text != "" %}
+      <div class="prose interests-prose">{{ data.about.interests_text | markdown | safe }}</div>
+      {% endif %}
+      <ul class="interest-list">
+        {% for interest in data.about.interests %}<li>{{ interest }}</li>{% endfor %}
+      </ul>
+    </section>
+
+    <section class="section-block">
+      <div class="section-head">
+        <h2>Recent publications</h2>
+        <a href="/publications/">details</a>
+      </div>
+      {% for paper in data.publications.manuscripts | slice(end=5) %}
+      <article class="paper compact">
+        <h3>{{ paper.title }}</h3>
+        <p class="authors">{% for author in paper.authors %}<a href="{{ author.url }}">{{ author.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+        <p class="meta">{{ paper.status }} · {{ paper.year }}</p>
+      </article>
+      {% endfor %}
+    </section>
+
+    <section class="section-block">
+      <div class="section-head"><h2>Teaching</h2></div>
+      <div class="entry-list">
+        {% for item in data.teaching %}
+        <article class="entry">
+          <h3>{{ item.role }}</h3>
+          <p class="meta">{% if item.institution_url and item.institution_url != "" %}<a href="{{ item.institution_url }}">{{ item.institution }}</a>{% else %}{{ item.institution }}{% endif %} · {{ item.term }}</p>
+          <p>{{ item.text | inline_markdown | safe }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-head"><h2>Service</h2></div>
+      <ol class="service-list">
+        {% for item in data.service %}
+        <li><span>{{ item.role }}</span><span class="meta">{% if item.venue_url and item.venue_url != "" %}<a href="{{ item.venue_url }}">{{ item.venue }}</a>{% else %}{{ item.venue }}{% endif %} {{ item.year }}</span></li>
+        {% endfor %}
+      </ol>
+    </section>
+
+    <section class="section-block">
+      <div class="section-head"><h2>Talks</h2></div>
+      <ol class="talk-list">
+        {% for talk in data.talks %}
+        <li>
+          <span class="talk-title">{{ talk.title }}</span>
+          <span class="meta">{% if talk.venue_url and talk.venue_url != "" %}<a href="{{ talk.venue_url }}">{{ talk.venue }}</a>{% else %}{{ talk.venue }}{% endif %} · {{ talk.date }}</span>
+          {% if talk.links | length > 0 %}<span class="links">{% for link in talk.links %}<a href="{{ link.url }}">{{ link.label }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</span>{% endif %}
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
+  </section>
+</section>
+{% endblock content %}

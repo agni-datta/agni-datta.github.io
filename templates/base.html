@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>{% block title %}{{ data.site.title }}{% endblock title %}</title>
+  <meta name="description" content="{{ data.site.description }}">
+  <link rel="canonical" href="{{ data.site.base_url }}{% block canonical_path %}/{% endblock canonical_path %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
+</head>
+
+<body>
+  <header class="site-header" role="banner">
+    <a class="wordmark" href="/" data-route="home">{{ data.person.name }}</a>
+    <div class="header-actions">
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="/" data-route="home">Home</a>
+        <a href="/publications/" data-route="publications">Publications</a>
+        <a href="/resources/" data-route="resources">Resources</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme" aria-pressed="false">
+        <span data-theme-label>Theme</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="content">
+    {% block content %}{% endblock content %}
+  </main>
+
+  <footer class="site-footer">
+    <span>© {{ build.year }} {{ data.person.name }}</span>
+    <span class="dotsep">Built as static HTML from Rust; math rendered with MathJax.</span>
+  </footer>
+
+  <script type="module">
+    import init from '/assets/wasm/agni_datta_site_wasm.js';
+    init().catch(() => { });
+  </script>
+</body>
+
+</html>
