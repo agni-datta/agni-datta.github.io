@@ -1,0 +1,104 @@
+{% extends "layouts/base.html" %} {% block title %}Miscellany · {{ data.person.name }}{% endblock title %} {% block
+canonical_path %}/miscellany/{% endblock canonical_path %} {% block content %}
+<section class="shell page-grid">
+  <aside class="page-kicker">
+    <p class="eyebrow">Miscellany</p>
+    <h1>Miscellany</h1>
+    <p class="page-note">{{ data.miscellany.intro }}</p>
+  </aside>
+  <div class="page-body">
+    <div class="miscellany-list">
+      {% for item in data.miscellany.items %}
+      <article class="miscellany-card">
+        <span class="miscellany-icon" aria-hidden="true">
+          {% if item.icon == "paleontology" %}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M16.5 5.2c-3.7-2.2-8.4-.8-10.5 3-2.1 3.8-.8 8.7 3 10.8 3.1 1.8 7 .7 8.8-2.4 1.4-2.5.6-5.7-1.9-7.1-2-1.1-4.5-.4-5.6 1.6-.9 1.6-.3 3.6 1.3 4.5 1.2.7 2.8.3 3.5-.9" />
+            <path d="M6.2 8.1 4.5 6.4M9.6 4.6 9 2.5M5.1 13.1l-2.4.4M8.1 17.7l-1.3 2" />
+          </svg>
+          {% elif item.icon == "cinema" %}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 8h18v11H3zM3 8l2-4h18l-2 4M8 4 6 8M13 4l-2 4M18 4l-2 4" />
+          </svg>
+          {% elif item.icon == "literature" %}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3.5 5.5A2.5 2.5 0 0 1 6 3h5v17H6a2.5 2.5 0 0 0-2.5 2zM20.5 5.5A2.5 2.5 0 0 0 18 3h-5v17h5a2.5 2.5 0 0 1 2.5 2z" />
+            <path d="M6.5 7H9M6.5 10H9" />
+          </svg>
+          {% elif item.icon == "photography" %}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 7h3l1.5-2h7L17 7h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z" />
+            <circle cx="12" cy="13" r="4" />
+          </svg>
+          {% elif item.icon == "music" %}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M9 18V6l10-2v12" />
+            <ellipse cx="6.5" cy="18" rx="2.5" ry="2" />
+            <ellipse cx="16.5" cy="16" rx="2.5" ry="2" />
+            <path d="M9 9.5 19 7.5" />
+          </svg>
+          {% else %}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m2 19 5.5-9 3 4 3.5-6 8 11z" />
+            <path d="m12.2 11 1.8 2 1.4-1.7" />
+          </svg>
+          {% endif %}
+        </span>
+        <div class="miscellany-card-copy">
+          <h2>{{ item.title }}</h2>
+          <p>{{ item.description }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /assets/pdf/
+
+Sitemap: https://agnidatta.com/sitemap.xml

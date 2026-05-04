@@ -1,0 +1,85 @@
+[site]
+base_url = "https://agnidatta.com"
+title = "Agni Datta"
+description = "Homepage of Agni Datta"
+
+[person]
+name = "Agni Datta"
+role = "PhD Student"
+affiliation = "University of Edinburgh"
+affiliation_url = "https://www.ed.ac.uk/informatics"
+location = "UK"
+email = "agnidatta.org@gmail.com"
+email_display = "agnidatta [dot] org [at] gmail [dot] com"
+photo_path = "/assets/img/agni.jpg"
+photo_alt = "Portrait of Agni Datta"
+[[person.links]]
+label = "GitHub"
+url = "https://github.com/agni-datta"
+
+[[person.links]]
+label = "Scholar"
+url = "https://scholar.google.com/citations?hl=en&user=D2OJ5agAAAAJ"
+
+[[person.links]]
+label = "DBLP"
+url = "https://dblp.org/pid/363/2672.html"
+
+[[person.advisors]]
+name = "Damiano Abram"
+url = "https://damianoabram.github.io/"
+
+[[person.advisors]]
+name = "Rahul Santhanam"
+url = "https://www.cs.ox.ac.uk/people/rahul.santhanam/"
+
+[about]
+intro = """
+Starting in Fall 2026, I will be a PhD student in the [Security and Privacy Group](https://web.inf.ed.ac.uk/security-privacy), [School of Informatics](https://www.ed.ac.uk/informatics), at the [University of Edinburgh](https://www.ed.ac.uk/), advised by [Damiano Abram](https://damianoabram.github.io/) and [Rahul Santhanam](https://www.cs.ox.ac.uk/people/rahul.santhanam/). Previously, I was a predoctoral researcher at the [Trust Lab](https://trustlab.iitb.ac.in/), [IIT Bombay](https://www.iitb.ac.in/), and a research assistant at [CISPA](https://cispa.de/en). I completed an integrated Master's degree at [VIT Bhopal University](https://vitbhopal.ac.in/), where my thesis was supervised by [Matteo Campanelli](https://binarywhales.com/).
+"""
+interests_text = """
+I am broadly interested in theoretical computer science and I mainly work on aspects of cryptography, computational complexity theory, and pseudorandomness.
+"""
+
+[[teaching]]
+role = "Teaching Assistant"
+institution = "VIT Bhopal University"
+institution_url = "https://vitbhopal.ac.in/"
+term = "Fall 2023"
+text = "Principles of Digital Forensics (CSD1001), instructed by Shishir Kumar Shandilya."
+
+[[service]]
+role = "Subreviewer"
+year = "2026"
+venues = ["TCC", "CRYPTO", "EUROCRYPT"]
+
+[[service]]
+role = "Subreviewer"
+year = "2025"
+venues = ["S&P", "JoC"]
+
+[[talks]]
+title = "Fiat-Shamir Goes Rational"
+venue = "Cryptography Group, Bar-Ilan University"
+venue_url = "https://crypto.biu.ac.il/"
+date = "May 2025"
+links = []
+
+[[talks]]
+title = "Fiat-Shamir Goes Rational"
+venue = "Cryptography and Security Group, Aarhus University"
+venue_url = "https://cs.au.dk/research/cryptography-and-cyber-security/"
+date = "Dec 2024"
+links = []
+
+[[talks]]
+title = "Windows Registry Forensic Analysis"
+venue = "Workshop on Windows Forensics, CAPT"
+date = "Jun 2023"
+links = []
+
+[[talks]]
+title = "Oshin OS: Risk Mitigation for Minors"
+venue = "First National Conference on Emerging Technologies, CAPT"
+date = "Feb 2023"
+links = []

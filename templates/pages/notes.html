@@ -1,0 +1,38 @@
+{% extends "layouts/base.html" %} {% block title %}Notes · {{ data.person.name }}{% endblock title %} {% block
+canonical_path %}/notes/{% endblock canonical_path %} {% block content %}
+<section class="shell page-grid notes-page">
+  <aside class="page-kicker">
+    <p class="eyebrow">Notes</p>
+    <h1>Expository Notes</h1>
+    <p class="page-note">
+      Some notes here were written during my undergraduate studies and were later LaTeXified, cleaned up, and updated
+      before or during my PhD. This page is updated permanently and should be read as under construction.
+    </p>
+  </aside>
+  <div class="page-body">
+    {% for section in data.notes.sections %}
+    <section class="section-block note-section{% if loop.first %} first{% endif %}">
+      <div class="section-head">
+        <h2>{{ section.title }}</h2>
+      </div>
+      <p class="section-description">{{ section.description }}</p>
+      <div class="note-card-group">
+        {% for note in section.items %}
+        <article class="note-card">
+          <div class="note-card-head">
+            <h3>{{ note.title | inline_markdown | safe }}</h3>
+            <a class="note-card-link" href="{{ note.url }}">PDF</a>
+          </div>
+          <p class="note-description">{{ note.description }}</p>
+          <p class="meta">
+            {% for author in note.authors %}<a href="{{ author.url }}">{{ author.name }}</a>{% if not loop.last %}, {%
+            endif %}{% endfor %} · {{ note.status }} · {{ note.date }}
+          </p>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endfor %}
+  </div>
+</section>
+{% endblock content %}

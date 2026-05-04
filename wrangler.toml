@@ -1,0 +1,17 @@
+name = "agni-datta-site"
+main = "crates/analytics-worker/build/worker/shim.mjs"
+compatibility_date = "2026-07-20"
+workers_dev = false
+routes = [{ pattern = "agnidatta.com/*", zone_name = "agnidatta.com" }]
+
+[build]
+command = "cd crates/analytics-worker && worker-build --release --no-panic-recovery"
+
+[[d1_databases]]
+binding = "ANALYTICS_DB"
+database_name = "agni-datta-site-analytics"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[triggers]
+crons = ["17 2 * * *"]

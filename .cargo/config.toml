@@ -1,0 +1,2 @@
+[alias]
+site = "run --quiet --package xtask --"

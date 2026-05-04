@@ -1,0 +1,40 @@
+{% extends "layouts/base.html" %} {% block title %}Privacy · {{ data.person.name }}{% endblock title %} {% block
+canonical_path %}/privacy/{% endblock canonical_path %} {% block content %}
+<section class="shell page-grid">
+  <aside class="page-kicker">
+    <p class="eyebrow">Privacy</p>
+    <h1>Privacy</h1>
+    <p class="page-note">
+      This site collects the minimum information needed to remember your preferences and understand coarse traffic
+      patterns.
+    </p>
+  </aside>
+  <div class="page-body">
+    <section class="section-block first prose">
+      <div class="section-head">
+        <h2>What the site stores</h2>
+      </div>
+      <p>
+        When you choose a color theme, the site stores a first-party <code>theme</code> cookie for one year. The cookie
+        contains only <code>light</code> or <code>dark</code> and is used only to preserve that functional preference.
+      </p>
+      <p>
+        Cloudflare provides the country and region associated with a successful HTML page request. The site adds one
+        page view to a daily aggregate for a bounded page category, country code, and region code. Missing location
+        values become <code>unknown</code>.
+      </p>
+      <p>
+        The analytics system does not read or retain IP addresses, forwarded IP headers, city, coordinates, postal code,
+        user agent, referrer, cookies, or a persistent visitor identifier. It measures page views, not unique people,
+        and introduces no analytics cookie or fingerprinting.
+      </p>
+      <p>
+        Aggregate rows are deleted automatically after 90 days. Cloudflare provides the edge and database services,
+        while GitHub Pages hosts the site origin. To ask a privacy question, email <a
+          href="mailto:{{ data.person.email }}"
+        >{{ data.person.email_display }}</a>.
+      </p>
+    </section>
+  </div>
+</section>
+{% endblock content %}

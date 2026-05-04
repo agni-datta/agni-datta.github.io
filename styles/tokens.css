@@ -1,0 +1,111 @@
+/** @format */
+
+:root {
+  color-scheme: light;
+
+  /* Nordic Blue Palette */
+
+  --blue-50: #eef1f3;
+  --blue-100: #e3e8ec;
+  --blue-200: #d1dbe2;
+  --blue-300: #b8c9d5;
+  --blue-400: #9db4c5;
+  --blue-500: #7f9caf;
+  --blue-600: #637f98;
+  --blue-700: #4d667e;
+  --blue-800: #394d61;
+
+  /* Surfaces */
+
+  --paper: #f5f1e9;
+  --paper-soft: #ede7dc;
+  --paper-highlight: #e2dbcf;
+  --panel-bg: #faf7f1;
+
+  /* Typography */
+
+  --ink: #2e3743;
+  --body-text: #465363;
+  --muted: #6c7887;
+
+  /* Borders */
+
+  --rule: #d1c8bb;
+
+  /* Brand */
+
+  --accent-primary: #536f89;
+  --accent-interactive: #4f7f8d;
+  --link: #3f688a;
+
+  /* Code */
+
+  --code: #303946;
+  --code-bg: rgba(71, 82, 96, 0.09);
+
+  /* Effects */
+
+  --shadow: 0 20px 55px rgba(46, 55, 67, 0.12);
+  --max: 1100px;
+
+  /* Typography Scale */
+
+  --text-label: 0.75rem;
+  --text-meta: 0.875rem;
+  --text-body: 1rem;
+  --text-lead: 1rem;
+  --leading-tight: 1.35;
+  --leading-body: 1.55;
+
+  /* Spacing */
+
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+  --space-2xl: 2rem;
+
+  --radius-squircle: 0.78rem;
+
+  --sans: "Albert Sans", sans-serif;
+  --mono: var(--sans);
+}
+
+html[data-theme="dark"],
+html[data-theme="pending"] {
+  color-scheme: dark;
+
+  /* Surfaces */
+
+  --paper: #1d232b;
+  --paper-soft: #252c36;
+  --paper-highlight: #313a46;
+  --panel-bg: #282f39;
+
+  /* Typography */
+
+  --ink: #e8edf2;
+  --body-text: #cfd7df;
+  --muted: #a2afbc;
+
+  /* Borders */
+
+  --rule: #414c59;
+
+  /* Brand */
+
+  --accent-primary: #9bb3c7;
+  --accent-interactive: #8fc0ca;
+  --link: #9fc3d5;
+
+  /* Code */
+
+  --code: #e8edf2;
+  --code-bg: rgba(155, 179, 199, 0.12);
+
+  /* Effects */
+
+  --shadow: none;
+}

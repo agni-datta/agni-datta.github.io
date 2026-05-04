@@ -1,0 +1,18 @@
+.shell {
+  margin: 0 auto;
+  padding: clamp(2rem, 4.8vw, 4.4rem) 0;
+  width: min(var(--max), calc(100vw - 2rem));
+}
+
+.home-grid {
+  align-items: start;
+  display: grid;
+  gap: clamp(1.4rem, 4vw, 3.6rem);
+  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.65fr);
+}
+
+.page-grid {
+  display: grid;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  grid-template-columns: minmax(210px, 0.62fr) minmax(0, 1.45fr);
+}

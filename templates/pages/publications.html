@@ -1,0 +1,46 @@
+{% extends "layouts/base.html" %} {% block title %}Publications · {{ data.person.name }}{% endblock title %} {% block
+canonical_path %}/publications/{% endblock canonical_path %} {% block content %}
+<section class="shell page-grid">
+  <aside class="page-kicker">
+    <p class="eyebrow">Publications</p>
+    <h1>{{ data.publications.heading }}</h1>
+    <p class="page-note">
+      I believe scientific publications should be freely available online, so please write to me if you cannot access
+      one of my papers; following the <a
+        href="https://en.wikipedia.org/wiki/Academic_authorship#Authorship_in_mathematics,_theoretical_computer_science_and_high_energy_physics"
+      >Hardy-Littlewood rule</a>, authors in most of my papers are listed alphabetically rather than by contribution.
+    </p>
+  </aside>
+  <div class="page-body">
+    <section class="section-block first">
+      <div class="section-head">
+        <h2>Manuscripts</h2>
+      </div>
+      {% for group in data.publications.year_groups %}
+      <div class="publication-year-group">
+        <div><span class="publication-year">{{ group.year }}</span></div>
+        <div class="publication-year-papers">
+          {% for paper in group.manuscripts %}
+          <article class="paper">
+            <div class="paper-head">
+              <h3>{{ paper.title | inline_markdown | safe }}</h3>
+              {% if paper.links | length > 0 %}
+              <span class="paper-actions"
+              >{% for link in paper.links %}<a class="action-link" href="{{ link.url }}">{{ link.label }}</a>{% endfor
+                %}</span>
+              {% endif %}
+            </div>
+            <p class="authors">
+              {% for author in paper.authors %}<a href="{{ author.url }}">{{ author.name }}</a>{% if not loop.last %},
+              {% endif %}{% endfor %}
+            </p>
+            <p class="meta">{{ paper.status }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </section>
+  </div>
+</section>
+{% endblock content %}

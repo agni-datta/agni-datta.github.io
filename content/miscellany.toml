@@ -1,0 +1,31 @@
+intro = "Interests beyond research."
+
+[[items]]
+title = "Paleontology"
+description = "Macroevolution, deep time, vertebrate evolution, and the Permian–Triassic extinction."
+icon = "paleontology"
+
+[[items]]
+title = "Cinema"
+description = "Criticism, auteur theory, cinematography, editing, and world cinema."
+icon = "cinema"
+
+[[items]]
+title = "Literature"
+description = "Realism, modernism, and philosophical fiction from the nineteenth and twentieth centuries."
+icon = "literature"
+
+[[items]]
+title = "Photography"
+description = "Landscape, travel, and documentary photography."
+icon = "photography"
+
+[[items]]
+title = "Music"
+description = "Opera, orchestral music, music history, and orchestration."
+icon = "music"
+
+[[items]]
+title = "Mountains"
+description = "Mountaineering, trekking, hiking, and rock climbing."
+icon = "mountains"

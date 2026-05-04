@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="pending" data-navigation="closed">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>{% block title %}{{ data.site.title }}{% endblock title %}</title>
+    <meta name="description" content="{{ data.site.description }}">
+    <link rel="canonical" href="{{ data.site.base_url }}{% block canonical_path %}/{% endblock canonical_path %}">
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap"
+    >
+    <link rel="stylesheet" href="/assets/css/site.css?v={{ build.cache_key }}">
+    <noscript>
+      <style>
+      html[data-theme="pending"] body {
+        visibility: visible;
+      }
+      </style>
+    </noscript>
+  </head>
+
+  <body>
+    {% include "components/header.html" %}
+
+    <main id="content" data-route="{{ current_route }}" tabindex="-1">
+      {% block content %}{% endblock content %}
+    </main>
+
+    {% include "components/footer.html" %}
+    <script type="module" src="/assets/wasm/bootstrap.js?v={{ build.cache_key }}"></script>
+  </body>
+</html>

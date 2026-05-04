@@ -1,0 +1,30 @@
+# OS Specific
+.DS_Store
+Thumbs.db
+*.swp
+
+# IDE Specific
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Rust
+target/
+debug/
+**/*.rs.bk
+*.pdb
+**/mutants.out*/
+rustc-ice-*.txt
+
+# Project Specific
+/public/
+/crates/analytics-worker/build/
+
+# Cloudflare and local secrets
+.wrangler/
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+!.env.example

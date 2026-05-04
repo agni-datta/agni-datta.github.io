@@ -1,0 +1,51 @@
+[[sections]]
+title = "Optimization and Linear Programming"
+description = "A few expositions and short notes on optimization, linear programming, and related mathematical tools that I wrote while learning the material."
+
+[[sections.items]]
+title = "On the Simplex Method"
+description = "A short note explaining how the simplex method moves between vertices of a feasible polytope in search of an optimal linear objective. The note is meant to make the geometric picture behind pivoting explicit before turning to the algebraic form of the algorithm. Written during my undergraduate studies."
+authors = [{ name = "Agni Datta", url = "/" }]
+status = "Version 0.1"
+date = "February 12, 2022"
+url = "/assets/pdf/notes/simplex-method.pdf"
+
+[[sections.items]]
+title = "On the KKT Method"
+description = "A short introduction to the Karush-Kuhn-Tucker conditions for constrained optimization. The note explains how stationarity, feasibility, and complementary slackness combine to certify optimality under the usual regularity assumptions. Written during my undergraduate studies."
+authors = [{ name = "Agni Datta", url = "/" }]
+status = "Version 0.1"
+date = "August 27, 2022"
+url = "/assets/pdf/notes/kkt-method.pdf"
+
+[[sections.items]]
+title = "On Gomory Cutting Planes"
+description = "A note on how Gomory cuts strengthen a linear relaxation by adding inequalities that exclude a fractional solution while preserving all integral feasible points. The goal is to show why cutting planes are a natural bridge between linear programming and integer programming. Written during my undergraduate studies."
+authors = [{ name = "Agni Datta", url = "/" }]
+status = "Version 0.3"
+date = "March 19, 2023"
+url = "/assets/pdf/notes/gomory-cutting-planes.pdf"
+
+[[sections]]
+title = "Complexity Theory and Interactive Proofs"
+description = "A few expositions and short notes on computational complexity theory and its intersections with randomness, proof systems, and cryptography."
+
+[[sections.items]]
+title = "On the Goldwasser-Sipser Lower-Bound Protocol"
+description = "An expository note on the Goldwasser-Sipser protocol and the set-size lower-bound problem that it captures. The note focuses on the probabilistic idea behind the protocol and how hashing is used to turn a counting gap into an interactive proof."
+authors = [{ name = "Agni Datta", url = "/" }]
+status = "Version 0.2"
+date = "November 2024"
+url = "/assets/pdf/notes/goldwasser-sipser.pdf"
+
+[[sections]]
+title = "Mathematical Physics"
+description = "A few short notes on mathematical physics, mostly written to clarify basic equations and the intuition behind the formalism."
+
+[[sections.items]]
+title = "On Schrödinger's Equation"
+description = "A short note deriving the Schrödinger equation from the basic correspondence between energy, momentum, and wave behavior. The emphasis is on the meaning of the equation and the role played by the wavefunction, rather than on physical formalism alone. Written during my undergraduate studies."
+authors = [{ name = "Agni Datta", url = "/" }]
+status = "Version 0.1"
+date = "November 5, 2023"
+url = "/assets/pdf/notes/schrodinger-equation.pdf"

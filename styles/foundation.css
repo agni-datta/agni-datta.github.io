@@ -1,0 +1,103 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent-interactive) 34%, transparent);
+  color: var(--ink);
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 100%;
+  line-height: 1.55;
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  text-rendering: optimizeLegibility;
+}
+
+html[data-theme="pending"] body {
+  visibility: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+a:hover {
+  color: var(--accent-primary);
+  text-decoration: underline;
+}
+
+:is(a, button):focus {
+  outline: none;
+}
+
+:is(a, button):focus-visible {
+  border-radius: 0.45rem;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-interactive) 34%, transparent);
+  outline: none;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+:is(h1, h2, h3) {
+  line-height: 1.2;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-weight: 650;
+  letter-spacing: 0;
+}
+
+h2 {
+  color: var(--accent-primary);
+  font-size: var(--text-label);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: var(--text-body);
+  font-weight: 650;
+  letter-spacing: 0;
+  line-height: var(--leading-tight);
+}
+
+code {
+  background: var(--code-bg);
+  border-radius: 0.22rem;
+  color: var(--code);
+  font-family: var(--mono);
+  font-size: 0.875em;
+  padding: 0.08rem 0.22rem;
+}

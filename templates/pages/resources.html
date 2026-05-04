@@ -1,0 +1,46 @@
+{% extends "layouts/base.html" %} {% block title %}References · {{ data.person.name }}{% endblock title %} {% block
+canonical_path %}/resources/{% endblock canonical_path %} {% block content %}
+<section class="shell page-grid">
+  <aside class="page-kicker">
+    <p class="eyebrow">References</p>
+    <h1>References</h1>
+    <p class="page-note">{{ data.resources.intro }}</p>
+  </aside>
+  <div class="page-body">
+    {% for group in data.resources.groups %}
+    <section class="resource-category">
+      <div class="resource-category-heading">
+        <h2>{{ group.category }}</h2>
+      </div>
+      <div class="resource-subtopic-list">
+        {% for subtopic in group.subtopics %}
+        <section class="section-block resource-subtopic">
+          <div class="section-head">
+            <h3>{{ subtopic.title }}</h3>
+          </div>
+          <ul class="resource-list">
+            {% for item in subtopic.items %}
+            <li class="resource-item">
+              <article>
+                <div class="resource-card-copy">
+                  {% if item.institution %}
+                  <p class="resource-item-meta">
+                    {{ item.institution }}{% if item.instructors | length > 0 %} <span aria-hidden="true">·</span> {{
+                    item.instructors | join(sep=", ") }}{% endif %}
+                  </p>
+                  {% endif %}
+                  <h3 class="resource-title"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+                  <p class="resource-note">{{ item.note }}</p>
+                </div>
+              </article>
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endfor %}
+      </div>
+    </section>
+    {% endfor %}
+  </div>
+</section>
+{% endblock content %}

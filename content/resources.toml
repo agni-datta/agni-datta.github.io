@@ -1,0 +1,670 @@
+intro = "A list of books, courses, and links I return to. Useful if you are starting out in TCS or looking for a reference."
+
+[[sections]]
+category = "Books"
+title = "Complexity"
+
+[[sections.items]]
+title = "Arora and Barak — Computational Complexity: A Modern Approach"
+url = "https://theory.cs.princeton.edu/complexity/"
+note = "The standard graduate text."
+
+[[sections.items]]
+title = "Goldreich — Computational Complexity: A Conceptual Perspective"
+url = "https://www.wisdom.weizmann.ac.il/~oded/cc-book.html"
+note = "Complements Arora-Barak with a more conceptual treatment."
+
+[[sections.items]]
+title = "Papadimitriou — Computational Complexity"
+url = "https://www.cambridge.org/core/books/computational-complexity/5EDB0F7D2E98C2A609B95F19F49E4207"
+note = "Older but still a solid reference for NP-completeness and space complexity."
+
+[[sections.items]]
+title = "Wigderson — Mathematics and Computation"
+url = "https://www.math.ias.edu/avi/book"
+note = "Broad view of TCS and its connections to mathematics."
+
+[[sections.items]]
+title = "Cook and Nguyen — Logical Foundations of Proof Complexity"
+url = "https://www.cambridge.org/core/books/logical-foundations-of-proof-complexity/4A8A4816B84A48D7DCBB8E56AEE5EC68"
+note = "Connects bounded arithmetic and propositional proof complexity via two-sorted logic."
+
+[[sections]]
+category = "Books"
+title = "Computability"
+
+[[sections.items]]
+title = "Sipser — Introduction to the Theory of Computation"
+url = "https://math.mit.edu/~sipser/book.html"
+note = "The standard undergraduate introduction to automata, computability, and complexity."
+
+[[sections.items]]
+title = "Hopcroft, Motwani, and Ullman — Introduction to Automata Theory, Languages, and Computation"
+url = "https://www.pearson.com/en-us/subject-catalog/p/introduction-to-automata-theory-languages-and-computation/P200000003517/9780321455369"
+note = "The classical reference on formal languages and automata."
+
+[[sections.items]]
+title = "Soare — Recursively Enumerable Sets and Degrees"
+url = "https://link.springer.com/book/9783540152996"
+note = "The standard reference for classical computability theory and degree structures."
+
+[[sections]]
+category = "Books"
+title = "Average-Case and Kolmogorov Complexity"
+
+[[sections.items]]
+title = "Bogdanov and Trevisan — Average-Case Complexity"
+url = "https://www.nowpublishers.com/article/Details/TCS-004"
+note = "Survey of average-case complexity and its connections to cryptography and derandomization."
+
+[[sections.items]]
+title = "Li and Vitányi — An Introduction to Kolmogorov Complexity and Its Applications"
+url = "https://link.springer.com/book/9783030112981"
+note = "The standard reference on Kolmogorov complexity and algorithmic information theory."
+
+[[sections]]
+category = "Books"
+title = "Descriptive Complexity"
+
+[[sections.items]]
+title = "Immerman — Descriptive Complexity"
+url = "https://link.springer.com/book/9780387986005"
+note = "Logical characterizations of complexity classes via finite model theory."
+
+[[sections]]
+category = "Books"
+title = "Proof Complexity"
+
+[[sections.items]]
+title = "Krajíček — Proof Complexity"
+url = "https://www.cambridge.org/core/books/proof-complexity/80BDF46F373753B475550D04F58098A3"
+note = "The main reference for proof complexity."
+
+[[sections.items]]
+title = "Krajíček — Forcing with Random Variables and Proof Complexity"
+url = "https://www.cambridge.org/core/books/forcing-with-random-variables-and-proof-complexity/BFA7FA0F221839F005B7D1DA74CF0000"
+note = "More advanced; connects model theory and forcing to proof complexity."
+
+[[sections]]
+category = "Books"
+title = "Circuits and Boolean Functions"
+
+[[sections.items]]
+title = "Wegener — Complexity Theory"
+url = "https://link.springer.com/book/9783540210450"
+note = "Good coverage of circuit complexity and space complexity at the graduate level."
+
+[[sections.items]]
+title = "Jukna — Boolean Function Complexity"
+url = "https://link.springer.com/book/9783642245077"
+note = "Thorough treatment of circuit complexity and lower bounds."
+
+[[sections.items]]
+title = "O'Donnell — Analysis of Boolean Functions"
+url = "https://www.cs.cmu.edu/~odonnell/papers/Analysis-of-Boolean-Functions-by-Ryan-ODonnell.pdf"
+note = "The standard reference for Fourier analysis on the Boolean cube."
+
+[[sections.items]]
+title = "Savage — Models of Computation"
+url = "http://cs.brown.edu/people/jsavage/book/"
+note = "Covers machine models, circuits, and complexity from first principles."
+
+[[sections]]
+category = "Books"
+title = "Randomized Algorithms"
+
+[[sections.items]]
+title = "Motwani and Raghavan — Randomized Algorithms"
+url = "https://www.cambridge.org/core/books/randomized-algorithms/6A3E5CD760B0DDBA3794A100EE2843E8"
+note = "The classical text on randomized algorithms."
+
+[[sections.items]]
+title = "Mitzenmacher and Upfal — Probability and Computing"
+url = "https://www.cambridge.org/core/books/probability-and-computing/3A5B47DB315FC64B9256C5C8131C5EFA"
+note = "More accessible than Motwani-Raghavan; good first text on randomized algorithms."
+
+[[sections]]
+category = "Books"
+title = "Pseudorandomness"
+
+[[sections.items]]
+title = "Vadhan — Pseudorandomness"
+url = "https://people.seas.harvard.edu/~salil/pseudorandomness/"
+note = "Comprehensive treatment of pseudorandomness, expanders, and derandomization."
+
+[[sections.items]]
+title = "Luby and Wigderson — Pairwise Independence and Derandomization"
+url = "https://www.nowpublishers.com/article/Details/TCS-009"
+note = "Monograph on pairwise independence and its applications to derandomization."
+
+[[sections]]
+category = "Books"
+title = "Approximation Algorithms"
+
+[[sections.items]]
+title = "Vazirani — Approximation Algorithms"
+url = "https://link.springer.com/book/9783540653677"
+note = "Standard graduate text on approximation algorithms."
+
+[[sections.items]]
+title = "Hochbaum (ed.) — Approximation Algorithms for NP-Hard Problems"
+url = "https://hochbaum.ieor.berkeley.edu/html/book-aanp.html"
+note = "Collected chapters on approximation and inapproximability."
+
+[[sections.items]]
+title = "Williamson and Shmoys — The Design of Approximation Algorithms"
+url = "https://www.designofapproxalgs.com/"
+note = "Modern graduate text on approximation algorithms."
+
+[[sections]]
+category = "Books"
+title = "Algorithms"
+
+[[sections.items]]
+title = "Cormen et al. — Introduction to Algorithms (CLRS)"
+url = "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/"
+note = "The standard algorithms reference."
+
+[[sections]]
+category = "Books"
+title = "Algorithmic Game Theory"
+
+[[sections.items]]
+title = "Roughgarden — Twenty Lectures on Algorithmic Game Theory"
+url = "https://www.cambridge.org/core/books/twenty-lectures-on-algorithmic-game-theory/A9D9427C8F43E7DAEF8C702755B6D72B"
+note = "Game theory and mechanism design from a TCS perspective."
+
+[[sections]]
+category = "Books"
+title = "Communication Complexity"
+
+[[sections.items]]
+title = "Rao and Yehudayoff — Communication Complexity and Applications"
+url = "https://www.cambridge.org/core/books/communication-complexity/5F44993E3B2597174B71D3F21E748443"
+note = "Modern treatment of communication complexity."
+
+[[sections.items]]
+title = "Kushilevitz and Nisan — Communication Complexity"
+url = "https://www.cambridge.org/core/books/communication-complexity/5F84AB62B9E9E78EB58B5B8F88DC1B7C"
+note = "The original graduate text on communication complexity; still widely used."
+
+[[sections]]
+category = "Books"
+title = "Cryptography"
+
+[[sections.items]]
+title = "Katz and Lindell — Introduction to Modern Cryptography"
+url = "https://www.routledge.com/Introduction-to-Modern-Cryptography-Fourth-Edition/Katz-Lindell/p/book/9781032496795"
+note = "Rigorous and widely used graduate introduction."
+
+[[sections.items]]
+title = "Goldreich — Foundations of Cryptography (Vol. 1 & 2)"
+url = "https://www.wisdom.weizmann.ac.il/~oded/foc-book.html"
+note = "Thorough theoretical treatment."
+
+[[sections.items]]
+title = "Boneh and Shoup — A Graduate Course in Applied Cryptography"
+url = "https://toc.cryptobook.us/"
+note = "Modern and comprehensive; covers both theory and practice."
+
+[[sections.items]]
+title = "Pass and Shelat — A Course in Cryptography"
+url = "https://www.cs.cornell.edu/courses/cs4830/2010fa/lecnotes.pdf"
+note = "Concise graduate-level lecture notes with a rigorous definitional style."
+
+[[sections]]
+category = "Books"
+title = "Coding Theory"
+
+[[sections.items]]
+title = "Roth — Introduction to Coding Theory"
+url = "https://www.cs.technion.ac.il/~ronny/Papers/book.pdf"
+note = "Rigorous graduate introduction to algebraic coding theory."
+
+[[sections.items]]
+title = "Guruswami, Rudra, and Sudan — Essential Coding Theory"
+url = "https://cse.buffalo.edu/faculty/atri/courses/coding-theory/book/"
+note = "Modern treatment oriented toward TCS; covers list decoding and connections to complexity."
+
+[[sections]]
+category = "Books"
+title = "Combinatorics"
+
+[[sections.items]]
+title = "Alon and Spencer — The Probabilistic Method"
+url = "https://www.wiley.com/en-us/The+Probabilistic+Method,+4th+Edition-p-9781119061953"
+note = "The definitive reference on the probabilistic method."
+
+[[sections.items]]
+title = "Jukna — Extremal Combinatorics"
+url = "https://link.springer.com/book/10.1007/978-3-642-17364-6"
+note = "Combinatorial tools used throughout TCS."
+
+[[sections.items]]
+title = "Graham, Knuth, and Patashnik — Concrete Mathematics"
+url = "https://www.oreilly.com/library/view/concrete-mathematics-a/9780134389974/"
+note = "Mathematical foundations for computer science."
+
+[[sections.items]]
+title = "Diestel — Graph Theory"
+url = "https://diestel-graph-theory.com/"
+note = "The standard graduate reference on graph theory."
+
+[[sections]]
+category = "Books"
+title = "Expanders"
+
+[[sections.items]]
+title = "Hoory, Linial, and Wigderson — Expander Graphs and their Applications"
+url = "https://www.cs.huji.ac.il/~nati/PAPERS/expander_survey.pdf"
+note = "The standard survey on expander graphs."
+
+[[sections]]
+category = "Books"
+title = "Logic"
+
+[[sections.items]]
+title = "Enderton — A Mathematical Introduction to Logic"
+url = "https://www.sciencedirect.com/book/9780122384523/a-mathematical-introduction-to-logic"
+note = "Standard introductory text on first-order logic and model theory."
+
+[[sections.items]]
+title = "Enderton — Elements of Set Theory"
+url = "https://www.sciencedirect.com/book/9780122384400/elements-of-set-theory"
+note = "Rigorous introduction to axiomatic set theory."
+
+[[sections.items]]
+title = "Shoenfield — Mathematical Logic"
+url = "https://www.routledge.com/Mathematical-Logic/Shoenfield/p/book/9781568811352"
+note = "Classical graduate text; strong on proof theory and recursion theory."
+
+[[sections.items]]
+title = "Marker — Model Theory: An Introduction"
+url = "https://link.springer.com/book/9780387987606"
+note = "Standard graduate introduction to model theory; useful for finite model theory connections."
+
+[[sections.items]]
+title = "Ebbinghaus and Flum — Finite Model Theory"
+url = "https://link.springer.com/book/9783540287889"
+note = "The standard reference for finite model theory; closely connected to descriptive complexity."
+
+[[sections]]
+category = "Books"
+title = "Quantum Information"
+
+[[sections.items]]
+title = "Nielsen and Chuang — Quantum Computation and Quantum Information"
+url = "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE"
+note = "The standard textbook."
+
+[[sections.items]]
+title = "Aaronson — Quantum Computing Since Democritus"
+url = "https://www.cambridge.org/core/books/quantum-computing-since-democritus/197A4CD13738E10AAD787DBB78D8E92C"
+note = "More informal and broader in scope; good complement to Nielsen-Chuang."
+
+[[sections.items]]
+title = "Wilde — Quantum Information Theory"
+url = "https://www.cambridge.org/core/books/quantum-information-theory/9DC2CA59F45636D4F0F30D971B677623"
+note = "Rigorous treatment of quantum Shannon theory; second edition freely available."
+
+[[sections]]
+category = "Courses and Notes"
+title = "Complexity"
+
+[[sections.items]]
+title = "Graduate Complexity and Foundations"
+url = "https://www.boazbarak.org/"
+note = "Graduate-level notes on complexity and foundations."
+institution = "Harvard University"
+instructors = ["Boaz Barak"]
+
+[[sections.items]]
+title = "Lecture Notes on Complexity, Cryptography, and Foundations"
+url = "https://www.wisdom.weizmann.ac.il/~oded/books.html"
+note = "Notes on complexity, cryptography, and foundations."
+institution = "Weizmann Institute of Science"
+instructors = ["Oded Goldreich"]
+
+[[sections.items]]
+title = "Computational Complexity"
+url = "https://www.scottaaronson.com/papers/philos.pdf"
+note = "Graduate complexity course notes; broad and philosophically oriented."
+institution = "The University of Texas at Austin"
+instructors = ["Scott Aaronson"]
+
+[[sections.items]]
+title = "Lecture Notes on Computational Complexity"
+url = "https://lucatrevisan.github.io/notes/complexitynotes02.pdf"
+note = "Concise notes covering the standard complexity curriculum."
+institution = "University of California, Berkeley"
+instructors = ["Luca Trevisan"]
+
+[[sections.items]]
+title = "Great Ideas in Theoretical Computer Science"
+url = "https://ocw.mit.edu/courses/6-080-great-ideas-in-theoretical-computer-science-spring-2008/"
+note = "Broad undergraduate introduction to TCS; accessible and wide-ranging."
+institution = "Massachusetts Institute of Technology"
+instructors = ["Scott Aaronson"]
+
+[[sections]]
+category = "Courses and Notes"
+title = "Boolean Functions and Combinatorics"
+
+[[sections.items]]
+title = "CS Theory Toolkit"
+url = "https://www.cs.cmu.edu/~odonnell/toolkit20"
+note = "Mathematical tools for TCS."
+institution = "Carnegie Mellon University"
+instructors = ["Ryan O'Donnell"]
+
+[[sections.items]]
+title = "Analysis of Boolean Functions"
+url = "https://www.youtube.com/playlist?list=PLm3J0oaFux3YypJNaF6sRAf2zC1QzMuTA"
+note = "Full lecture series to accompany the book."
+institution = "Carnegie Mellon University"
+instructors = ["Ryan O'Donnell"]
+
+[[sections]]
+category = "Courses and Notes"
+title = "Coding Theory"
+
+[[sections.items]]
+title = "Introduction to Coding Theory"
+url = "https://www.cs.cmu.edu/~venkatg/teaching/codingtheory/"
+note = "Graduate course notes on algebraic and combinatorial coding theory."
+institution = "Carnegie Mellon University"
+instructors = ["Venkatesan Guruswami"]
+
+[[sections.items]]
+title = "Algebra and Computation"
+url = "https://people.csail.mit.edu/madhu/FT05/"
+note = "Lecture notes on algebraic algorithms: FFT, polynomial identity testing, and coding."
+institution = "Massachusetts Institute of Technology"
+instructors = ["Madhu Sudan"]
+
+[[sections.items]]
+title = "Essential Coding Theory"
+url = "https://ocw.mit.edu/courses/6-895-essential-coding-theory-fall-2004/"
+note = "Early version of what became the Guruswami-Rudra-Sudan text; freely available."
+institution = "Massachusetts Institute of Technology"
+instructors = ["Madhu Sudan", "Daniel Spielman"]
+
+[[sections]]
+category = "Courses and Notes"
+title = "Pseudorandomness"
+
+[[sections.items]]
+title = "Pseudorandomness and Combinatorial Constructions"
+url = "https://cs.stanford.edu/people/trevisan/pacc/"
+note = "Lecture notes on pseudorandomness, extractors, and derandomization."
+institution = "University of California, Berkeley"
+instructors = ["Luca Trevisan"]
+
+[[sections]]
+category = "Courses and Notes"
+title = "Cryptography"
+
+[[sections.items]]
+title = "Cryptography"
+url = "https://crypto.stanford.edu/~dabo/courses/OnlineCrypto/"
+note = "A widely used online introduction to modern cryptography."
+institution = "Stanford University"
+instructors = ["Dan Boneh"]
+
+[[sections.items]]
+title = "Recent Developments in Program Obfuscation"
+url = "https://mzhandry.github.io/courses/2016-Fall-COS597C/"
+note = "Covers techniques and results in program obfuscation."
+institution = "Princeton University"
+instructors = ["Mark Zhandry"]
+
+[[sections.items]]
+title = "Quantum Cryptography"
+url = "https://mzhandry.github.io/courses/2018-Fall-COS597A/"
+note = "Cryptography in the quantum setting."
+institution = "Princeton University"
+instructors = ["Mark Zhandry"]
+
+[[sections]]
+category = "Courses and Notes"
+title = "Quantum Information"
+
+[[sections.items]]
+title = "Theory of Quantum Information"
+url = "https://cs.uwaterloo.ca/~watrous/TQI/"
+note = "Lecture notes on quantum information theory."
+institution = "University of Waterloo"
+instructors = ["John Watrous"]
+
+[[sections]]
+category = "Courses and Notes"
+title = "High-Dimensional Expanders"
+
+[[sections.items]]
+title = "High-Dimensional Expanders"
+url = "https://www.tcs.tifr.res.in/~prahladh/teaching/2025/hdx/"
+note = "Lecture and seminar series covering spectral graph theory, high-dimensional expansion, constructions, and applications to codes and PCPs."
+institution = "Tata Institute of Fundamental Research"
+instructors = ["Prahladh Harsha"]
+
+[[sections.items]]
+title = "High-Dimensional Expanders"
+url = "https://www.wisdom.weizmann.ac.il/~dinuri/courses/22-HDX/index.htm"
+note = "A graduate course covering combinatorial, topological, and group-theoretic notions of high-dimensional expansion, together with applications to coding and complexity."
+institution = "Weizmann Institute of Science"
+instructors = ["Irit Dinur"]
+
+[[sections]]
+category = "Research Tools"
+title = "Preprints"
+
+[[sections.items]]
+title = "ECCC"
+url = "https://eccc.weizmann.ac.il/"
+note = "Preprints in computational complexity."
+
+[[sections.items]]
+title = "arXiv — cs.CC, cs.DS, cs.LO, cs.CR"
+url = "https://arxiv.org/list/cs/new"
+note = "General preprint server for TCS and cryptography."
+
+[[sections.items]]
+title = "IACR ePrint"
+url = "https://eprint.iacr.org/"
+note = "Preprints in cryptography."
+
+[[sections]]
+category = "Conferences"
+title = "General TCS"
+
+[[sections.items]]
+title = "STOC"
+url = "https://acm-stoc.org/"
+note = "Flagship TCS conference."
+
+[[sections.items]]
+title = "FOCS"
+url = "https://focs.computer.org/"
+note = "Flagship TCS conference."
+
+[[sections.items]]
+title = "ITCS"
+url = "https://itcs-conf.org/"
+note = "Broad TCS conference for exploratory work."
+
+[[sections.items]]
+title = "ICALP"
+url = "https://eatcs.org/index.php/conferences"
+note = "Algorithms, complexity, and logic."
+
+[[sections.items]]
+title = "MFCS"
+url = "http://www.mfcs.sk/"
+note = "Mathematical foundations of computer science."
+
+[[sections]]
+category = "Conferences"
+title = "Complexity and Proof Systems"
+
+[[sections.items]]
+title = "CCC"
+url = "https://computationalcomplexity.org/"
+note = "Complexity theory and proof systems."
+
+[[sections]]
+category = "Conferences"
+title = "Algorithms and Combinatorics"
+
+[[sections.items]]
+title = "SODA"
+url = "https://www.siam.org/conferences-events/siam-conferences/"
+note = "Algorithms and data structures."
+
+[[sections.items]]
+title = "APPROX"
+url = "https://approxconference.wordpress.com/"
+note = "Approximation algorithms and hardness."
+
+[[sections.items]]
+title = "RANDOM"
+url = "https://approxconference.wordpress.com/"
+note = "Randomized algorithms and derandomization."
+
+[[sections]]
+category = "Conferences"
+title = "Cryptography"
+
+[[sections.items]]
+title = "CRYPTO"
+url = "https://crypto.iacr.org/"
+note = "General cryptography."
+
+[[sections.items]]
+title = "EUROCRYPT"
+url = "https://eurocrypt.iacr.org/"
+note = "General cryptography."
+
+[[sections.items]]
+title = "ASIACRYPT"
+url = "https://asiacrypt.iacr.org/"
+note = "General cryptography."
+
+[[sections.items]]
+title = "TCC"
+url = "https://tcc.iacr.org/"
+note = "Theory of cryptography."
+
+[[sections.items]]
+title = "PKC"
+url = "https://pkc.iacr.org/"
+note = "Public-key cryptography."
+
+[[sections]]
+category = "Conferences"
+title = "Logic"
+
+[[sections.items]]
+title = "LICS"
+url = "https://lics.sigpl.org/"
+note = "Logic in computer science."
+
+[[sections]]
+category = "Community"
+title = "Blogs"
+
+[[sections.items]]
+title = "Shtetl-Optimized"
+url = "https://scottaaronson.blog/"
+note = "Scott Aaronson on quantum computing and complexity theory."
+
+[[sections.items]]
+title = "Gödel's Lost Letter and P=NP"
+url = "https://rjlipton.com/"
+note = "Dick Lipton and Ken Regan on complexity theory."
+
+[[sections.items]]
+title = "Windows On Theory"
+url = "https://windowsontheory.org/"
+note = "Boaz Barak on complexity, cryptography, and ML theory."
+
+[[sections.items]]
+title = "Computational Complexity"
+url = "https://blog.computationalcomplexity.org/"
+note = "Lance Fortnow and Bill Gasarch on complexity theory."
+
+[[sections.items]]
+title = "In Theory"
+url = "https://lucatrevisan.wordpress.com/"
+note = "Luca Trevisan on complexity, pseudorandomness, and combinatorics."
+
+[[sections.items]]
+title = "Goldreich — My Choices"
+url = "https://www.wisdom.weizmann.ac.il/~oded/my-choice.html"
+note = "Goldreich's curated reading list."
+
+[[sections]]
+category = "Research Tools"
+title = "References"
+
+[[sections.items]]
+title = "TCS Stack Exchange"
+url = "https://cstheory.stackexchange.com/"
+note = "Q&A for TCS researchers and students."
+
+[[sections.items]]
+title = "Cryptography Stack Exchange"
+url = "https://crypto.stackexchange.com/"
+note = "Q&A for cryptography."
+
+[[sections.items]]
+title = "The Complexity Zoo"
+url = "https://complexityzoo.net/Complexity_Zoo"
+note = "Catalogue of complexity classes."
+
+[[sections.items]]
+title = "DBLP"
+url = "https://dblp.org/"
+note = "Bibliography database for CS."
+
+[[sections]]
+category = "Community"
+title = "Communities"
+
+[[sections.items]]
+title = "Theory of Computing Blog Aggregator"
+url = "https://theory.report/"
+note = "Aggregates posts from TCS blogs."
+
+[[sections.items]]
+title = "TCS+"
+url = "https://www.tcsplus.org/"
+note = "Online seminar series with recorded talks."
+
+[[sections.items]]
+title = "Simons Institute Videos"
+url = "https://simons.berkeley.edu/videos"
+note = "Recorded workshops and talks from the Simons Institute."
+
+[[sections.items]]
+title = "SIGACT"
+url = "https://www.sigact.org/"
+note = "ACM Special Interest Group on Algorithms and Computation Theory."
+
+[[sections.items]]
+title = "IACR"
+url = "https://iacr.org/"
+note = "International Association for Cryptologic Research."
+
+[[sections]]
+category = "Research Tools"
+title = "Open Access"
+
+[[sections.items]]
+title = "Theory of Computing"
+url = "https://theoryofcomputing.org/"
+note = "Diamond open-access TCS journal."
+
+[[sections.items]]
+title = "LIPIcs"
+url = "https://www.dagstuhl.de/en/publications/lipics"
+note = "Open-access conference proceedings in informatics."
