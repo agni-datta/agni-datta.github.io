@@ -10,7 +10,10 @@
   <link rel="canonical" href="{{ data.site.base_url }}{% block canonical_path %}/{% endblock canonical_path %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <link rel="stylesheet" href="/assets/css/site.css">
   <script>
     window.MathJax = {
@@ -46,13 +49,50 @@
 
   <footer class="site-footer">
     <span>© {{ build.year }} {{ data.person.name }}</span>
-    <span class="dotsep">Built as static HTML from Rust; math rendered with MathJax.</span>
+    <span class="dotsep">Built with Rust!</span>
   </footer>
 
-  <script type="module">
-    import init from '/assets/wasm/agni_datta_site_wasm.js';
-    init().catch(() => { });
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var btn = document.querySelector('[data-theme-toggle]');
+      var label = document.querySelector('[data-theme-label]');
+
+      function prefersDark() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+
+      function effectiveTheme() {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'light' || stored === 'dark') return stored;
+        return 'dark';
+      }
+
+      function applyTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        if (label) label.textContent = theme === 'dark' ? 'Light' : 'Dark';
+        if (btn) btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+      }
+
+      applyTheme(effectiveTheme());
+
+      if (btn) {
+        btn.addEventListener('click', function () {
+          var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+          localStorage.setItem('theme', next);
+          applyTheme(next);
+        });
+      }
+
+      var path = window.location.pathname;
+      var route = path.startsWith('/publications') ? 'publications'
+        : path.startsWith('/resources') ? 'resources'
+          : 'home';
+      var active = document.querySelector('a[data-route="' + route + '"]');
+      if (active) active.setAttribute('aria-current', 'page');
+    })();
   </script>
+
 </body>
 
 </html>

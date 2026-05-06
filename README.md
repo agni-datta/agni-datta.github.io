@@ -1,77 +1,67 @@
 <!-- @format -->
 
-# [Agni Datta's Homepage](https://agnidatta.com)
+# [Agni Datta](https://agnidatta.com)
 
-Personal academic homepage for Agni Datta, currently a PhD student in theoretical computer science at the University of Edinburgh.
+PhD student in theoretical computer science at the University of Edinburgh.
 
-## Overview
-
-A static site generator written in Rust, using [Tera](https://keats.github.io/tera/) templates and a single TOML data file. A small [WebAssembly](https://webassembly.org/) module handles client-side theme toggling and navigation highlighting.
+Static site generator in Rust — [Tera](https://keats.github.io/tera/) templates, TOML data files, a small [WebAssembly](https://webassembly.org/) module for theme toggling and nav highlighting.
 
 ## Structure
 
-```bash
+```text
 .
 ├── content/
-│   └── site.toml          # All site data: bio, publications, teaching, etc.
-├── templates/             # Tera HTML templates
+│   ├── site.toml
+│   ├── publications.toml
+│   └── resources.toml
+├── templates/
 │   ├── base.html
 │   ├── index.html
 │   ├── publications.html
 │   ├── resources.html
 │   └── 404.html
-├── sitegen/               # Rust crate: static site generator
-│   └── src/main.rs
-├── wasm/                  # Rust/WASM crate: theme toggle & nav
-│   └── src/lib.rs
-├── static/
-│   └── assets/
-│       ├── css/site.css
-│       └── img/
-├── scripts/
-│   └── build.sh
-└── public/                # Generated output (do not edit)
+├── sitegen/src/main.rs
+├── wasm/src/lib.rs
+├── static/assets/
+│   ├── css/site.css
+│   └── img/
+├── scripts/build.sh
+└── public/              # generated output
 ```
 
-## Tech Stack
+## Stack
 
 - **Rust** — site generator and WASM module
-- **Tera** — Jinja2-style HTML templating
+- **Tera** — Jinja2-style templating
 - **pulldown-cmark** — Markdown rendering
 - **wasm-bindgen / web-sys** — Rust↔JS interop
-- **MathJax 4** — LaTeX math rendering (CDN)
-- **GitHub Actions** — build and deploy to GitHub Pages
+- **MathJax 4** — LaTeX rendering (CDN)
+- **GitHub Actions** — build and deploy
 
-## Prerequisites
+## Requirements
 
 - [Rust](https://rustup.rs/) (stable)
 - [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/)
 
-## Building Locally
+## Build
 
 ```bash
 bash scripts/build.sh
 ```
 
-This runs the Rust site generator (`sitegen`) and then compiles the WASM module via [wasm-pack](https://rustwasm.github.io/wasm-pack/), placing all output in `public/`.
-
-To serve the generated site locally:
+Runs `sitegen` and compiles the WASM module, placing output in `public/`.
 
 ```bash
 cd public && python3 -m http.server 8000
 ```
 
-## Updating Content
+## Content
 
-All content lives in [content/site.toml](content/site.toml). Edit that file to update the bio, publications, teaching entries, talks, or service records — then rebuild.
+All content lives in `content/`. Edit `site.toml`, `publications.toml`, or `resources.toml`, then rebuild.
 
-## Deployment
+## Deploy
 
-Pushing to `main` triggers the [GitHub Actions workflow](.github/workflows/deploy.yml), which builds the site and deploys `public/` to GitHub Pages at the custom domain `agnidatta.com`.
-
-## Acknowledgements
-
-This template is based on the previous version of a homepage built by [Archisman Dutta](https://github.com/DeviousCilantro).
+Push to `main` → [GitHub Actions](.github/workflows/deploy.yml) builds and deploys `public/` to `agnidatta.com`.
 
 ## License
 

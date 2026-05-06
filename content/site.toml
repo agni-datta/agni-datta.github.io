@@ -8,14 +8,11 @@ name = "Agni Datta"
 role = "PhD Student"
 affiliation = "University of Edinburgh"
 affiliation_url = "https://www.ed.ac.uk/informatics"
-location = "Edinburgh, United Kingdom"
+location = "Edinburgh, UK"
 email = "agnidatta.org@gmail.com"
 email_display = "firstnamelastname (dot) org (at) gmail (dot) com"
 photo_path = "/assets/img/agni.jpg"
 photo_alt = "Portrait of Agni Datta"
-github = "https://github.com/agni-datta"
-google_scholar = "https://scholar.google.com/citations?hl=en&user=D2OJ5agAAAAJ"
-
 [[person.links]]
 label = "GitHub"
 url = "https://github.com/agni-datta"
@@ -38,10 +35,12 @@ url = "https://www.cs.ox.ac.uk/people/rahul.santhanam/"
 
 [about]
 intro = """
-I am a PhD student in the [Security and Privacy Group](https://web.inf.ed.ac.uk/security-privacy) at the [School of Informatics](https://www.ed.ac.uk/informatics), [University of Edinburgh](https://www.ed.ac.uk/), supervised by [Damiano Abram](https://damianoabram.github.io/) and [Rahul Santhanam](https://www.cs.ox.ac.uk/people/rahul.santhanam/) (University of Oxford). Previously, I was a predoctoral researcher at the [Trust Lab](https://trustlab.iitb.ac.in/), [IIT Bombay](https://www.iitb.ac.in/) and [CISPA](https://cispa.de/en). I completed my integrated Master's at [VIT Bhopal University](https://vitbhopal.ac.in/), where I wrote my thesis under the supervision of [Matteo Campanelli](https://binarywhales.com/).
+I will be starting as a PhD student in the [Security and Privacy Group](https://web.inf.ed.ac.uk/security-privacy) at the [School of Informatics](https://www.ed.ac.uk/informatics), [University of Edinburgh](https://www.ed.ac.uk/), starting Fall 2026. I am excited to be advised by [Damiano Abram](https://damianoabram.github.io/) and [Rahul Santhanam](https://www.cs.ox.ac.uk/people/rahul.santhanam/).
+
+Previously, I was a predoctoral researcher at the [Trust Lab](https://trustlab.iitb.ac.in/), [IIT Bombay](https://www.iitb.ac.in/) and [CISPA](https://cispa.de/en). I completed my integrated Master's at [VIT Bhopal University](https://vitbhopal.ac.in/), where my thesis was supervised by [Matteo Campanelli](https://binarywhales.com/).
 """
 interests_text = """
-I am interested in theoretical computer science at large and especially in cryptography and complexity theory.
+My research is in theoretical computer science, with a focus on cryptography and complexity theory.
 """
 interests = [
   "Foundations of Cryptography",
@@ -50,42 +49,6 @@ interests = [
   "Program Obfuscation",
   "Metacomplexity",
 ]
-
-[publications]
-heading = "Publications"
-
-[[publications.manuscripts]]
-title = "A Fiat-Shamir Transformation for Private-Coin Protocols"
-authors = [
-  { name = "Shany Ben-David", url = "https://shanybendavid.github.io/" },
-  { name = "Agni Datta", url = "/" },
-  { name = "Eylon Yogev", url = "https://eylonyogev.com/" },
-]
-status = "In preparation"
-year = "2026"
-links = []
-
-[[publications.manuscripts]]
-title = "Fiat-Shamir Goes Rational (Or: On the Perils of Sublinear Verification)"
-authors = [
-  { name = "Matteo Campanelli", url = "https://binarywhales.com/" },
-  { name = "Agni Datta", url = "/" },
-]
-status = "Manuscript"
-year = "2024"
-links = [{ label = "ePrint", url = "https://eprint.iacr.org/2024/1645" }]
-
-[[publications.manuscripts]]
-title = "SoK: A Taxonomy for Accumulators and Vector Commitments with Applications to Set Membership Proofs"
-authors = [
-  { name = "Matteo Campanelli", url = "https://binarywhales.com/" },
-  { name = "Agni Datta", url = "/" },
-  { name = "Yash Kartik", url = "https://yashkartik.github.io/" },
-  { name = "Dimitris Kolonelos", url = "https://dimkolonelos.github.io/" },
-]
-status = "In preparation"
-year = "2026"
-links = []
 
 [[teaching]]
 role = "Teaching Assistant"
