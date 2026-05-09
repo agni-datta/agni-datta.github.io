@@ -35,19 +35,19 @@ url = "https://www.cs.ox.ac.uk/people/rahul.santhanam/"
 
 [about]
 intro = """
-I will be starting as a PhD student in the [Security and Privacy Group](https://web.inf.ed.ac.uk/security-privacy) at the [School of Informatics](https://www.ed.ac.uk/informatics), [University of Edinburgh](https://www.ed.ac.uk/), starting Fall 2026. I am excited to be advised by [Damiano Abram](https://damianoabram.github.io/) and [Rahul Santhanam](https://www.cs.ox.ac.uk/people/rahul.santhanam/).
+I will be joining the [Security and Privacy Group](https://web.inf.ed.ac.uk/security-privacy) at the [School of Informatics](https://www.ed.ac.uk/informatics), [University of Edinburgh](https://www.ed.ac.uk/), as a PhD student starting Fall 2026. I am excited to be advised by [Damiano Abram](https://damianoabram.github.io/) and [Rahul Santhanam](https://www.cs.ox.ac.uk/people/rahul.santhanam/).
 
-Previously, I was a predoctoral researcher at the [Trust Lab](https://trustlab.iitb.ac.in/), [IIT Bombay](https://www.iitb.ac.in/) and [CISPA](https://cispa.de/en). I completed my integrated Master's at [VIT Bhopal University](https://vitbhopal.ac.in/), where my thesis was supervised by [Matteo Campanelli](https://binarywhales.com/).
+Previously, I worked as a predoctoral researcher at the [Trust Lab](https://trustlab.iitb.ac.in/), [IIT Bombay](https://www.iitb.ac.in/), and [CISPA](https://cispa.de/en). I completed my integrated Master's degree at [VIT Bhopal University](https://vitbhopal.ac.in/), where my thesis was supervised by [Matteo Campanelli](https://binarywhales.com/).
 """
 interests_text = """
 My research is in theoretical computer science, with a focus on cryptography and complexity theory.
 """
 interests = [
-  "Foundations of Cryptography",
   "Computational Complexity",
+  "Foundations of Cryptography",
+  "Metacomplexity",
   "Probabilistic Proof Systems",
   "Program Obfuscation",
-  "Metacomplexity",
 ]
 
 [[teaching]]
