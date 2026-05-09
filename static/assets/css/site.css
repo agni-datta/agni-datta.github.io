@@ -554,6 +554,18 @@ code {
   padding: 0 0.5em;
 }
 
+@media (min-width: 1800px) {
+  html {
+    font-size: 112.5%;
+  }
+}
+
+@media (min-width: 2400px) {
+  html {
+    font-size: 131.25%;
+  }
+}
+
 @media (max-width: 820px) {
   .site-header {
     align-items: flex-start;
