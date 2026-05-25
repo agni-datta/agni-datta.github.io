@@ -2,7 +2,7 @@ heading = "Publications"
 
 [[manuscripts]]
 title = "A Fiat-Shamir Transformation for Private-Coin Protocols"
-status = "In preparation"
+status = "In submission"
 year = "2026"
 links = []
 authors = [
@@ -25,7 +25,7 @@ authors = [
 
 [[manuscripts]]
 title = "Fiat-Shamir Goes Rational"
-status = "Manuscript"
+status = "In submission"
 year = "2024"
 links = [{ label = "ePrint", url = "https://eprint.iacr.org/2024/1645" }]
 authors = [
