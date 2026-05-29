@@ -83,8 +83,7 @@ struct TeachingItem {
 #[derive(Debug, Deserialize, Serialize)]
 struct ServiceItem {
     role: String,
-    venue: String,
-    venue_url: Option<String>,
+    venues: Vec<String>,
     year: String,
 }
 

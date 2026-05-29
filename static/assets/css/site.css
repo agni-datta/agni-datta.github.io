@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 :root {
   color-scheme: light;
 
@@ -31,16 +33,16 @@
 
   --max: 1040px;
 
-  --sans: 'Albert Sans', 'Inter', 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
-  --mono: 'Cousine', 'JetBrains Mono', ui-monospace, monospace;
+  --sans: 'Albert Sans', system-ui, sans-serif;
+  --mono: 'Space Mono', ui-monospace, monospace;
 }
 
 html[data-theme="dark"] {
   color-scheme: dark;
 
-  --paper: #05070b;
-  --paper-soft: #0b0f17;
-  --paper-highlight: #111827;
+  --paper: #0e0e0e;
+  --paper-soft: #141414;
+  --paper-highlight: #1a1a1a;
 
   --ink: #d1cfc9;
   --body-text: #b8b5ae;
@@ -56,8 +58,8 @@ html[data-theme="dark"] {
   --code: #c9c6bf;
   --code-bg: rgba(255, 255, 255, 0.06);
 
-  --panel-bg: rgba(10, 14, 22, 0.85);
-  --chip-bg: #151c28;
+  --panel-bg: rgba(20, 20, 20, 0.85);
+  --chip-bg: #1e1e1e;
   --chip-ink: #c9c6bf;
 
   --shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
@@ -556,13 +558,13 @@ code {
 
 @media (min-width: 1800px) {
   html {
-    font-size: 112.5%;
+    font-size: 106.25%;
   }
 }
 
 @media (min-width: 2400px) {
   html {
-    font-size: 131.25%;
+    font-size: 112.5%;
   }
 }
 

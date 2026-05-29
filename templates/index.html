@@ -90,9 +90,7 @@
       </div>
       <ol class="service-list">
         {% for item in data.service %}
-        <li><span>{{ item.role }}</span><span class="meta">{% if item.venue_url and item.venue_url != "" %}<a
-              href="{{ item.venue_url }}">{{ item.venue }}</a>{% else %}{{ item.venue }}{% endif %} {{ item.year
-            }}</span></li>
+        <li><span>{{ item.role }}</span><span class="meta">{{ item.year }} · {{ item.venues | join(sep=" · ") }}</span></li>
         {% endfor %}
       </ol>
     </section>
