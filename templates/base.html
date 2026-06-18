@@ -10,17 +10,10 @@
   <link rel="canonical" href="{{ data.site.base_url }}{% block canonical_path %}/{% endblock canonical_path %}">
   <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <link rel="stylesheet" href="/assets/css/site.css">
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['\\(', '\\)'], ['$', '$']],
-        displayMath: [['\\[', '\\]'], ['$$', '$$']],
-        processEscapes: true
-      },
-      svg: { fontCache: 'global' }
-    };
+  <script type="module">
+    import init from "/assets/wasm/agni_datta_site_wasm.js";
+    init();
   </script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
 </head>
 
 <body>
@@ -30,7 +23,8 @@
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="/" data-route="home">Home</a>
         <a href="/publications/" data-route="publications">Publications</a>
-        <a href="/resources/" data-route="resources">Resources</a>
+        <a href="/notes/" data-route="notes">Notes</a>
+        <a href="/resources/" data-route="resources">References</a>
       </nav>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme" aria-pressed="false">
         <span data-theme-label>Theme</span>
@@ -43,50 +37,8 @@
   </main>
 
   <footer class="site-footer">
-    <span>© {{ build.year }} {{ data.person.name }}</span>
-    <span class="dotsep">Built with Rust!</span>
+    <span><span class="footer-mark">©</span> {{ build.year }} {{ data.person.name }}</span>
   </footer>
-
-  <script>
-    (function () {
-      var root = document.documentElement;
-      var btn = document.querySelector('[data-theme-toggle]');
-      var label = document.querySelector('[data-theme-label]');
-
-      function prefersDark() {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches;
-      }
-
-      function effectiveTheme() {
-        var stored = localStorage.getItem('theme');
-        if (stored === 'light' || stored === 'dark') return stored;
-        return 'dark';
-      }
-
-      function applyTheme(theme) {
-        root.setAttribute('data-theme', theme);
-        if (label) label.textContent = theme === 'dark' ? 'Light' : 'Dark';
-        if (btn) btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
-      }
-
-      applyTheme(effectiveTheme());
-
-      if (btn) {
-        btn.addEventListener('click', function () {
-          var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
-          localStorage.setItem('theme', next);
-          applyTheme(next);
-        });
-      }
-
-      var path = window.location.pathname;
-      var route = path.startsWith('/publications') ? 'publications'
-        : path.startsWith('/resources') ? 'resources'
-          : 'home';
-      var active = document.querySelector('a[data-route="' + route + '"]');
-      if (active) active.setAttribute('aria-current', 'page');
-    })();
-  </script>
 
 </body>
 

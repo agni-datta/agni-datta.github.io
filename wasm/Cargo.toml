@@ -13,12 +13,16 @@ wasm-bindgen = "0.2"
 version = "0.3"
 features = [
   "Document",
+  "DomRect",
   "Element",
   "Event",
   "EventTarget",
   "HtmlElement",
   "Location",
   "MediaQueryList",
+  "NodeList",
+  "ScrollBehavior",
+  "ScrollToOptions",
   "Storage",
   "Window"
 ]

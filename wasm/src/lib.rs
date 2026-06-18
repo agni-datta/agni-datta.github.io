@@ -1,7 +1,7 @@
 use wasm_bindgen::closure::Closure;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
-use web_sys::{window, Document, Element, Event};
+use web_sys::{window, Document, Element, Event, ScrollBehavior, ScrollToOptions};
 
 #[wasm_bindgen(start)]
 pub fn start() -> Result<(), JsValue> {
@@ -19,6 +19,7 @@ pub fn start() -> Result<(), JsValue> {
     apply_stored_theme(&document);
     mark_active_nav(&document);
     install_theme_toggle(&document)?;
+    install_smooth_anchor_scroll(&document)?;
     Ok(())
 }
 
@@ -29,6 +30,8 @@ fn mark_active_nav(document: &Document) {
     let path = win.location().pathname().unwrap_or_default();
     let route = if path.starts_with("/publications") {
         "publications"
+    } else if path.starts_with("/notes") {
+        "notes"
     } else if path.starts_with("/resources") {
         "resources"
     } else {
@@ -58,11 +61,50 @@ fn install_theme_toggle(document: &Document) -> Result<(), JsValue> {
     Ok(())
 }
 
+fn install_smooth_anchor_scroll(document: &Document) -> Result<(), JsValue> {
+    if prefers_reduced_motion() {
+        return Ok(());
+    }
+
+    let links = document.query_selector_all("a[href^='#']")?;
+    for index in 0..links.length() {
+        let Some(node) = links.item(index) else {
+            continue;
+        };
+        let Ok(link) = node.dyn_into::<Element>() else {
+            continue;
+        };
+
+        let doc = document.clone();
+        let link_for_handler = link.clone();
+        let closure = Closure::<dyn FnMut(Event)>::wrap(Box::new(move |event: Event| {
+            let Some(href) = link_for_handler.get_attribute("href") else {
+                return;
+            };
+            if href.len() <= 1 {
+                return;
+            }
+
+            let selector = css_id_selector(&href[1..]);
+            let Ok(Some(target)) = doc.query_selector(&selector) else {
+                return;
+            };
+
+            event.prevent_default();
+            smooth_scroll_to(&target);
+        }));
+
+        link.add_event_listener_with_callback("click", closure.as_ref().unchecked_ref())?;
+        closure.forget();
+    }
+    Ok(())
+}
+
 fn apply_stored_theme(document: &Document) {
     match stored_theme().as_deref() {
         Some("light") => set_document_theme(document, "light"),
         Some("dark") => set_document_theme(document, "dark"),
-        _ => clear_document_theme(document),
+        _ => set_document_theme(document, "dark"),
     }
     update_theme_toggle_label(document);
 }
@@ -81,12 +123,6 @@ fn set_document_theme(document: &Document, theme: &str) {
     }
 }
 
-fn clear_document_theme(document: &Document) {
-    if let Some(root) = document.document_element() {
-        let _ = root.remove_attribute("data-theme");
-    }
-}
-
 fn effective_theme(document: &Document) -> &'static str {
     if let Some(root) = document.document_element() {
         if let Some(theme) = root.get_attribute("data-theme") {
@@ -98,12 +134,7 @@ fn effective_theme(document: &Document) -> &'static str {
             }
         }
     }
-
-    if prefers_dark() {
-        "dark"
-    } else {
-        "light"
-    }
+    "dark"
 }
 
 fn update_theme_toggle_label(document: &Document) {
@@ -139,13 +170,29 @@ fn store_theme(theme: &str) {
     }
 }
 
-fn prefers_dark() -> bool {
+fn prefers_reduced_motion() -> bool {
     window()
         .and_then(|win| {
-            win.match_media("(prefers-color-scheme: dark)")
+            win.match_media("(prefers-reduced-motion: reduce)")
                 .ok()
                 .flatten()
         })
         .map(|query| query.matches())
         .unwrap_or(false)
+}
+
+fn smooth_scroll_to(target: &Element) {
+    let Some(win) = window() else {
+        return;
+    };
+    let top = target.get_bounding_client_rect().top() + win.scroll_y().unwrap_or(0.0);
+    let options = ScrollToOptions::new();
+    options.set_top(top);
+    options.set_behavior(ScrollBehavior::Smooth);
+    win.scroll_to_with_scroll_to_options(&options);
+}
+
+fn css_id_selector(id: &str) -> String {
+    let escaped = id.replace('\\', "\\\\").replace('\'', "\\'");
+    format!("#{escaped}")
 }

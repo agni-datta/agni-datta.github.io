@@ -1,0 +1,33 @@
+[[sections]]
+title = "Optimization and Linear Programming"
+
+[[sections.items]]
+title = "On the Simplex Method"
+authors = [{ name = "Agni Datta", url = "/" }]
+status = "Version 0.1"
+date = "February 12, 2022"
+url = "/assets/pdf/notes/simplex-method.pdf"
+
+[[sections.items]]
+title = "On the KKT Method"
+authors = [{ name = "Agni Datta", url = "/" }]
+status = "Version 0.1"
+date = "August 27, 2022"
+url = "/assets/pdf/notes/kkt-method.pdf"
+
+[[sections.items]]
+title = "On Gomory Cutting Planes"
+authors = [{ name = "Agni Datta", url = "/" }]
+status = "Version 0.3"
+date = "March 19, 2023"
+url = "/assets/pdf/notes/gomory-cutting-planes.pdf"
+
+[[sections]]
+title = "Mathematical Physics"
+
+[[sections.items]]
+title = "On Schrödinger's Equation"
+authors = [{ name = "Agni Datta", url = "/" }]
+status = "Version 0.1"
+date = "November 5, 2023"
+url = "/assets/pdf/notes/schrodinger-equation.pdf"

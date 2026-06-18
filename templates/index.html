@@ -90,7 +90,8 @@
       </div>
       <ol class="service-list">
         {% for item in data.service %}
-        <li><span>{{ item.role }}</span><span class="meta">{{ item.year }} · {{ item.venues | join(sep=" · ") }}</span></li>
+        <li><span>{{ item.role }}</span><span class="meta">{{ item.year }} · {{ item.venues | join(sep=" · ") }}</span>
+        </li>
         {% endfor %}
       </ol>
     </section>

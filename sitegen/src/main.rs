@@ -1,5 +1,6 @@
 use anyhow::{Context as AnyhowContext, Result};
 use chrono::Datelike;
+use latex2mathml::{latex_to_mathml, DisplayStyle};
 use pulldown_cmark::{html, Options, Parser};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -14,6 +15,7 @@ struct SiteData {
     person: Person,
     about: About,
     publications: Publications,
+    notes: Notes,
     teaching: Vec<TeachingItem>,
     service: Vec<ServiceItem>,
     talks: Vec<TalkItem>,
@@ -112,6 +114,26 @@ struct Manuscript {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+struct Notes {
+    sections: Vec<NoteSection>,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+struct NoteSection {
+    title: String,
+    items: Vec<NoteItem>,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+struct NoteItem {
+    title: String,
+    authors: Vec<PersonLink>,
+    status: String,
+    date: String,
+    url: String,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
 struct Resources {
     intro: String,
     sections: Vec<ResourceSection>,
@@ -178,6 +200,13 @@ fn main() -> Result<()> {
         &tera,
         &data,
         &build,
+        "notes.html",
+        &public_dir.join("notes/index.html"),
+    )?;
+    render_page(
+        &tera,
+        &data,
+        &build,
         "resources.html",
         &public_dir.join("resources/index.html"),
     )?;
@@ -209,12 +238,14 @@ fn load_site_data(root: &Path) -> Result<SiteData> {
     let content = root.join("content");
     let site: SiteFile = load_toml(&content.join("site.toml"))?;
     let publications = load_toml(&content.join("publications.toml"))?;
+    let notes = load_toml(&content.join("notes.toml"))?;
     let resources = load_toml(&content.join("resources.toml"))?;
     Ok(SiteData {
         site: site.site,
         person: site.person,
         about: site.about,
         publications,
+        notes,
         teaching: site.teaching,
         service: site.service,
         talks: site.talks,
@@ -247,7 +278,7 @@ fn write_sitemap(public_dir: &Path, base_url: &str) -> Result<()> {
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
          <urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n",
     );
-    for page in ["/", "/publications/", "/resources/"] {
+    for page in ["/", "/publications/", "/notes/", "/resources/"] {
         body.push_str(&format!("  <url><loc>{base}{page}</loc></url>\n"));
     }
     body.push_str("</urlset>\n");
@@ -302,27 +333,120 @@ fn markdown_to_html(input: &str) -> String {
         | Options::ENABLE_FOOTNOTES
         | Options::ENABLE_SMART_PUNCTUATION
         | Options::ENABLE_STRIKETHROUGH;
-    let protected = protect_math(input);
+    let (protected, fragments) = extract_math(input);
     let parser = Parser::new_ext(&protected, options);
     let mut out = String::new();
     html::push_html(&mut out, parser);
-    restore_math(&out)
+    restore_math(&out, &fragments)
 }
 
-fn protect_math(input: &str) -> String {
-    input
-        .replace("\\(", "@@MJ_IO@@")
-        .replace("\\)", "@@MJ_IC@@")
-        .replace("\\[", "@@MJ_DO@@")
-        .replace("\\]", "@@MJ_DC@@")
+#[derive(Debug)]
+struct MathFragment {
+    token: String,
+    html: String,
 }
 
-fn restore_math(input: &str) -> String {
+fn extract_math(input: &str) -> (String, Vec<MathFragment>) {
+    let mut out = String::with_capacity(input.len());
+    let mut fragments = Vec::new();
+    let mut index = 0;
+
+    while index < input.len() {
+        let rest = &input[index..];
+        let matched = if rest.starts_with("\\(") {
+            extract_until(input, index + 2, "\\)", false)
+        } else if rest.starts_with("\\[") {
+            extract_until(input, index + 2, "\\]", true)
+        } else if rest.starts_with("$$") {
+            extract_until(input, index + 2, "$$", true)
+        } else if rest.starts_with('$') && !rest.starts_with("$$") {
+            extract_until(input, index + 1, "$", false)
+        } else {
+            None
+        };
+
+        if let Some((latex, next_index, display)) = matched {
+            let token = format!("@@AGNI_MATH_{}@@", fragments.len());
+            out.push_str(&token);
+            fragments.push(MathFragment {
+                token,
+                html: render_math(&latex, display),
+            });
+            index = next_index;
+        } else {
+            let ch = rest.chars().next().expect("index is inside input");
+            out.push(ch);
+            index += ch.len_utf8();
+        }
+    }
+
+    (out, fragments)
+}
+
+fn extract_until(
+    input: &str,
+    start: usize,
+    delimiter: &str,
+    display: bool,
+) -> Option<(String, usize, bool)> {
+    let mut search = start;
+    while search < input.len() {
+        let rest = &input[search..];
+        if rest.starts_with(delimiter) && !is_escaped(input, search) {
+            let latex = input[start..search].trim().to_string();
+            let next_index = search + delimiter.len();
+            return Some((latex, next_index, display));
+        }
+        let ch = rest.chars().next()?;
+        search += ch.len_utf8();
+    }
+    None
+}
+
+fn is_escaped(input: &str, index: usize) -> bool {
+    let preceding_slashes = input[..index]
+        .chars()
+        .rev()
+        .take_while(|&ch| ch == '\\')
+        .count();
+    preceding_slashes % 2 == 1
+}
+
+fn render_math(latex: &str, display: bool) -> String {
+    let style = if display {
+        DisplayStyle::Block
+    } else {
+        DisplayStyle::Inline
+    };
+
+    match latex_to_mathml(latex, style) {
+        Ok(mathml) if display => format!("<div class=\"math math-display\">{mathml}</div>"),
+        Ok(mathml) => format!("<span class=\"math math-inline\">{mathml}</span>"),
+        Err(_) if display => format!(
+            "<div class=\"math math-display math-fallback\">{}</div>",
+            escape_html(latex)
+        ),
+        Err(_) => format!(
+            "<span class=\"math math-inline math-fallback\">{}</span>",
+            escape_html(latex)
+        ),
+    }
+}
+
+fn restore_math(input: &str, fragments: &[MathFragment]) -> String {
+    let mut out = input.to_string();
+    for fragment in fragments {
+        out = out.replace(&fragment.token, &fragment.html);
+    }
+    out
+}
+
+fn escape_html(input: &str) -> String {
     input
-        .replace("@@MJ_IO@@", "\\(")
-        .replace("@@MJ_IC@@", "\\)")
-        .replace("@@MJ_DO@@", "\\[")
-        .replace("@@MJ_DC@@", "\\]")
+        .replace('&', "&amp;")
+        .replace('<', "&lt;")
+        .replace('>', "&gt;")
+        .replace('"', "&quot;")
 }
 
 fn inline_markdown_to_html(input: &str) -> String {

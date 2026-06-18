@@ -4,7 +4,7 @@
 
 PhD student in theoretical computer science at the University of Edinburgh.
 
-Static site generator in Rust — [Tera](https://keats.github.io/tera/) templates, TOML data files, a small [WebAssembly](https://webassembly.org/) module for theme toggling and nav highlighting.
+Static site generator in Rust — [Tera](https://keats.github.io/tera/) templates, TOML data files, and a small WebAssembly module for theme toggling, nav highlighting, and smooth in-page scrolling.
 
 ## Structure
 
@@ -13,17 +13,20 @@ Static site generator in Rust — [Tera](https://keats.github.io/tera/) template
 ├── content/
 │   ├── site.toml
 │   ├── publications.toml
+│   ├── notes.toml
 │   └── resources.toml
 ├── templates/
 │   ├── base.html
 │   ├── index.html
 │   ├── publications.html
+│   ├── notes.html
 │   ├── resources.html
 │   └── 404.html
 ├── sitegen/src/main.rs
 ├── wasm/src/lib.rs
 ├── static/assets/
 │   ├── css/site.css
+│   ├── pdf/notes/
 │   └── img/
 ├── scripts/build.sh
 └── public/              # generated output
@@ -31,11 +34,10 @@ Static site generator in Rust — [Tera](https://keats.github.io/tera/) template
 
 ## Stack
 
-- **Rust** — site generator and WASM module
+- **Rust** — site generator and WebAssembly module
 - **Tera** — Jinja2-style templating
 - **pulldown-cmark** — Markdown rendering
-- **wasm-bindgen / web-sys** — Rust↔JS interop
-- **MathJax 4** — LaTeX rendering (CDN)
+- **wasm-bindgen / web-sys** — browser interop for small UI behavior
 - **GitHub Actions** — build and deploy
 
 ## Requirements
@@ -57,7 +59,7 @@ cd public && python3 -m http.server 8000
 
 ## Content
 
-All content lives in `content/`. Edit `site.toml`, `publications.toml`, or `resources.toml`, then rebuild.
+All content lives in `content/`. Edit `site.toml`, `publications.toml`, `notes.toml`, or `resources.toml`, then rebuild. PDF notes live under `static/assets/pdf/notes/`.
 
 ## Deploy
 

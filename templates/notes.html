@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Notes · {{ data.person.name }}{% endblock title %}
+{% block canonical_path %}/notes/{% endblock canonical_path %}
+{% block content %}
+<section class="shell page-grid notes-page">
+  <aside class="page-kicker">
+    <p class="eyebrow">Notes</p>
+    <h1>Expository Notes</h1>
+  </aside>
+  <div class="page-body">
+    {% for section in data.notes.sections %}
+    <section class="section-block note-section{% if loop.first %} first{% endif %}">
+      <div class="section-head">
+        <h2>{{ section.title }}</h2>
+      </div>
+      {% for note in section.items %}
+      <article class="paper note-paper">
+        <h3><a href="{{ note.url }}">{{ note.title | inline_markdown | safe }}</a></h3>
+        <p class="authors">{% for author in note.authors %}<a href="{{ author.url }}">{{ author.name }}</a>{% if not
+          loop.last %}, {% endif %}{% endfor %}</p>
+        <p class="meta">{{ note.status }} · {{ note.date }} · <a href="{{ note.url }}">PDF</a></p>
+      </article>
+      {% endfor %}
+    </section>
+    {% endfor %}
+  </div>
+</section>
+{% endblock content %}

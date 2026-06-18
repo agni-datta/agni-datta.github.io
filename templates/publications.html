@@ -14,7 +14,13 @@
       </div>
       {% for paper in data.publications.manuscripts %}
       <article class="paper">
-        <h3>{{ paper.title | inline_markdown | safe }}</h3>
+        <h3>
+          {% if paper.links | length > 0 %}
+          <a class="paper-title-link" href="{{ paper.links.0.url }}">{{ paper.title | inline_markdown | safe }}</a>
+          {% else %}
+          {{ paper.title | inline_markdown | safe }}
+          {% endif %}
+        </h3>
         <p class="authors">{% for author in paper.authors %}<a href="{{ author.url }}">{{ author.name }}</a>{% if not
           loop.last %}, {% endif %}{% endfor %}</p>
         <p class="meta">{{ paper.status }} · {{ paper.year }}</p>
