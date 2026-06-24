@@ -295,9 +295,14 @@ code {
 	color: var(--ink);
 }
 
-.theme-toggle::before {
-	content: "◐";
-	margin-right: var(--space-xs);
+[data-theme-toggle] [data-icon="moon"] {
+	display: none;
+}
+[data-theme="light"] [data-theme-toggle] [data-icon="sun"] {
+	display: none;
+}
+[data-theme="light"] [data-theme-toggle] [data-icon="moon"] {
+	display: inline;
 }
 
 .shell {

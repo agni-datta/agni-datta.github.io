@@ -148,10 +148,6 @@ fn update_theme_toggle_label(document: &Document) {
             if current == "dark" { "true" } else { "false" },
         );
     }
-
-    if let Some(label) = query(document, "[data-theme-label]") {
-        label.set_text_content(Some(next));
-    }
 }
 
 fn query(document: &Document, selector: &str) -> Option<Element> {

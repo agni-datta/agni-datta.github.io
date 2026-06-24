@@ -23,6 +23,16 @@ date = "March 19, 2023"
 url = "/assets/pdf/notes/gomory-cutting-planes.pdf"
 
 [[sections]]
+title = "Complexity Theory and Interactive Proofs"
+
+[[sections.items]]
+title = "On the Goldwasser-Sipser Lower-Bound Protocol"
+authors = [{ name = "Agni Datta", url = "/" }]
+status = "Version 0.2"
+date = "November 2024"
+url = "/assets/pdf/notes/goldwasser-sipser.pdf"
+
+[[sections]]
 title = "Mathematical Physics"
 
 [[sections.items]]
