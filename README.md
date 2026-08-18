@@ -1,18 +1,18 @@
 ---
-title: "Agni Datta"
-aliases: "Agni Datta"
-linter-yaml-title-alias: "Agni Datta"
-date created: 2026-05-04
-date modified: 2026-07-21
+title: README
+aliases: README, 'README, "Agni Datta"'
+linter-yaml-title-alias: README
+date created: Tuesday, July 21st 2026, 8:49:18 pm
+date modified: Tuesday, August 18th 2026, 10:56:16 am
 ---
 
 <!-- @format -->
 
-# [Agni Datta](https://agnidatta.com)
+## [Agni Datta](https://agnidatta.com)
 
 Rust-generated academic website with a Rust/Wasm browser runtime and an optional privacy-preserving Cloudflare analytics edge.
 
-## Local development
+### Local development
 
 Install rustup and dprint at the version recorded in `.dprint-version`. The repository pins Rust 1.97.1 and declares its `wasm32-unknown-unknown`, Clippy, and rustfmt requirements in `rust-toolchain.toml`. No Node project or handwritten JavaScript is required.
 
@@ -43,7 +43,7 @@ The opt-in Rust WebDriver suite needs the local server and a driver listening at
 WEBDRIVER_URL=http://localhost:4444 cargo test -p browser-tests --test webdriver -- --ignored --test-threads=1
 ```
 
-## Repository structure
+### Repository structure
 
 ```text
 crates/
@@ -65,15 +65,15 @@ public/                  ignored atomic build output
 
 The build keeps the public URLs for CSS, images, PDFs, and every existing page. The browser receives complete HTML documents for direct loads and non-Wasm fallback navigation.
 
-## Theme persistence
+### Theme persistence
 
 Dark is the initial default. An explicit theme change writes only `theme=light` or `theme=dark` as a first-party, one-year, `SameSite=Lax` cookie. Production cookies are secure. A valid legacy `localStorage` value is migrated once and removed.
 
-## Location analytics
+### Location analytics
 
 The optional Cloudflare Worker counts only successful HTML page views. It retains daily aggregates keyed by a bounded route, country code, and region code, and deletes rows older than 90 days. It does not read or store IP addresses, detailed location, browser metadata, navigation sources, cookies, or visitor identifiers.
 
-Private reports use Cloudflare's D1 API and require these environment variables. The command bounds all reports to 1–90 days and never prints credentials.
+Private reports use Cloudflare’s D1 API and require these environment variables. The command bounds all reports to 1–90 days and never prints credentials.
 
 ```text
 CLOUDFLARE_API_TOKEN
@@ -83,7 +83,7 @@ CLOUDFLARE_D1_DATABASE_ID
 
 Create a least-privilege token that can query only the analytics D1 database. There is no public reporting endpoint.
 
-## Deployment
+### Deployment
 
 The GitHub Pages workflow validates and publishes `public/`. Edge activation remains manual until the Cloudflare account is configured.
 
@@ -97,6 +97,6 @@ npx --yes wrangler@4.112.0 deploy
 
 Review applicable privacy obligations before production activation. The public disclosure is available at `/privacy/`.
 
-## License
+### License
 
 [MIT](LICENSE)
