@@ -56,9 +56,11 @@ The generator's `PAGES` list defines page output, canonical URLs, active navigat
 
 ## Contact
 
-Store the contact address as Base64 in `person.email_token` in `content/site.toml`. The Email me button decodes it only after a click and opens the visitor's email app; the address is never inserted into page text or a persistent link. The encoding is reversible, and earlier Git commits can still contain the original address. With JavaScript disabled, the page explains that the email button requires it.
+Store the contact address as Base64 in `person.email_token` in `content/site.toml`, and its readable form with `[at]` and `[dot]` in `person.email_display`. The displayed text opens the visitor's email app on click; the decoded address is never inserted into page text or a persistent link. With JavaScript disabled, the readable form remains visible. This is reversible obfuscation, not protection against scraping, and earlier Git commits can still contain the original address.
 
 ## Citations
+
+List only papers available online in `content/publications.toml`, with a link to each paper. Omit private submissions and work in preparation.
 
 Keep all publication citations in `static/assets/bib/references.bib`. A paper's optional `citation` in `content/publications.toml` needs only its verified `key` and a `version` label. The generator reads the shared bibliography once and selects each paper's entry by its exact key for both the homepage and Publications page. Missing keys, duplicate keys and unclosed entries fail the build.
 

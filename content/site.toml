@@ -10,6 +10,7 @@ affiliation = "University of Edinburgh"
 affiliation_url = "https://www.ed.ac.uk/informatics"
 location = "UK"
 email_token = "YWduaWRhdHRhLm9yZ0BnbWFpbC5jb20="
+email_display = "agnidatta [dot] org [at] gmail [dot] com"
 photo_path = "/assets/img/agni.jpg"
 photo_alt = "Portrait of Agni Datta"
 [[person.links]]

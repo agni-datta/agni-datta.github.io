@@ -32,9 +32,9 @@
             title="Open your email app"
             disabled
           >
-            Email me
+            {{ data.person.email_display }}
           </button>
-          <noscript>Enable JavaScript to email me.</noscript>
+          <noscript>{{ data.person.email_display }}</noscript>
         </dd>
       </div>
       <div>

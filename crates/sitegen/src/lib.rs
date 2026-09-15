@@ -95,6 +95,7 @@ struct Person {
     affiliation_url: Option<String>,
     location: String,
     email_token: String,
+    email_display: String,
     photo_path: Option<String>,
     photo_alt: Option<String>,
     links: Vec<Link>,
