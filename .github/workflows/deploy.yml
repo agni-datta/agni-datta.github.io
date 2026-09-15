@@ -21,15 +21,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Read tool versions
+        id: versions
+        run: |
+          python3 - <<'PY'
+          import os
+          import pathlib
+          import tomllib
+
+          toolchain = tomllib.loads(pathlib.Path("rust-toolchain.toml").read_text())["toolchain"]
+          with open(os.environ["GITHUB_OUTPUT"], "a") as output:
+              print(f"rust={toolchain['channel']}", file=output)
+              print(f"components={','.join(toolchain['components'])}", file=output)
+              print(f"targets={','.join(toolchain['targets'])}", file=output)
+          PY
+
       - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
+        uses: dtolnay/rust-toolchain@master
         with:
-          components: clippy, rustfmt
-          targets: wasm32-unknown-unknown
+          toolchain: ${{ steps.versions.outputs.rust }}
+          components: ${{ steps.versions.outputs.components }}
+          targets: ${{ steps.versions.outputs.targets }}
 
       - name: Install dprint
         run: |
-          curl -fsSL https://dprint.dev/install.sh | sh -s 0.55.2
+          curl -fsSL https://dprint.dev/install.sh | sh -s "$(cat .dprint-version)"
           echo "$HOME/.dprint/bin" >> "$GITHUB_PATH"
 
       - name: Cache Rust dependencies

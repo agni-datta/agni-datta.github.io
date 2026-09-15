@@ -1,9 +1,14 @@
 {% extends "layouts/base.html" %} {% block title %}Miscellany · {{ data.person.name }}{% endblock title %} {% block
-canonical_path %}/miscellany/{% endblock canonical_path %} {% block content %}
-<section class="shell page-grid">
+content %} <section
+  id="miscellany"
+  aria-labelledby="miscellany-heading"
+  class="shell page-grid"
+>
   <aside class="page-kicker">
-    <p class="eyebrow">Miscellany</p>
-    <h1>Miscellany</h1>
+    <span class="chapter-number" aria-hidden="true">04</span>
+    <h1 id="miscellany-heading">
+      Miscellany
+    </h1>
     <p class="page-note">{{ data.miscellany.intro }}</p>
   </aside>
   <div class="page-body">
@@ -100,5 +105,4 @@ canonical_path %}/miscellany/{% endblock canonical_path %} {% block content %}
       {% endfor %}
     </div>
   </div>
-</section>
-{% endblock content %}
+</section> {% endblock content %}

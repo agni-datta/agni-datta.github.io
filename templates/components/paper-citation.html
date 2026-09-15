@@ -1,0 +1,39 @@
+{% if paper.citation %}
+<details class="paper-citation">
+  <summary>
+    <span class="citation-label">BibTeX</span>
+    <code>{{ paper.citation.key }}</code>
+  </summary>
+  <div class="citation-body">
+    <div class="citation-toolbar">
+      <span class="citation-version">{{ paper.citation.version }}</span>
+      <button
+        type="button"
+        class="citation-copy"
+        data-copy-citation
+        aria-label="Copy BibTeX for {{ paper.title }}"
+      >
+        <svg
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <rect x="8" y="8" width="12" height="13" rx="1" />
+          <path d="M16 8V3H3v13h5" />
+        </svg>
+        Copy BibTeX
+      </button>
+    </div>
+    <pre
+      class="citation-entry"
+      tabindex="0"
+      aria-label="BibTeX entry for {{ paper.title }}"
+    ><code>{{ paper.citation.entry }}</code></pre>
+    <p class="citation-status" role="status" aria-live="polite" aria-atomic="true"></p>
+  </div>
+</details>
+{% endif %}

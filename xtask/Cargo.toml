@@ -8,10 +8,8 @@ rust-version.workspace = true
 
 [dependencies]
 anyhow = "1"
-serde_json = "1"
 sitegen = { path = "../crates/sitegen" }
 tiny_http = "0.12"
-ureq = { version = "3.3", features = ["json"] }
 wasm-bindgen-cli-support = "0.2.126"
 
 [lints]

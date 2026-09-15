@@ -19,10 +19,7 @@ rustc-ice-*.txt
 
 # Project Specific
 /public/
-/crates/analytics-worker/build/
-
-# Cloudflare and local secrets
-.wrangler/
+# Local secrets
 .dev.vars
 .dev.vars.*
 .env

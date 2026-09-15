@@ -1,6 +1,5 @@
 [workspace]
 members = [
-  "crates/analytics-worker",
   "crates/browser-tests",
   "crates/sitegen",
   "crates/webapp",

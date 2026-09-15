@@ -155,7 +155,7 @@ fn request_json(method: &str, url: &str, body: Option<Value>) -> Result<Value> {
 
 #[test]
 #[ignore = "requires cargo site serve and a local WebDriver"]
-fn theme_cookie_survives_spa_refresh_direct_load_and_history() -> Result<()> {
+fn theme_cookie_survives_navigation_refresh_direct_load_and_history() -> Result<()> {
     let browser = Browser::connect()?;
     browser.navigate("http://localhost:8000/")?;
     browser.wait_attribute("html", "data-theme", "dark")?;

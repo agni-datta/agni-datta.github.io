@@ -1,7 +1,6 @@
-{% extends "layouts/base.html" %} {% block title %}{{ data.person.name }}{% endblock title %} {% block canonical_path
-%}/{% endblock canonical_path %} {% block content %}
-<section class="shell home-grid">
-  <aside class="identity panel" aria-label="Identity and contact details">
+{% extends "layouts/base.html" %} {% block title %}{{ data.person.name }}{% endblock title %} {% block content %}
+<section class="shell home-grid" id="home">
+  <aside class="identity" aria-label="Identity and contact details">
     {% if data.person.photo_path and data.person.photo_path != "" %}
     <figure class="portrait-frame">
       <img
@@ -109,7 +108,7 @@
         <h2>Research interests</h2>
       </div>
       {% if data.about.interests_text and data.about.interests_text != "" %}
-      <div class="prose interests-prose">{{ data.about.interests_text | markdown | safe }}</div>
+      <div class="prose">{{ data.about.interests_text | markdown | safe }}</div>
       {% endif %}
     </section>
 
@@ -118,23 +117,7 @@
         <h2>Recent publications</h2>
         <a class="section-action" href="/publications/">View all</a>
       </div>
-      {% for paper in data.publications.recent %}
-      <article class="paper">
-        <div class="paper-head">
-          <h3>{{ paper.title | inline_markdown | safe }}</h3>
-          {% if paper.links | length > 0 %}
-          <span class="paper-actions"
-          >{% for link in paper.links %}<a class="action-link" href="{{ link.url }}">{{ link.label }}</a>{% endfor
-            %}</span>
-          {% endif %}
-        </div>
-        <p class="authors">
-          {% for author in paper.authors %}<a href="{{ author.url }}">{{ author.name }}</a>{% if not loop.last %}, {%
-          endif %}{% endfor %}
-        </p>
-        <p class="meta">{{ paper.status }} · {{ paper.year }}</p>
-      </article>
-      {% endfor %}
+      {% for paper in data.publications.recent %} {% include "components/paper.html" %} {% endfor %}
     </section>
 
     <section class="section-block">

@@ -26,9 +26,10 @@ authors = [
 ]
 
 [[manuscripts]]
-title = "Fiat-Shamir Goes Rational"
-status = "In submission"
+title = "Fiat-Shamir Goes Rational (Or: On the Perils of Sublinear Verification)"
+status = "ASIACRYPT"
 year = "2026"
+citation = { key = "EPRINT:CamDat24", version = "ePrint version · 2024" }
 links = [{ label = "ePrint", url = "https://eprint.iacr.org/2024/1645" }]
 authors = [
   { name = "Matteo Campanelli", url = "https://binarywhales.com/" },

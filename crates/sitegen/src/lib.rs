@@ -8,6 +8,28 @@ use std::time::{SystemTime, UNIX_EPOCH};
 use tera::{Context, Kwargs, State, Tera};
 use thiserror::Error;
 
+mod bibliography;
+
+// Route names match their templates; the error page is excluded from the sitemap.
+const PAGES: &[(&str, &str)] = &[
+    ("home", "/"),
+    ("publications", "/publications/"),
+    ("notes", "/notes/"),
+    ("resources", "/resources/"),
+    ("miscellany", "/miscellany/"),
+    ("privacy", "/privacy/"),
+    ("not-found", "/404.html"),
+];
+
+/// Source order shared by CSS bundling, asset fingerprints, and build audits.
+pub const STYLE_MODULES: &[&str] = &[
+    "tokens.css",
+    "foundation.css",
+    "layout.css",
+    "components.css",
+    "responsive.css",
+];
+
 /// Configuration for one deterministic site build.
 #[derive(Clone, Debug)]
 pub struct BuildConfig {
@@ -15,17 +37,6 @@ pub struct BuildConfig {
     pub workspace_root: PathBuf,
     /// Directory that receives the complete generated site.
     pub output_dir: PathBuf,
-}
-
-impl BuildConfig {
-    /// Returns the standard configuration used by local development and CI.
-    pub fn discover() -> Result<Self, BuildError> {
-        let workspace_root = workspace_root().map_err(BuildError::Build)?;
-        Ok(Self {
-            output_dir: workspace_root.join("public"),
-            workspace_root,
-        })
-    }
 }
 
 /// Summary of a completed site build.
@@ -151,6 +162,15 @@ struct Manuscript {
     status: String,
     year: String,
     links: Vec<Link>,
+    citation: Option<Citation>,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+struct Citation {
+    key: String,
+    version: String,
+    #[serde(skip_deserializing)]
+    entry: String,
 }
 
 #[derive(Debug, Serialize)]
@@ -266,60 +286,20 @@ fn build_inner(config: &BuildConfig) -> Result<BuildReport> {
         cache_key: build_cache_key(root)?,
     };
 
-    render_page(
-        &tera,
-        &data,
-        &build,
-        "pages/home.html",
-        &public_dir.join("index.html"),
-    )?;
-    render_page(
-        &tera,
-        &data,
-        &build,
-        "pages/publications.html",
-        &public_dir.join("publications/index.html"),
-    )?;
-    render_page(
-        &tera,
-        &data,
-        &build,
-        "pages/notes.html",
-        &public_dir.join("notes/index.html"),
-    )?;
-    render_page(
-        &tera,
-        &data,
-        &build,
-        "pages/resources.html",
-        &public_dir.join("resources/index.html"),
-    )?;
-    render_page(
-        &tera,
-        &data,
-        &build,
-        "pages/miscellany.html",
-        &public_dir.join("miscellany/index.html"),
-    )?;
-    render_page(
-        &tera,
-        &data,
-        &build,
-        "pages/privacy.html",
-        &public_dir.join("privacy/index.html"),
-    )?;
-    render_page(
-        &tera,
-        &data,
-        &build,
-        "pages/not-found.html",
-        &public_dir.join("404.html"),
-    )?;
+    for &(name, path) in PAGES {
+        let relative = path.trim_start_matches('/');
+        let output = if path.ends_with('/') {
+            public_dir.join(relative).join("index.html")
+        } else {
+            public_dir.join(relative)
+        };
+        render_page(&tera, &data, &build, name, path, &output)?;
+    }
     write_sitemap(&public_dir, &data.site.base_url)?;
     replace_output(&public_dir, &config.output_dir)?;
 
     Ok(BuildReport {
-        page_count: 7,
+        page_count: PAGES.len(),
         cache_key: build.cache_key,
     })
 }
@@ -358,13 +338,7 @@ fn bundle_styles(root: &Path, public_dir: &Path) -> Result<()> {
         return Ok(());
     }
     let mut bundle = String::from("/* Generated from the ordered modules in styles/. */\n");
-    for name in [
-        "tokens.css",
-        "foundation.css",
-        "layout.css",
-        "components.css",
-        "responsive.css",
-    ] {
+    for name in STYLE_MODULES {
         let path = styles.join(name);
         bundle.push_str(
             &fs::read_to_string(&path)
@@ -381,13 +355,7 @@ fn bundle_styles(root: &Path, public_dir: &Path) -> Result<()> {
 
 fn build_cache_key(root: &Path) -> Result<String> {
     let mut hasher = DefaultHasher::new();
-    for name in [
-        "tokens.css",
-        "foundation.css",
-        "layout.css",
-        "components.css",
-        "responsive.css",
-    ] {
+    for name in STYLE_MODULES {
         let stylesheet = root.join("styles").join(name);
         fs::read(&stylesheet)
             .with_context(|| format!("hashing {}", stylesheet.display()))?
@@ -446,6 +414,7 @@ fn is_leap_year(year: i32) -> bool {
     year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
 }
 
+#[cfg(test)]
 fn workspace_root() -> Result<PathBuf> {
     PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .parent()
@@ -498,6 +467,24 @@ fn load_site_data(root: &Path) -> Result<SiteData> {
     let content = root.join("content");
     let site: SiteFile = load_toml(&content.join("site.toml"))?;
     let mut publications: Publications = load_toml(&content.join("publications.toml"))?;
+    let bibliography_path = root.join("static/assets/bib/references.bib");
+    let bibliography_source = fs::read_to_string(&bibliography_path)
+        .with_context(|| format!("reading {}", bibliography_path.display()))?;
+    let references = bibliography::entries(&bibliography_source)
+        .with_context(|| format!("indexing {}", bibliography_path.display()))?;
+    for manuscript in &mut publications.manuscripts {
+        if let Some(citation) = &mut manuscript.citation {
+            citation.entry = references
+                .get(citation.key.as_str())
+                .with_context(|| {
+                    format!(
+                        "citation key {} is missing from references.bib",
+                        citation.key
+                    )
+                })?
+                .to_string();
+        }
+    }
     publications.recent = publications.manuscripts.iter().take(10).cloned().collect();
     for manuscript in &publications.manuscripts {
         if let Some(group) = publications
@@ -548,7 +535,8 @@ fn render_page(
     tera: &Tera,
     data: &SiteData,
     build: &BuildInfo,
-    template: &str,
+    current_route: &str,
+    canonical_path: &str,
     out_path: &Path,
 ) -> Result<()> {
     if let Some(parent) = out_path.parent() {
@@ -557,17 +545,10 @@ fn render_page(
     let mut ctx = Context::new();
     ctx.insert("data", data);
     ctx.insert("build", build);
-    let current_route = match template {
-        "pages/home.html" => "home",
-        "pages/publications.html" => "publications",
-        "pages/notes.html" => "notes",
-        "pages/resources.html" => "resources",
-        "pages/miscellany.html" => "miscellany",
-        "pages/privacy.html" => "privacy",
-        _ => "not-found",
-    };
+    let template = format!("pages/{current_route}.html");
+    ctx.insert("canonical_path", canonical_path);
     ctx.insert("current_route", current_route);
-    for route in ["home", "publications", "notes", "resources", "miscellany"] {
+    for &(route, _) in PAGES {
         ctx.insert(
             format!("current_{route}"),
             if current_route == route {
@@ -578,7 +559,7 @@ fn render_page(
         );
     }
     let rendered = tera
-        .render(template, &ctx)
+        .render(&template, &ctx)
         .with_context(|| format!("rendering {template}"))?;
     fs::write(out_path, rendered).with_context(|| format!("writing {}", out_path.display()))
 }
@@ -589,14 +570,7 @@ fn write_sitemap(public_dir: &Path, base_url: &str) -> Result<()> {
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
          <urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n",
     );
-    for page in [
-        "/",
-        "/publications/",
-        "/notes/",
-        "/resources/",
-        "/miscellany/",
-        "/privacy/",
-    ] {
+    for &(_, page) in PAGES.iter().filter(|(_, path)| path.ends_with('/')) {
         body.push_str(&format!("  <url><loc>{base}{page}</loc></url>\n"));
     }
     body.push_str("</urlset>\n");

@@ -1,8 +1,7 @@
-//! Cargo-driven development, quality, deployment, and private reporting tasks.
+//! Cargo-driven development, quality checks, and local serving.
 
 use anyhow::{Context, Result, anyhow, bail};
-use serde_json::{Value, json};
-use std::collections::{BTreeMap, BTreeSet};
+use std::collections::BTreeMap;
 use std::env;
 use std::ffi::OsStr;
 use std::fs;
@@ -14,6 +13,8 @@ use std::thread;
 use std::time::{Duration, SystemTime};
 use tiny_http::{Header, Response, Server, StatusCode};
 use wasm_bindgen_cli_support::Bindgen;
+
+mod audit;
 
 const RUST_TOOLCHAIN: &str = "1.97.1";
 
@@ -30,7 +31,6 @@ fn main() -> Result<()> {
         "serve" => serve(&root, &remaining),
         "check" => check(&root),
         "format" => format_sources(&root),
-        "analytics" => analytics(&remaining),
         "help" | "--help" | "-h" => {
             print_help();
             Ok(())
@@ -41,7 +41,7 @@ fn main() -> Result<()> {
 
 fn print_help() {
     println!(
-        "cargo site <command>\n\n  build      build browser Wasm and the static site atomically\n  serve      watch sources and serve http://localhost:8000\n  check      run formatting, Rust checks, tests, build, and source audits\n  format     format Rust, HTML, CSS, TOML, Markdown, and YAML\n  analytics  query private D1 aggregates with --days 1..90 --format table|csv"
+        "cargo site <command>\n\n  build      build browser Wasm and the static site atomically\n  serve      watch sources and serve http://localhost:8000\n  check      run formatting, Rust checks, tests, build, and source audits\n  format     format Rust, HTML, CSS, TOML, Markdown, and YAML"
     );
 }
 
@@ -59,7 +59,7 @@ fn build_all(root: &Path) -> Result<()> {
         workspace_root: root.to_path_buf(),
         output_dir: candidate.clone(),
     })?;
-    audit(root, &candidate)?;
+    audit::run(root, &candidate)?;
     replace_directory(
         &candidate,
         &root.join("public"),
@@ -100,6 +100,7 @@ fn build_browser_wasm(root: &Path) -> Result<()> {
     let mut bindgen = Bindgen::new();
     bindgen.input_path(&input).out_name("webapp");
     bindgen.web(true)?;
+    bindgen.typescript(false);
     bindgen.omit_default_module_path(false);
     bindgen.generate(&staging)?;
     let generated_js = staging.join("webapp.js");
@@ -270,9 +271,11 @@ fn read_public_file(root: &Path, path: &Path) -> Result<(Vec<u8>, &'static str)>
         "js" => "text/javascript; charset=utf-8",
         "wasm" => "application/wasm",
         "png" => "image/png",
+        "jpg" | "jpeg" => "image/jpeg",
+        "woff2" => "font/woff2",
         "pdf" => "application/pdf",
         "xml" => "application/xml; charset=utf-8",
-        "txt" => "text/plain; charset=utf-8",
+        "txt" | "bib" => "text/plain; charset=utf-8",
         _ => "application/octet-stream",
     };
     Ok((fs::read(path)?, content_type))
@@ -311,20 +314,6 @@ fn check(root: &Path) -> Result<()> {
             "warnings",
         ]),
         "checking browser Wasm",
-    )?;
-    run(
-        rust_cargo().current_dir(root).args([
-            "clippy",
-            "--locked",
-            "--package",
-            "analytics-worker",
-            "--target",
-            "wasm32-unknown-unknown",
-            "--",
-            "-D",
-            "warnings",
-        ]),
-        "checking Cloudflare Worker Wasm",
     )?;
     run(
         rust_cargo()
@@ -391,319 +380,9 @@ fn rust_cargo() -> Command {
     command
 }
 
-fn analytics(arguments: &[String]) -> Result<()> {
-    let mut days = 30_u8;
-    let mut format = "table";
-    let mut index = 0;
-    while index < arguments.len() {
-        match arguments[index].as_str() {
-            "--days" => {
-                index += 1;
-                days = arguments
-                    .get(index)
-                    .context("--days requires a value")?
-                    .parse()
-                    .context("--days must be an integer")?;
-            }
-            "--format" => {
-                index += 1;
-                format = arguments.get(index).context("--format requires a value")?;
-            }
-            other => bail!("unknown analytics option `{other}`"),
-        }
-        index += 1;
-    }
-    if !(1..=90).contains(&days) {
-        bail!("--days must be between 1 and 90");
-    }
-    if !matches!(format, "table" | "csv") {
-        bail!("--format must be `table` or `csv`");
-    }
-
-    let token = required_secret("CLOUDFLARE_API_TOKEN")?;
-    let account = required_secret("CLOUDFLARE_ACCOUNT_ID")?;
-    let database = required_secret("CLOUDFLARE_D1_DATABASE_ID")?;
-    let endpoint = format!(
-        "https://api.cloudflare.com/client/v4/accounts/{account}/d1/database/{database}/query"
-    );
-    let interval = format!("-{} days", days.saturating_sub(1));
-    let body = json!({
-        "sql": "SELECT day, route, country_code, region_code, SUM(views) AS views FROM location_page_views WHERE day >= date('now', ?1) GROUP BY day, route, country_code, region_code ORDER BY day DESC, route, country_code, region_code",
-        "params": [interval]
-    });
-    let mut response = ureq::post(&endpoint)
-        .header("Authorization", &format!("Bearer {token}"))
-        .header("Content-Type", "application/json")
-        .send_json(body)
-        .context("querying the Cloudflare D1 API")?;
-    let payload: Value = response
-        .body_mut()
-        .read_json()
-        .context("decoding the D1 response")?;
-    if payload.get("success").and_then(Value::as_bool) != Some(true) {
-        bail!("Cloudflare rejected the analytics query");
-    }
-    let rows = payload
-        .pointer("/result/0/results")
-        .and_then(Value::as_array)
-        .context("D1 response did not contain result rows")?;
-    print_analytics(rows, format)
-}
-
-fn required_secret(name: &str) -> Result<String> {
-    env::var(name).with_context(|| format!("{name} is required for private analytics reports"))
-}
-
-fn print_analytics(rows: &[Value], format: &str) -> Result<()> {
-    let fields = ["day", "route", "country_code", "region_code", "views"];
-    if format == "csv" {
-        println!("{}", fields.join(","));
-        for row in rows {
-            let values = fields.map(|field| csv_cell(&json_cell(row, field)));
-            println!("{}", values.join(","));
-        }
-        return Ok(());
-    }
-    let mut widths = fields.map(str::len);
-    for row in rows {
-        for (index, field) in fields.iter().enumerate() {
-            widths[index] = widths[index].max(json_cell(row, field).len());
-        }
-    }
-    println!(
-        "{:<day_width$}  {:<route_width$}  {:<country_width$}  {:<region_width$}  {:>views_width$}",
-        "day",
-        "route",
-        "country",
-        "region",
-        "views",
-        day_width = widths[0],
-        route_width = widths[1],
-        country_width = widths[2].max(7),
-        region_width = widths[3].max(6),
-        views_width = widths[4],
-    );
-    for row in rows {
-        println!(
-            "{:<day_width$}  {:<route_width$}  {:<country_width$}  {:<region_width$}  {:>views_width$}",
-            json_cell(row, "day"),
-            json_cell(row, "route"),
-            json_cell(row, "country_code"),
-            json_cell(row, "region_code"),
-            json_cell(row, "views"),
-            day_width = widths[0],
-            route_width = widths[1],
-            country_width = widths[2].max(7),
-            region_width = widths[3].max(6),
-            views_width = widths[4],
-        );
-    }
-    Ok(())
-}
-
-fn json_cell(row: &Value, field: &str) -> String {
-    let Some(value) = row.get(field) else {
-        return String::new();
-    };
-    value
-        .as_str()
-        .map(str::to_owned)
-        .or_else(|| value.as_i64().map(|number| number.to_string()))
-        .or_else(|| value.as_u64().map(|number| number.to_string()))
-        .unwrap_or_default()
-}
-
-fn csv_cell(value: &str) -> String {
-    if value.contains([',', '"', '\n']) {
-        format!("\"{}\"", value.replace('"', "\"\""))
-    } else {
-        value.to_owned()
-    }
-}
-
-fn audit(root: &Path, output: &Path) -> Result<()> {
-    audit_source_files(root)?;
-    audit_worker_privacy(root)?;
-    audit_styles(root)?;
-    audit_html(output)?;
-    Ok(())
-}
-
-fn audit_source_files(root: &Path) -> Result<()> {
-    let mut files = Vec::new();
-    collect_files(root, &mut files, &[".git", "build", "public", "target"])?;
-    let forbidden: Vec<_> = files
-        .into_iter()
-        .filter(|path| {
-            matches!(
-                path.extension().and_then(OsStr::to_str),
-                Some("js" | "jsx" | "ts" | "tsx")
-            )
-        })
-        .collect();
-    if !forbidden.is_empty() {
-        bail!("handwritten JavaScript or TypeScript is forbidden: {forbidden:?}");
-    }
-    Ok(())
-}
-
-fn audit_worker_privacy(root: &Path) -> Result<()> {
-    let worker = root.join("crates/analytics-worker/src");
-    let mut files = Vec::new();
-    collect_files(&worker, &mut files, &[])?;
-    let forbidden = [
-        "CF-Connecting-IP",
-        "CF-Connecting-IPV6",
-        "X-Forwarded-For",
-        "X-Real-IP",
-        "True-Client-IP",
-        "forwarded-for",
-        "request.headers",
-        "user-agent",
-        "referer",
-        ".city()",
-        ".postal_code()",
-        ".latitude()",
-        ".longitude()",
-        ".cookies()",
-    ];
-    for file in files {
-        let source = fs::read_to_string(&file)?;
-        for needle in forbidden {
-            if source
-                .to_ascii_lowercase()
-                .contains(&needle.to_ascii_lowercase())
-            {
-                bail!(
-                    "forbidden visitor-data access `{needle}` in {}",
-                    file.display()
-                );
-            }
-        }
-    }
-    Ok(())
-}
-
-fn audit_styles(root: &Path) -> Result<()> {
-    for name in [
-        "tokens.css",
-        "foundation.css",
-        "layout.css",
-        "components.css",
-        "responsive.css",
-    ] {
-        let path = root.join("styles").join(name);
-        let css = fs::read_to_string(&path)?;
-        if css.matches('{').count() != css.matches('}').count() {
-            bail!("unbalanced CSS blocks in {}", path.display());
-        }
-        for obsolete in ["theme-control", "nav-control", ":has("] {
-            if css.contains(obsolete) {
-                bail!("obsolete selector `{obsolete}` in {}", path.display());
-            }
-        }
-    }
-    Ok(())
-}
-
-fn audit_html(public: &Path) -> Result<()> {
-    let mut files = Vec::new();
-    collect_files(public, &mut files, &[])?;
-    for path in files
-        .into_iter()
-        .filter(|path| path.extension() == Some(OsStr::new("html")))
-    {
-        let html = fs::read_to_string(&path)?;
-        if !html.to_ascii_lowercase().starts_with("<!doctype html>")
-            || !html.contains("<main id=\"content\"")
-        {
-            bail!("malformed generated document {}", path.display());
-        }
-        if !html.contains("data-route=\"") {
-            bail!("missing route metadata in {}", path.display());
-        }
-        for attribute in [
-            "onclick=",
-            "onchange=",
-            "oninput=",
-            "onkeydown=",
-            "onkeyup=",
-            "onload=",
-        ] {
-            if html.to_ascii_lowercase().contains(attribute) {
-                bail!("inline event attribute in {}", path.display());
-            }
-        }
-        let scripts: Vec<_> = html.match_indices("<script").collect();
-        if scripts.len() != 1
-            || !html.contains("<script type=\"module\" src=\"/assets/wasm/bootstrap.js?v=")
-        {
-            bail!("unexpected script entry point in {}", path.display());
-        }
-        audit_ids_and_fragments(&path, &html)?;
-        audit_local_assets(public, &path, &html)?;
-    }
-    Ok(())
-}
-
-fn audit_ids_and_fragments(path: &Path, html: &str) -> Result<()> {
-    let ids: BTreeSet<String> = attribute_values(html, "id=\"").into_iter().collect();
-    let id_count = attribute_values(html, "id=\"").len();
-    if ids.len() != id_count {
-        bail!("duplicate HTML id in {}", path.display());
-    }
-    for fragment in attribute_values(html, "href=\"#") {
-        if !fragment.is_empty() && !ids.contains(&fragment) {
-            bail!("broken fragment #{fragment} in {}", path.display());
-        }
-    }
-    Ok(())
-}
-
-fn audit_local_assets(public: &Path, path: &Path, html: &str) -> Result<()> {
-    for marker in ["src=\"/assets/", "href=\"/assets/"] {
-        for value in attribute_values(html, marker) {
-            let relative = format!("assets/{}", value.split('?').next().unwrap_or_default());
-            if !public.join(relative).is_file() {
-                bail!("missing local asset referenced by {}", path.display());
-            }
-        }
-    }
-    Ok(())
-}
-
-fn attribute_values(input: &str, marker: &str) -> Vec<String> {
-    input
-        .split(marker)
-        .skip(1)
-        .filter_map(|rest| rest.split('"').next().map(str::to_owned))
-        .collect()
-}
-
-fn collect_files(
-    path: &Path,
-    output: &mut Vec<PathBuf>,
-    ignored_directories: &[&str],
-) -> Result<()> {
-    if path.is_dir() {
-        for entry in fs::read_dir(path)? {
-            let entry = entry?;
-            if entry.file_type()?.is_dir()
-                && ignored_directories.contains(&entry.file_name().to_string_lossy().as_ref())
-            {
-                continue;
-            }
-            collect_files(&entry.path(), output, ignored_directories)?;
-        }
-    } else if path.is_file() {
-        output.push(path.to_path_buf());
-    }
-    Ok(())
-}
-
 #[cfg(test)]
 mod tests {
-    use super::{asset_fingerprint, csv_cell, public_path};
+    use super::{asset_fingerprint, public_path};
     use std::path::Path;
 
     #[test]
@@ -717,12 +396,6 @@ mod tests {
     #[test]
     fn local_server_rejects_parent_traversal() {
         assert!(public_path(Path::new("/workspace"), "/../secret").is_err());
-    }
-
-    #[test]
-    fn csv_output_escapes_delimiters() {
-        assert_eq!(csv_cell("a,b"), "\"a,b\"");
-        assert_eq!(csv_cell("plain"), "plain");
     }
 
     #[test]

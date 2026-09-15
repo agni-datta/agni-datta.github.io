@@ -1,38 +1,32 @@
-{% extends "layouts/base.html" %} {% block title %}Privacy · {{ data.person.name }}{% endblock title %} {% block
-canonical_path %}/privacy/{% endblock canonical_path %} {% block content %}
+{% extends "layouts/base.html" %} {% block title %}Privacy Note · {{ data.person.name }}{% endblock title %} {% block
+content %}
 <section class="shell page-grid">
   <aside class="page-kicker">
-    <p class="eyebrow">Privacy</p>
-    <h1>Privacy</h1>
-    <p class="page-note">
-      This site collects the minimum information needed to remember your preferences and understand coarse traffic
-      patterns.
-    </p>
+    <h1>Privacy Note</h1>
+    <p class="page-note">A small site with one preference to remember.</p>
   </aside>
   <div class="page-body">
     <section class="section-block first prose">
-      <div class="section-head">
-        <h2>What the site stores</h2>
-      </div>
+      <div class="section-head"><h2>Your visit</h2></div>
       <p>
-        When you choose a color theme, the site stores a first-party <code>theme</code> cookie for one year. The cookie
-        contains only <code>light</code> or <code>dark</code> and is used only to preserve that functional preference.
+        I do not use analytics, tracking, fingerprinting, or third-party embeds on this website. Images and scripts are
+        served from this site. The website does not use local storage or session storage.
       </p>
       <p>
-        Cloudflare provides the country and region associated with a successful HTML page request. The site adds one
-        page view to a daily aggregate for a bounded page category, country code, and region code. Missing location
-        values become <code>unknown</code>.
+        I load Albert Sans and Space Mono from Google Fonts. Your browser contacts Google to download these fonts,
+        sharing your IP address and browser information. See <a href="https://policies.google.com/privacy"
+        >Google's privacy policy</a>.
       </p>
       <p>
-        The analytics system does not read or retain IP addresses, forwarded IP headers, city, coordinates, postal code,
-        user agent, referrer, cookies, or a persistent visitor identifier. It measures page views, not unique people,
-        and introduces no analytics cookie or fingerprinting.
+        When you switch between light and dark mode, the website saves a <code>theme</code> cookie containing only
+        <code>light</code> or <code>dark</code>. It lasts for one year and remembers your choice across pages and
+        visits. You can remove it in your browser settings; the default theme is dark.
       </p>
       <p>
-        Aggregate rows are deleted automatically after 90 days. Cloudflare provides the edge and database services,
-        while GitHub Pages hosts the site origin. To ask a privacy question, email <a
-          href="mailto:{{ data.person.email }}"
-        >{{ data.person.email_display }}</a>.
+        GitHub Pages hosts this website. GitHub <a
+          href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection"
+        >logs visitor IP addresses for security</a> as part of its hosting service. External links lead to websites with
+        their own privacy practices.
       </p>
     </section>
   </div>

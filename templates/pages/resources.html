@@ -1,9 +1,14 @@
 {% extends "layouts/base.html" %} {% block title %}References · {{ data.person.name }}{% endblock title %} {% block
-canonical_path %}/resources/{% endblock canonical_path %} {% block content %}
-<section class="shell page-grid">
+content %} <section
+  id="references"
+  aria-labelledby="references-heading"
+  class="shell page-grid"
+>
   <aside class="page-kicker">
-    <p class="eyebrow">References</p>
-    <h1>References</h1>
+    <span class="chapter-number" aria-hidden="true">03</span>
+    <h1 id="references-heading">
+      References
+    </h1>
     <p class="page-note">{{ data.resources.intro }}</p>
   </aside>
   <div class="page-body">
@@ -42,5 +47,4 @@ canonical_path %}/resources/{% endblock canonical_path %} {% block content %}
     </section>
     {% endfor %}
   </div>
-</section>
-{% endblock content %}
+</section> {% endblock content %}
