@@ -175,6 +175,22 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] {
   margin: 0;
   overflow-wrap: anywhere;
 }
+.email-contact {
+  background: transparent;
+  border: 0;
+  color: var(--link);
+  cursor: pointer;
+  font: inherit;
+  min-height: 44px;
+  padding: 0;
+}
+.email-contact:hover {
+  color: var(--accent-primary);
+}
+.email-contact:disabled {
+  color: var(--muted);
+  cursor: default;
+}
 .profile-links {
   display: flex;
   flex-wrap: wrap;

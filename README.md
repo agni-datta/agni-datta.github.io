@@ -2,7 +2,7 @@
 
 # [Agni Datta](https://agnidatta.com)
 
-An academic website generated in Rust. Every page is a complete HTML document; a small Rust/Wasm runtime handles the theme switch, mobile menu, and citation-copy buttons.
+An academic website generated in Rust. Every page is a complete HTML document; a small Rust/Wasm runtime handles the theme switch, mobile menu, email button, and citation-copy buttons.
 
 The Nocturne design uses Albert Sans for body text and Space Mono for code, loaded through one Google Fonts stylesheet with `display=swap`. The palette is darkened Nord in dark mode and sepia with Nord blue accents in light mode. Links are never underlined. Home, Publications, Notes, References, Miscellany, and Privacy Note have separate URLs.
 
@@ -34,25 +34,29 @@ WEBDRIVER_URL=http://localhost:4444 cargo test -p browser-tests --test webdriver
 
 ## Source layout
 
-| Path                    | Purpose                                        |
-| ----------------------- | ---------------------------------------------- |
-| `content/`              | Typed TOML content                             |
-| `templates/`            | Layout, route pages, shared header and footer  |
-| `styles/tokens.css`     | Palettes, typography and spacing variables     |
-| `styles/foundation.css` | Element defaults and link/focus rules          |
-| `styles/layout.css`     | Page grids and containers                      |
-| `styles/components.css` | Nocturne components                            |
-| `styles/responsive.css` | Viewport, motion and print rules               |
-| `static/assets/`        | Images, PDFs and BibTeX files                  |
-| `crates/sitegen/`       | Static page generator                          |
-| `crates/webapp/`        | Theme cookie, mobile menu and citation copying |
-| `crates/browser-tests/` | Optional WebDriver integration tests           |
-| `xtask/`                | Cargo commands, local server and build audits  |
-| `public/`               | Ignored generated output                       |
+| Path                    | Purpose                                       |
+| ----------------------- | --------------------------------------------- |
+| `content/`              | Typed TOML content                            |
+| `templates/`            | Layout, route pages, shared header and footer |
+| `styles/tokens.css`     | Palettes, typography and spacing variables    |
+| `styles/foundation.css` | Element defaults and link/focus rules         |
+| `styles/layout.css`     | Page grids and containers                     |
+| `styles/components.css` | Nocturne components                           |
+| `styles/responsive.css` | Viewport, motion and print rules              |
+| `static/assets/`        | Images, PDFs and BibTeX files                 |
+| `crates/sitegen/`       | Static page generator                         |
+| `crates/webapp/`        | Theme, navigation, email and citation actions |
+| `crates/browser-tests/` | Optional WebDriver integration tests          |
+| `xtask/`                | Cargo commands, local server and build audits |
+| `public/`               | Ignored generated output                      |
 
 `sitegen::STYLE_MODULES` defines the CSS order for bundling, hashing, and audits. Keep each base component rule in one place. Do not add theme-specific layout overrides or handwritten JavaScript/TypeScript; the build produces the Wasm loader.
 
 The generator's `PAGES` list defines page output, canonical URLs, active navigation, and the sitemap. Home and Publications share `templates/components/paper.html`. Build audits live in `xtask/src/audit.rs`; `cargo site` is the single command entry point.
+
+## Contact
+
+Store the contact address as Base64 in `person.email_token` in `content/site.toml`. The Email me button decodes it only after a click and opens the visitor's email app; the address is never inserted into page text or a persistent link. The encoding is reversible, and earlier Git commits can still contain the original address. With JavaScript disabled, the page explains that the email button requires it.
 
 ## Citations
 

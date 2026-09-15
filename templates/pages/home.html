@@ -24,7 +24,18 @@
     <dl class="contact-list">
       <div>
         <dt>Email</dt>
-        <dd><a href="mailto:{{ data.person.email }}">{{ data.person.email_display }}</a></dd>
+        <dd>
+          <button
+            class="email-contact"
+            type="button"
+            data-email-token="{{ data.person.email_token }}"
+            title="Open your email app"
+            disabled
+          >
+            Email me
+          </button>
+          <noscript>Enable JavaScript to email me.</noscript>
+        </dd>
       </div>
       <div>
         <dt>Advisors</dt>

@@ -7,6 +7,7 @@
 - Collect no visitor data in website code. The only persistent preference is the light/dark theme cookie. Do not add analytics, tracking, browser storage, third-party embeds, or a collection backend. Load Albert Sans and Space Mono from Google Fonts, as requested by the author; do not bundle local font files. Google Fonts is the only permitted external subresource provider.
 - Keep the Privacy Note short and accurate, including the hosting provider's separate logging.
 - Keep CSS ownership clear: tokens, foundation, layout, components, then responsive rules. Edit the owning rule rather than appending a competing override layer.
-- Use native browser navigation. Rust/Wasm handles the theme, mobile menu, and explicit citation-copy actions. Clipboard access is write-only and must follow a user click.
+- Use native browser navigation. Rust/Wasm handles the theme, mobile menu, email contact, and explicit citation-copy actions. Clipboard access is write-only and must follow a user click.
+- Keep the contact address encoded in `person.email_token`. Decode it only when the visitor clicks Email me; never render a plain-text address or a persistent `mailto:` link. This is reversible obfuscation.
 - Keep publication BibTeX entries in the single `static/assets/bib/references.bib` file. Match papers by their verified citation keys; do not create separate per-paper bibliography files.
 - Run `cargo site check` for changes to the runtime or build tooling. Check appearance and interaction in both themes at desktop and mobile widths for CSS or template changes.

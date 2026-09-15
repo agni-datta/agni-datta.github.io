@@ -1,4 +1,4 @@
-//! Theme preference, mobile menu, and explicit citation copying for the static site.
+//! Theme preference, mobile menu, email contact, and citation copying for the static site.
 
 /// The only preference persisted by the site.
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
@@ -103,6 +103,9 @@ mod browser {
         });
         app.document
             .add_event_listener_with_callback("keydown", key.as_ref().unchecked_ref())?;
+        if let Some(button) = app.document.query_selector("[data-email-token]")? {
+            button.remove_attribute("disabled")?;
+        }
 
         // Back/forward can restore a cached document whose theme or menu is stale.
         let page: EventHandler = Closure::new(move |_: Event| {
@@ -195,6 +198,13 @@ mod browser {
                 let _ = document.set_cookie(&theme.cookie(secure));
             } else if let Some(button) = target.closest("[data-copy-citation]")? {
                 self.copy_citation(button)?;
+            } else if let Some(button) = target.closest("[data-email-token]")? {
+                let token = button.get_attribute("data-email-token").unwrap_or_default();
+                let window = web_sys::window().ok_or("window is unavailable")?;
+                // Reversible obfuscation: decode only for an explicit contact action.
+                // Keep the address out of the page text and persistent DOM attributes.
+                let address = window.atob(&token)?;
+                window.open_with_url_and_target(&format!("mailto:{address}"), "_self")?;
             } else if target.closest("[data-drawer-toggle]")?.is_some() {
                 self.set_navigation(!self.navigation_open(), true)?;
             } else if target.closest("[data-drawer-backdrop]")?.is_some() {
