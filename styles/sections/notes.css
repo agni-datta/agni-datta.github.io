@@ -1,0 +1,4 @@
+.overview-body {
+  background: var(--panel-bg);
+  padding: var(--space-md);
+}

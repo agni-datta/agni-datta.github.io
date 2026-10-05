@@ -2,9 +2,11 @@
 
 # [Agni Datta](https://agnidatta.com)
 
-An academic website generated in Rust. Every page is a complete HTML document; a small Rust/Wasm runtime handles the theme switch, mobile menu, email button, and citation-copy buttons.
+An academic website generated in Rust. Every page is a complete HTML document; a small Rust/Wasm runtime handles the theme switch, section expansion for fragment links, email button, and citation-copy buttons.
 
-The Nocturne design uses Albert Sans for body text and Space Mono for code, loaded through one Google Fonts stylesheet with `display=swap`. The palette is darkened Nord in dark mode and sepia with Nord blue accents in light mode. Links are never underlined. Home, Publications, Notes, References, Miscellany, and Privacy Note have separate URLs.
+The Nocturne design uses Albert Sans for body text and Space Mono for code, loaded through one Google Fonts stylesheet with `display=swap`. The palette is darkened Nord in dark mode and sepia with Nord blue accents in light mode. Links are never underlined. Home and Privacy Note have separate URLs. The homepage lists all publications at `/#publications`, expository notes after Talks at `/#notes`, and reading references at `/#references`. About and Publications stay visible; Teaching, Service, Talks, Notes, and References use collapsible headings with plus/minus indicators. Reference categories and topics also expand independently. Each note has a PDF link and an expandable Overview containing its description.
+
+References starts folded on page load and when returning to the page, including direct `/#references` links. Visitors expand it through its heading.
 
 ## Local development
 
@@ -34,39 +36,65 @@ WEBDRIVER_URL=http://localhost:4444 cargo test -p browser-tests --test webdriver
 
 ## Source layout
 
-| Path                    | Purpose                                       |
-| ----------------------- | --------------------------------------------- |
-| `content/`              | Typed TOML content                            |
-| `templates/`            | Layout, route pages, shared header and footer |
-| `styles/tokens.css`     | Palettes, typography and spacing variables    |
-| `styles/foundation.css` | Element defaults and link/focus rules         |
-| `styles/layout.css`     | Page grids and containers                     |
-| `styles/components.css` | Nocturne components                           |
-| `styles/responsive.css` | Viewport, motion and print rules              |
-| `static/assets/`        | Images, PDFs and BibTeX files                 |
-| `crates/sitegen/`       | Static page generator                         |
-| `crates/webapp/`        | Theme, navigation, email and citation actions |
-| `crates/browser-tests/` | Optional WebDriver integration tests          |
-| `xtask/`                | Cargo commands, local server and build audits |
-| `public/`               | Ignored generated output                      |
+| Path                    | Purpose                                             |
+| ----------------------- | --------------------------------------------------- |
+| `content/site.toml`     | Site title, description and base URL                |
+| `content/`              | One typed TOML file per section                     |
+| `templates/layouts/`    | HTML document shell                                 |
+| `templates/pages/`      | Home composition, Privacy Note and 404              |
+| `templates/sections/`   | One template per homepage section                   |
+| `templates/components/` | Shared chrome, entries and profile icons            |
+| `styles/tokens.css`     | Palettes, typography and spacing variables          |
+| `styles/foundation.css` | Element defaults, prose and link/focus rules        |
+| `styles/layout.css`     | Page grids and containers                           |
+| `styles/components/`    | Chrome, controls, sections, entries and disclosures |
+| `styles/sections/`      | One stylesheet per homepage section                 |
+| `styles/responsive.css` | Viewport, motion and print rules                    |
+| `static/assets/`        | Images, PDFs and the shared bibliography            |
+| `crates/sitegen/`       | Content, rendering, assets and bibliography         |
+| `crates/webapp/`        | Theme, sections, contact and citation actions       |
+| `crates/browser-tests/` | Optional WebDriver integration tests                |
+| `xtask/`                | Build, checks, server and audits                    |
+| `public/`, `target/`    | Ignored generated output and build artifacts        |
 
-`sitegen::STYLE_MODULES` defines the CSS order for bundling, hashing, and audits. Keep each base component rule in one place. Do not add theme-specific layout overrides or handwritten JavaScript/TypeScript; the build produces the Wasm loader.
+Each homepage section has matching filenames across `content/`, `templates/sections/`, and `styles/sections/`:
 
-The generator's `PAGES` list defines page output, canonical URLs, active navigation, and the sitemap. Home and Publications share `templates/components/paper.html`. Build audits live in `xtask/src/audit.rs`; `cargo site` is the single command entry point.
+| Section          | Filename stem  |
+| ---------------- | -------------- |
+| Profile          | `profile`      |
+| About            | `about`        |
+| Publications     | `publications` |
+| Teaching         | `teaching`     |
+| Service          | `service`      |
+| Talks            | `talks`        |
+| Expository notes | `notes`        |
+| References       | `references`   |
+
+`teaching.toml`, `service.toml`, `talks.toml`, and `notes.toml` use `[[entries]]`. Publications comes from the shared BibTeX file; `publications.toml` only configures its presentation. References has nested `[[groups]]`, `[[groups.topics]]`, and `[[groups.topics.items]]` matching its expandable categories and topics. Unknown content fields fail the build, so removed fields cannot silently remain unused.
+
+`sitegen::STYLE_MODULES` in `crates/sitegen/src/assets.rs` defines the CSS order for bundling, hashing, and audits. Every stylesheet must appear there. Shared rules belong in `styles/components/`; section styles contain only section-specific rules. Do not add theme-specific layout overrides or handwritten JavaScript/TypeScript; the build produces the Wasm loader.
+
+`crates/sitegen/src/lib.rs` coordinates generation. Its sibling modules handle typed content (`content.rs`), templates and routes (`render.rs`), assets (`assets.rs`), BibTeX parsing (`bibliography.rs`), publication cards (`publications.rs`), and the footer year (`calendar.rs`). The `PAGES` list in `render.rs` defines output routes, canonical URLs, and the sitemap. Homepage section templates use `components/paper.html`, `components/note.html`, and `components/reference-groups.html` for their entries. Section, BibTeX, and Overview disclosures use native browser controls.
+
+`crates/webapp/src/browser/` separates theme, contact, citations, and section actions; `mod.rs` registers events and dispatches clicks. `theme.rs` outside that directory contains the theme preference model and cookie rules, which can be tested without a browser. `xtask/src/main.rs` dispatches commands to `build.rs`, `checks.rs`, and `serve.rs`; `tools.rs` runs the pinned tools. `audit.rs` checks generated output, the CSS manifest, and every Rust browser module.
 
 ## Contact
 
-Store the contact address as Base64 in `person.email_token` in `content/site.toml`, and its readable form with `[at]` and `[dot]` in `person.email_display`. The displayed text opens the visitor's email app on click; the decoded address is never inserted into page text or a persistent link. With JavaScript disabled, the readable form remains visible. This is reversible obfuscation, not protection against scraping, and earlier Git commits can still contain the original address.
+Store the contact address as Base64 in `email_token` in `content/profile.toml`, and its readable form with `[at]` and `[dot]` in `email_display`. The displayed text opens the visitor's email app on click; the decoded address is never inserted into page text or a persistent link. With JavaScript disabled, the readable form remains visible. This is reversible obfuscation, not protection against scraping, and earlier Git commits can still contain the original address.
 
-## Citations
+## Publications and citations
 
-List only papers available online in `content/publications.toml`, with a link to each paper. Omit private submissions and work in preparation.
+Add, edit, or remove papers in `static/assets/bib/references.bib`. The generator creates a publication card for every entry, including its title, authors, paper links, year, and BibTeX disclosure. The download count updates automatically. No matching TOML entry is needed. During local development the server rebuilds when this file changes; refresh to see the result.
 
-Keep all publication citations in `static/assets/bib/references.bib`. A paper's optional `citation` in `content/publications.toml` needs only its verified `key` and a `version` label. The generator reads the shared bibliography once and selects each paper's entry by its exact key for both the homepage and Publications page. Missing keys, duplicate keys and unclosed entries fail the build.
+Each entry needs `title`, `author`, `year`, and either `url` or `doi`. Only include papers available online; omit private submissions and work in preparation. Authors follow the BibTeX order, which should be surname order for these papers. The build parser handles brace-protected titles, TeX accents, and both `First Last` and `Last, First` names. Original entry text remains unchanged in the disclosure and downloadable bibliography.
 
-Add self-contained, brace-delimited entries to this file, with literal field values rather than external string macros or cross-references. The entry index preserves the original BibTeX text; it is not a full BibTeX validator. The Publications page offers the complete file through **Download bibliography (.bib)**. Individual papers retain expandable entries and Copy BibTeX buttons. The disclosures and download work without JavaScript; copying writes only the displayed entry after a click and reports whether it succeeded.
+Venue labels come from `booktitle` or `journal`/`journaltitle`; ePrint entries default to **Preprint**. Paper links use **ePrint**, **PDF**, **Paper**, or **DOI** according to their fields. Cards sort by descending year, keeping bibliography order within a year. `content/publications.toml` contains the section heading, optional `[author_links]` keyed by display name, and optional `[overrides."CITATION:KEY"]` with `title`, `venue`, or `year`. Unknown authors display as plain text until you add a homepage link. Overrides affect the card, while the citation keeps its own title and year; an override never creates a paper that is absent from the bibliography.
+
+Add self-contained, brace-delimited entries with literal field values rather than external string macros or cross-references. Missing required fields, duplicate keys or fields, and malformed entries fail the build with an explanation. The homepage offers the complete file through **Download all N papers**. Individual papers have their paper links beside a **BibTeX** disclosure, with the citation key visible only inside the expanded entry. The disclosures and download work without JavaScript; copying writes only the displayed entry after a click and reports whether it succeeded.
 
 The current `EPRINT:CamDat24` record comes from the [official CryptoBib export](https://github.com/cryptobib/export/blob/master/crypto.bib), checked on 15 September 2026. It cites the 2024 preprint. The page separately lists the paper's ASIACRYPT 2026 venue; replace its entry in `references.bib` and its citation key when the official proceedings record becomes available.
+
+The `EPRINT:BenDatYog26` entry comes from the paper's [official ePrint page](https://eprint.iacr.org/2026/2227), checked on 5 October 2026. We list its authors in surname order in both the homepage and bibliography. The paper is not yet in the CryptoBib export; its key uses that author order with the [CryptoBib labeling conventions](https://cryptobib.di.ens.fr/manual).
 
 ## Privacy
 

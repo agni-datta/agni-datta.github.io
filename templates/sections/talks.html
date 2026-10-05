@@ -1,0 +1,18 @@
+<details class="section-block section-disclosure disclosure" id="talks" aria-labelledby="talks-heading">
+  <summary class="section-head">
+    <h2 id="talks-heading" class="section-title">Talks</h2>
+  </summary>
+  <ol class="talk-list">
+    {% for talk in data.talks.entries %}
+    <li>
+      <span class="talk-title">{{ talk.title }}</span>
+      <span class="meta">{% if talk.venue_url and talk.venue_url != "" %}<a href="{{ talk.venue_url }}">{{ talk.venue
+          }}</a>{% else %}{{
+        talk.venue }}{% endif %} · {{ talk.date }}</span>
+      {% if talk.links | length > 0 %}<span class="links">{% for link in talk.links %}<a href="{{ link.url }}">{{
+          link.label }}</a>{% if not loop.last %} · {% endif %}{%
+        endfor %}</span>{% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+</details>

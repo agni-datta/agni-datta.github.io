@@ -1,0 +1,5 @@
+.teaching-description {
+  color: var(--body-text);
+  line-height: var(--leading-body);
+  margin: var(--space-2xs) 0 0;
+}

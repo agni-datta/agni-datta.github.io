@@ -1,0 +1,7 @@
+<details class="section-block section-disclosure disclosure" id="notes" aria-labelledby="notes-heading">
+  <summary class="section-head">
+    <h2 id="notes-heading" class="section-title">Expository notes</h2>
+  </summary>
+  <p class="section-description description">{{ data.notes.intro }}</p>
+  {% for note in data.notes.entries %} {% include "components/note.html" %} {% endfor %}
+</details>

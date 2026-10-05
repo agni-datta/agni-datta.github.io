@@ -1,0 +1,29 @@
+<aside class="identity" aria-label="Identity and contact details">
+  {% if data.profile.photo_path and data.profile.photo_path != "" %}
+  <figure class="portrait-frame">
+    <img class="portrait" src="{{ data.profile.photo_path }}" alt="{{ data.profile.photo_alt }}" width="640"
+      height="640" decoding="async" fetchpriority="high">
+  </figure>
+  {% endif %}
+  <p class="eyebrow">{{ data.profile.role }}</p>
+  <h1>{{ data.profile.name }}</h1>
+  <p class="affiliation">
+    {% if data.profile.affiliation_url and data.profile.affiliation_url != "" %}<a
+      href="{{ data.profile.affiliation_url }}">{{ data.profile.affiliation }}</a>{% else %}{{ data.profile.affiliation
+    }}{% endif %} · {{ data.profile.location
+    }}
+  </p>
+  <dl class="contact-list">
+    <div>
+      <dt>Email</dt>
+      <dd>
+        <button class="email-contact" type="button" data-email-token="{{ data.profile.email_token }}"
+          title="Open your email app" disabled>
+          {{ data.profile.email_display }}
+        </button>
+        <noscript>{{ data.profile.email_display }}</noscript>
+      </dd>
+    </div>
+  </dl>
+  {% include "components/profile-links.html" %}
+</aside>

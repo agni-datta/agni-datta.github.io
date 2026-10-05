@@ -25,11 +25,8 @@ features = [
   "Event",
   "EventTarget",
   "HtmlDocument",
-  "HtmlElement",
-  "KeyboardEvent",
   "Location",
   "Navigator",
   "Node",
-  "NodeList",
   "Window",
 ]

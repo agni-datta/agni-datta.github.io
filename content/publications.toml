@@ -1,15 +1,16 @@
 heading = "Publications"
 
-# List only papers available online, with a link to the paper, in reverse chronological order.
-# The homepage shows the first ten entries.
+# The paper list comes from static/assets/bib/references.bib.
+# These links apply to authors wherever their names appear in that file.
+[author_links]
+"Shany Ben-David" = "https://shanybendavid.github.io/"
+"Matteo Campanelli" = "https://binarywhales.com/"
+"Agni Datta" = "/"
+"Eylon Yogev" = "https://eylonyogev.com/"
 
-[[manuscripts]]
+# Optional display information absent from this paper's preprint citation.
+# New BibTeX entries appear automatically without adding an override.
+[overrides."EPRINT:CamDat24"]
 title = "Fiat-Shamir Goes Rational (Or: On the Perils of Sublinear Verification)"
-status = "ASIACRYPT"
-year = "2026"
-citation = { key = "EPRINT:CamDat24", version = "ePrint version · 2024" }
-links = [{ label = "ePrint", url = "https://eprint.iacr.org/2024/1645" }]
-authors = [
-  { name = "Matteo Campanelli", url = "https://binarywhales.com/" },
-  { name = "Agni Datta", url = "/" },
-]
+venue = "ASIACRYPT"
+year = 2026

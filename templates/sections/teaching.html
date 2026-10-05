@@ -1,0 +1,15 @@
+<details class="section-block section-disclosure disclosure" id="teaching" aria-labelledby="teaching-heading">
+  <summary class="section-head">
+    <h2 id="teaching-heading" class="section-title">Teaching</h2>
+  </summary>
+  {% for item in data.teaching.entries %}
+  <article class="entry">
+    <h3>{{ item.role }}</h3>
+    <p class="meta">
+      {% if item.institution_url and item.institution_url != "" %}<a href="{{ item.institution_url }}">{{
+        item.institution }}</a>{% else %}{{ item.institution }}{% endif %} · {{ item.term }}
+    </p>
+    <p class="teaching-description">{{ item.text | inline_markdown | safe }}</p>
+  </article>
+  {% endfor %}
+</details>

@@ -1,0 +1,117 @@
+.identity {
+  background: var(--panel-bg);
+  border: 1px solid var(--rule);
+  border-top: 3px double var(--accent-primary);
+  padding: 1.75rem 1.35rem;
+  position: sticky;
+  top: 1.5rem;
+}
+
+.portrait-frame {
+  aspect-ratio: 1;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  margin: 0 auto 1.8rem;
+  outline: 1px solid var(--rule);
+  outline-offset: 5px;
+  overflow: hidden;
+  width: min(12rem, 76%);
+}
+
+.portrait {
+  border-radius: inherit;
+  filter: grayscale(1) contrast(1.03);
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.identity h1 {
+  font-size: clamp(1.8rem, 3.2vw, 2.45rem);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.1em;
+  margin: 0.2rem 0 0.7rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.identity .eyebrow {
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-align: center;
+}
+
+.affiliation {
+  color: var(--muted);
+  font-size: var(--text-meta);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.affiliation a {
+  color: inherit;
+}
+
+.contact-list {
+  display: grid;
+  gap: 1rem;
+  margin: 1.6rem 0;
+}
+
+.contact-list div {
+  border-top: 1px solid var(--rule);
+  display: grid;
+  gap: var(--space-2xs);
+  padding-top: var(--space-sm);
+}
+
+.contact-list dt {
+  color: var(--muted);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+}
+
+.contact-list dd {
+  font-size: var(--text-meta);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.email-contact {
+  background: transparent;
+  border: 0;
+  color: var(--link);
+  cursor: pointer;
+  font: inherit;
+  min-height: 44px;
+  padding: 0;
+}
+
+.email-contact:hover {
+  color: var(--accent-primary);
+}
+
+.email-contact:disabled {
+  color: var(--muted);
+  cursor: default;
+}
+
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.profile-links a {
+  color: var(--accent-interactive);
+}
+
+.profile-links svg {
+  height: 1.15rem;
+  width: 1.15rem;
+}

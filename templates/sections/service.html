@@ -1,0 +1,15 @@
+<details class="section-block section-disclosure disclosure" id="service" aria-labelledby="service-heading">
+  <summary class="section-head">
+    <h2 id="service-heading" class="section-title">Service</h2>
+  </summary>
+  {% for role, items in data.service.entries | group_by(attribute="role") %}
+  <article class="entry">
+    <h3>{{ role }}</h3>
+    <ol class="service-list">
+      {% for item in items | sort(attribute="year") | reverse %}
+      <li class="meta">{{ item.year }} · {{ item.venues | join(sep=" · ") }}</li>
+      {% endfor %}
+    </ol>
+  </article>
+  {% endfor %}
+</details>

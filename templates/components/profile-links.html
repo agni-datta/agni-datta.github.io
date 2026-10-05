@@ -1,0 +1,33 @@
+<nav class="profile-links" aria-label="External profiles">
+  {% for link in data.profile.links %}
+  <a href="{{ link.url }}" aria-label="{{ link.label }}" title="{{ link.label }}">
+    {% if link.label in ["GitHub", "Scholar", "DBLP"] %}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.7"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      {% if link.label == "GitHub" %}
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.4 5.4 0 0 0 19.3 4 5 5 0 0 0 19.2.5S18 0 15 1.8a13.4 13.4 0 0 0-7 0C5 0 3.8.5 3.8.5A5 5 0 0 0 3.7 4a5.4 5.4 0 0 0-1.5 3.5c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 8 18v4" />
+      <path d="M8 19c-3 .9-3-1.5-4-2" />
+      {% elif link.label == "Scholar" %}
+      <path d="m2 10 10-5 10 5-10 5z" />
+      <path d="M6 12v5c3 2 9 2 12 0v-5" />
+      <path d="M22 10v6" />
+      {% elif link.label == "DBLP" %}
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+      <path d="M8 7h8M8 11h6" />
+      {% endif %}
+    </svg>
+    {% else %}<span>{{ link.label }}</span>{% endif %}
+  </a>
+  {% endfor %}
+</nav>

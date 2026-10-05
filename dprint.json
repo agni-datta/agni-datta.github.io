@@ -6,6 +6,9 @@
     "templates/**/*.html",
     "styles/**/*.css",
     "content/**/*.toml",
+    "crates/**/*.toml",
+    "xtask/*.toml",
+    ".cargo/*.toml",
     ".github/**/*.yml",
     "*.toml",
     "*.md"

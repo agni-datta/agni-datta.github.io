@@ -1,4 +1,4 @@
-{% extends "layouts/base.html" %} {% block title %}Privacy Note · {{ data.person.name }}{% endblock title %} {% block
+{% extends "layouts/base.html" %} {% block title %}Privacy Note · {{ data.profile.name }}{% endblock title %} {% block
 content %}
 <section class="shell page-grid">
   <aside class="page-kicker">
@@ -7,15 +7,17 @@ content %}
   </aside>
   <div class="page-body">
     <section class="section-block first prose">
-      <div class="section-head"><h2>Your visit</h2></div>
+      <div class="section-head">
+        <h2 class="section-title">Your visit</h2>
+      </div>
       <p>
         I do not use analytics, tracking, fingerprinting, or third-party embeds on this website. Images and scripts are
         served from this site. The website does not use local storage or session storage.
       </p>
       <p>
         I load Albert Sans and Space Mono from Google Fonts. Your browser contacts Google to download these fonts,
-        sharing your IP address and browser information. See <a href="https://policies.google.com/privacy"
-        >Google's privacy policy</a>.
+        sharing your IP address and browser information. See <a href="https://policies.google.com/privacy">Google's
+          privacy policy</a>.
       </p>
       <p>
         When you switch between light and dark mode, the website saves a <code>theme</code> cookie containing only
@@ -24,8 +26,8 @@ content %}
       </p>
       <p>
         GitHub Pages hosts this website. GitHub <a
-          href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection"
-        >logs visitor IP addresses for security</a> as part of its hosting service. External links lead to websites with
+          href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection">logs
+          visitor IP addresses for security</a> as part of its hosting service. External links lead to websites with
         their own privacy practices.
       </p>
     </section>

@@ -15,7 +15,18 @@ pub(super) fn run(root: &Path, output: &Path) -> Result<()> {
 }
 
 fn audit_browser_privacy(root: &Path) -> Result<()> {
-    let source = fs::read_to_string(root.join("crates/webapp/src/lib.rs"))?;
+    let mut files = Vec::new();
+    collect_files(&root.join("crates/webapp/src"), &mut files, &[])?;
+    for path in files
+        .into_iter()
+        .filter(|path| path.extension() == Some(OsStr::new("rs")))
+    {
+        audit_browser_source(&path, &fs::read_to_string(&path)?)?;
+    }
+    Ok(())
+}
+
+fn audit_browser_source(path: &Path, source: &str) -> Result<()> {
     for forbidden in [
         "local_storage",
         "session_storage",
@@ -34,7 +45,10 @@ fn audit_browser_privacy(root: &Path) -> Result<()> {
         ".read()",
     ] {
         if source.contains(forbidden) {
-            bail!("browser data storage or network API `{forbidden}` is not permitted");
+            bail!(
+                "browser data storage or network API `{forbidden}` is not permitted in {}",
+                path.display()
+            );
         }
     }
     Ok(())
@@ -59,6 +73,28 @@ fn audit_source_files(root: &Path) -> Result<()> {
 }
 
 fn audit_styles(root: &Path) -> Result<()> {
+    let styles = root.join("styles");
+    let mut files = Vec::new();
+    collect_files(&styles, &mut files, &[])?;
+    let actual: BTreeSet<_> = files
+        .into_iter()
+        .filter(|path| path.extension() == Some(OsStr::new("css")))
+        .map(|path| {
+            path.strip_prefix(&styles)
+                .unwrap()
+                .to_string_lossy()
+                .replace('\\', "/")
+        })
+        .collect();
+    let expected: BTreeSet<_> = sitegen::STYLE_MODULES
+        .iter()
+        .map(|name| name.to_string())
+        .collect();
+    if actual != expected {
+        let missing: Vec<_> = expected.difference(&actual).collect();
+        let unbundled: Vec<_> = actual.difference(&expected).collect();
+        bail!("CSS manifest mismatch: missing {missing:?}; unbundled {unbundled:?}");
+    }
     for name in sitegen::STYLE_MODULES {
         let path = root.join("styles").join(name);
         let css = fs::read_to_string(&path)?;
@@ -224,7 +260,50 @@ fn collect_files(
 
 #[cfg(test)]
 mod tests {
-    use super::allowed_link_resource;
+    use super::{allowed_link_resource, audit_browser_privacy, audit_styles};
+    use std::{
+        fs,
+        path::PathBuf,
+        time::{SystemTime, UNIX_EPOCH},
+    };
+
+    fn temporary_root(name: &str) -> PathBuf {
+        let nonce = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .unwrap()
+            .as_nanos();
+        std::env::temp_dir().join(format!(
+            "agni-site-audit-{name}-{}-{nonce}",
+            std::process::id()
+        ))
+    }
+
+    #[test]
+    fn checks_privacy_in_nested_browser_modules() {
+        let root = temporary_root("privacy");
+        let directory = root.join("crates/webapp/src/browser");
+        fs::create_dir_all(&directory).unwrap();
+        fs::write(directory.join("contact.rs"), "window.local_storage()").unwrap();
+        let result = audit_browser_privacy(&root);
+        fs::remove_dir_all(&root).unwrap();
+        let error = result.unwrap_err().to_string();
+        assert!(error.contains("local_storage"));
+        assert!(error.contains("contact.rs"));
+    }
+
+    #[test]
+    fn rejects_stylesheets_that_are_not_in_the_bundle() {
+        let root = temporary_root("styles");
+        for name in sitegen::STYLE_MODULES {
+            let path = root.join("styles").join(name);
+            fs::create_dir_all(path.parent().unwrap()).unwrap();
+            fs::write(path, "").unwrap();
+        }
+        fs::write(root.join("styles/orphan.css"), ".orphan {}").unwrap();
+        let result = audit_styles(&root);
+        fs::remove_dir_all(&root).unwrap();
+        assert!(result.unwrap_err().to_string().contains("orphan.css"));
+    }
 
     #[test]
     fn external_resource_exception_is_limited_to_google_fonts() {

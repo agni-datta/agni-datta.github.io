@@ -1,0 +1,17 @@
+<article class="entry note">
+  <h3>{{ note.title | inline_markdown | safe }}</h3>
+  <p class="authors">
+    {% for author in note.authors %}<a href="{{ author.url }}">{{ author.name }}</a>{% if not loop.last %}, {% endif
+    %}{% endfor %}
+  </p>
+  <p class="meta">{{ note.status }} · {{ note.date }}</p>
+  <div class="entry-actions">
+    <span class="entry-links"><a class="action-link" href="{{ note.url }}">PDF</a></span>
+    <details class="note-overview inline-disclosure disclosure">
+      <summary><span class="disclosure-label">Overview</span></summary>
+      <div class="overview-body disclosure-body">
+        <p class="description">{{ note.description }}</p>
+      </div>
+    </details>
+  </div>
+</article>

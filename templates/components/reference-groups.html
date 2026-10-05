@@ -1,0 +1,32 @@
+{% for group in data.references.groups %}
+<details class="reference-category section-disclosure disclosure">
+  <summary class="reference-category-heading">
+    <h3 class="section-title">{{ group.category }}</h3>
+  </summary>
+  <div class="reference-subtopic-list">
+    {% for subtopic in group.topics %}
+    <details class="section-block reference-subtopic section-disclosure disclosure">
+      <summary class="section-head">
+        <h4 class="section-title">{{ subtopic.title }}</h4>
+      </summary>
+      <ul class="reference-list" role="list">
+        {% for item in subtopic.items %}
+        <li class="reference-item">
+          <article class="reference-card-copy">
+            {% if item.institution %}
+            <p class="reference-item-meta">
+              {{ item.institution }}{% if item.instructors | length > 0 %} <span aria-hidden="true">·</span> {{
+              item.instructors | join(sep=", ") }}{% endif %}
+            </p>
+            {% endif %}
+            <h5 class="reference-title"><a href="{{ item.url }}">{{ item.title }}</a></h5>
+            <p class="description">{{ item.note }}</p>
+          </article>
+        </li>
+        {% endfor %}
+      </ul>
+    </details>
+    {% endfor %}
+  </div>
+</details>
+{% endfor %}

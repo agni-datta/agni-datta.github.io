@@ -1,0 +1,48 @@
+.disclosure>summary {
+  align-items: center;
+  color: var(--accent-interactive);
+  cursor: pointer;
+  list-style: none;
+  min-height: 44px;
+}
+
+.inline-disclosure>summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  width: fit-content;
+}
+
+.disclosure>summary::-webkit-details-marker {
+  display: none;
+}
+
+.disclosure>summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  font-size: 1rem;
+  text-align: center;
+  width: 1rem;
+}
+
+.disclosure[open]>summary::after {
+  content: "−";
+}
+
+.inline-disclosure>summary:hover {
+  color: var(--accent-primary);
+}
+
+.disclosure-label {
+  font-size: 0.65rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.disclosure-body {
+  border: 1px solid var(--rule);
+  border-left: 2px solid var(--accent-primary);
+  clear: both;
+  margin-top: 0.25rem;
+}

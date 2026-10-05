@@ -1,0 +1,12 @@
+<section class="section-block" id="publications" aria-labelledby="publications-heading">
+  <div class="section-head">
+    <h2 id="publications-heading" class="section-title">{{ data.publications.heading }}</h2>
+    <a class="section-action" href="/assets/bib/references.bib" download>
+      Download all {{ data.publications.entries | length }} paper{% if data.publications.entries | length != 1 %}s{%
+      endif %}
+    </a>
+  </div>
+  <ul class="publication-list" role="list">
+    {% for paper in data.publications.entries %} {% include "components/paper.html" %} {% endfor %}
+  </ul>
+</section>

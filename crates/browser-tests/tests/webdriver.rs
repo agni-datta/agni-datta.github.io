@@ -1,5 +1,5 @@
-use anyhow::{Context, Result, bail};
-use serde_json::{Value, json};
+use anyhow::{bail, Context, Result};
+use serde_json::{json, Value};
 use std::env;
 use std::thread;
 use std::time::{Duration, Instant};
@@ -106,25 +106,6 @@ impl Browser {
     fn cookie(&self, name: &str) -> Result<Value> {
         self.command("GET", &format!("cookie/{name}"), None)
     }
-
-    fn viewport(&self, width: u16, height: u16) -> Result<()> {
-        self.command(
-            "POST",
-            "window/rect",
-            Some(json!({ "width": width, "height": height })),
-        )?;
-        Ok(())
-    }
-
-    fn send_escape(&self) -> Result<()> {
-        let body = self.find("body")?;
-        self.command(
-            "POST",
-            &format!("element/{body}/value"),
-            Some(json!({ "text": "\u{e00c}", "value": ["\u{e00c}"] })),
-        )?;
-        Ok(())
-    }
 }
 
 impl Drop for Browser {
@@ -167,42 +148,16 @@ fn theme_cookie_survives_navigation_refresh_direct_load_and_history() -> Result<
         Some("light")
     );
 
-    browser.click(".site-nav [data-route='publications']")?;
-    browser.wait_attribute("main#content", "data-route", "publications")?;
+    browser.click(".site-footer a[href='/privacy/']")?;
+    browser.wait_attribute("main#content", "data-route", "privacy")?;
     browser.wait_attribute("html", "data-theme", "light")?;
     browser.refresh()?;
     browser.wait_attribute("html", "data-theme", "light")?;
 
-    browser.navigate("http://localhost:8000/notes/")?;
-    browser.wait_attribute("main#content", "data-route", "notes")?;
+    browser.navigate("http://localhost:8000/")?;
+    browser.wait_attribute("main#content", "data-route", "home")?;
     browser.wait_attribute("html", "data-theme", "light")?;
     browser.back()?;
-    browser.wait_attribute("main#content", "data-route", "publications")?;
-    Ok(())
-}
-
-#[test]
-#[ignore = "requires cargo site serve and a local WebDriver"]
-fn mobile_drawer_closes_with_escape_and_backdrop() -> Result<()> {
-    let browser = Browser::connect()?;
-    browser.viewport(390, 844)?;
-    browser.navigate("http://localhost:8000/")?;
-    browser.wait_attribute("html", "data-theme", "dark")?;
-
-    browser.click("[data-drawer-toggle]")?;
-    browser.wait_attribute("html", "data-navigation", "open")?;
-    browser.send_escape()?;
-    browser.wait_attribute("html", "data-navigation", "closed")?;
-    assert_eq!(
-        browser
-            .attribute("[data-drawer-toggle]", "aria-expanded")?
-            .as_deref(),
-        Some("false")
-    );
-
-    browser.click("[data-drawer-toggle]")?;
-    browser.wait_attribute("html", "data-navigation", "open")?;
-    browser.click("[data-drawer-backdrop]")?;
-    browser.wait_attribute("html", "data-navigation", "closed")?;
+    browser.wait_attribute("main#content", "data-route", "privacy")?;
     Ok(())
 }

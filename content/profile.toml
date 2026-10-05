@@ -1,0 +1,20 @@
+name = "Agni Datta"
+role = "PhD Student"
+affiliation = "University of Edinburgh"
+affiliation_url = "https://www.ed.ac.uk/informatics"
+location = "UK"
+email_token = "YWduaWRhdHRhLm9yZ0BnbWFpbC5jb20="
+email_display = "agnidatta [dot] org [at] gmail [dot] com"
+photo_path = "/assets/img/agni.jpg"
+photo_alt = "Portrait of Agni Datta"
+[[links]]
+label = "GitHub"
+url = "https://github.com/agni-datta"
+
+[[links]]
+label = "Scholar"
+url = "https://scholar.google.com/citations?hl=en&user=D2OJ5agAAAAJ"
+
+[[links]]
+label = "DBLP"
+url = "https://dblp.org/pid/363/2672.html"

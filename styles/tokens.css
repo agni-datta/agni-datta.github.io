@@ -15,6 +15,8 @@
   --heading-secondary: #365777;
   --heading-tertiary: #49637e;
   --max: 1100px;
+  --text-section: 0.72rem;
+  --tracking-section: 0.17em;
   --text-label: 0.75rem;
   --text-meta: 0.875rem;
   --text-body: 1rem;
@@ -29,7 +31,9 @@
   --sans: "Albert Sans", sans-serif;
   --mono: "Space Mono", monospace;
 }
-html[data-theme="dark"], html[data-theme="pending"] {
+
+html[data-theme="dark"],
+html[data-theme="pending"] {
   color-scheme: dark;
   /* Darkened Nord Polar Night. */
   --paper: #20252f;

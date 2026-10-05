@@ -3,17 +3,20 @@
   padding-block: 3rem;
   width: min(var(--max), calc(100% - 2rem));
 }
+
 .home-grid {
   align-items: start;
   display: grid;
   gap: clamp(1.4rem, 4vw, 3.6rem);
   grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.65fr);
 }
+
 .page-grid {
   display: grid;
   gap: clamp(1.5rem, 5vw, 4rem);
   grid-template-columns: minmax(210px, 0.62fr) minmax(0, 1.45fr);
 }
-:is(.main-copy, .page-body, .publication-year-papers, .paper-head h3, .resource-card-copy, .miscellany-card-copy) {
+
+:is(.main-copy, .page-body, .reference-card-copy) {
   min-width: 0;
 }
