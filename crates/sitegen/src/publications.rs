@@ -281,7 +281,7 @@ mod tests {
     }
 
     #[test]
-    fn bibtex_additions_update_rendered_cards_and_download_count() {
+    fn bibtex_additions_update_rendered_cards_and_publication_count() {
         let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
         let tera = crate::render::load_templates(&root.join("templates")).unwrap();
         let source = format!("{OLDER}\n{NEWER}");
@@ -292,7 +292,7 @@ mod tests {
             &std::collections::BTreeMap::from([("publications", publications)]),
         );
         let html = tera.render("sections/publications.html", &context).unwrap();
-        assert!(html.contains("Download all 2 papers"));
+        assert!(html.contains("2 publications"));
         assert_eq!(html.matches("class=\"entry paper\"").count(), 2);
         assert!(
             html.find("<h3>A new paper</h3>").unwrap()
@@ -311,7 +311,7 @@ mod tests {
             &std::collections::BTreeMap::from([("publications", publications)]),
         );
         let html = tera.render("sections/publications.html", &context).unwrap();
-        assert!(html.contains("Download all 1 paper"));
+        assert!(html.contains("1 publication"));
         assert_eq!(html.matches("class=\"entry paper\"").count(), 1);
         assert!(html.contains("A &lt;b&gt;new&lt;/b&gt; title"));
     }

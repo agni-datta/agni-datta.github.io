@@ -44,7 +44,7 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] {
   display: block;
 }
 
-:is(.action-link, .section-action) {
+.action-link {
   align-items: center;
   color: var(--accent-interactive);
   display: inline-flex;
@@ -54,10 +54,4 @@ html[data-theme="light"] .theme-toggle [data-icon="moon"] {
   line-height: 1.2;
   padding-block: 0.25rem;
   text-transform: uppercase;
-}
-
-.section-action {
-  flex: 0 0 auto;
-  font-size: 0.63rem;
-  letter-spacing: 0.1em;
 }

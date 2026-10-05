@@ -5,6 +5,7 @@ use web_sys::{Document, Element, Event};
 
 mod citations;
 mod contact;
+mod publications;
 mod sections;
 mod theme;
 
@@ -32,6 +33,7 @@ pub fn start() -> Result<(), JsValue> {
     app.restore_theme()?;
     app.fold_references()?;
     app.reveal_linked_section()?;
+    app.enable_publication_filter()?;
 
     let click_app = app.clone();
     let click: EventHandler = Closure::new(move |event: Event| {

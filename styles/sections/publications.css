@@ -1,7 +1,78 @@
+.publication-filter {
+  align-items: center;
+  background: var(--panel-bg);
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  display: flex;
+  gap: 0.65rem;
+  margin-bottom: var(--space-lg);
+  padding: 0 0.75rem;
+}
+
+.publication-filter[hidden] {
+  display: none;
+}
+
+.publication-filter:focus-within {
+  border-color: var(--accent-primary);
+  outline: 1px solid var(--accent-primary);
+  outline-offset: 0;
+}
+
+.publication-filter svg {
+  flex: 0 0 auto;
+  height: 1.15rem;
+  width: 1.15rem;
+}
+
+.publication-filter input {
+  background: transparent;
+  border: 0;
+  color: var(--body-text);
+  flex: 1 1 auto;
+  font: inherit;
+  font-size: var(--text-body);
+  line-height: var(--leading-tight);
+  min-height: 32px;
+  min-width: 0;
+  padding: 0;
+  text-overflow: ellipsis;
+}
+
+.publication-filter input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.publication-filter input:focus-visible {
+  outline: none;
+}
+
+.publication-count {
+  flex: 0 0 auto;
+  font-size: var(--text-meta);
+  white-space: nowrap;
+}
+
+.publication-empty {
+  color: var(--muted);
+  font-size: var(--text-body);
+  margin: 0;
+}
+
 .publication-list {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.publication-list > .paper:nth-child(1 of :not([hidden])) {
+  padding-top: 0;
+}
+
+.publication-list > .paper:nth-last-child(1 of :not([hidden])) {
+  border-bottom: 0;
+  padding-bottom: 0;
 }
 
 .citation-toolbar {

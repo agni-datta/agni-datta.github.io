@@ -25,8 +25,10 @@ features = [
   "Event",
   "EventTarget",
   "HtmlDocument",
+  "HtmlInputElement",
   "Location",
   "Navigator",
   "Node",
+  "NodeList",
   "Window",
 ]

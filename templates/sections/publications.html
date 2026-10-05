@@ -1,12 +1,32 @@
-<section class="section-block" id="publications" aria-labelledby="publications-heading">
-  <div class="section-head">
+<details
+  class="section-block section-disclosure disclosure"
+  id="publications"
+  aria-labelledby="publications-heading"
+  open
+>
+  <summary class="section-head">
     <h2 id="publications-heading" class="section-title">{{ data.publications.heading }}</h2>
-    <a class="section-action" href="/assets/bib/references.bib" download>
-      Download all {{ data.publications.entries | length }} paper{% if data.publications.entries | length != 1 %}s{%
-      endif %}
-    </a>
+  </summary>
+  <div class="publication-filter" role="search" aria-label="Publications" hidden>
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="10.5" cy="10.5" r="7.5"></circle>
+      <path d="m16 16 5 5"></path>
+    </svg>
+    <input
+      id="publication-search"
+      type="search"
+      aria-label="Filter publications by title, coauthor, or venue"
+      aria-controls="publication-list"
+      placeholder="Search"
+      autocomplete="off"
+      spellcheck="false"
+    >
+    <span id="publication-count" class="publication-count" role="status" aria-atomic="true">
+      {{ data.publications.entries | length }} publication{% if data.publications.entries | length != 1 %}s{% endif %}
+    </span>
   </div>
-  <ul class="publication-list" role="list">
+  <p id="publication-empty" class="publication-empty" hidden>No publications match your search.</p>
+  <ul id="publication-list" class="publication-list" role="list">
     {% for paper in data.publications.entries %} {% include "components/paper.html" %} {% endfor %}
   </ul>
-</section>
+</details>
