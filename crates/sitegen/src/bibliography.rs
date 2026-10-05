@@ -1,5 +1,5 @@
 //! Parse publication metadata while retaining exact BibTeX source for copying.
-use anyhow::{ensure, Context, Result};
+use anyhow::{Context, Result, ensure};
 use biblatex::{Bibliography, RawBibliography};
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -95,10 +95,12 @@ mod tests {
 
     #[test]
     fn ignores_comments_and_accepts_an_empty_bibliography() {
-        assert!(parse("% No publications yet\n")
-            .unwrap()
-            .source_entries
-            .is_empty());
+        assert!(
+            parse("% No publications yet\n")
+                .unwrap()
+                .source_entries
+                .is_empty()
+        );
         let result = parse("@Comment{Source {notes}}\n@Misc{key, year={2024}}")
             .unwrap()
             .source_entries;

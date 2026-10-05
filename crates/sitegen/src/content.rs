@@ -2,7 +2,7 @@
 
 use crate::publications::{self, Publications};
 use anyhow::{Context, Result};
-use serde::{de::DeserializeOwned, Deserialize, Serialize};
+use serde::{Deserialize, Serialize, de::DeserializeOwned};
 use std::fs;
 use std::path::Path;
 

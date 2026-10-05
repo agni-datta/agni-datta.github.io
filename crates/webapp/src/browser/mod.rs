@@ -1,6 +1,6 @@
 //! Browser lifecycle and explicit click dispatch.
 use std::cell::RefCell;
-use wasm_bindgen::{closure::Closure, prelude::*, JsCast};
+use wasm_bindgen::{JsCast, closure::Closure, prelude::*};
 use web_sys::{Document, Element, Event};
 
 mod citations;

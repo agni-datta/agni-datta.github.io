@@ -6,8 +6,8 @@
   <article class="entry">
     <h3>{{ item.role }}</h3>
     <p class="meta">
-      {% if item.institution_url and item.institution_url != "" %}<a href="{{ item.institution_url }}">{{
-        item.institution }}</a>{% else %}{{ item.institution }}{% endif %} · {{ item.term }}
+      {% if item.institution_url and item.institution_url != "" %}<a href="{{ item.institution_url }}"
+      >{{ item.institution }}</a>{% else %}{{ item.institution }}{% endif %} · {{ item.term }}
     </p>
     <p class="teaching-description">{{ item.text | inline_markdown | safe }}</p>
   </article>

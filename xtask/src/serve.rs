@@ -1,6 +1,6 @@
 //! Local HTTP serving and source watching.
 use crate::build;
-use anyhow::{anyhow, bail, Context, Result};
+use anyhow::{Context, Result, anyhow, bail};
 use std::collections::BTreeMap;
 use std::ffi::OsStr;
 use std::fs;

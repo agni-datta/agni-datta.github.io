@@ -1,4 +1,4 @@
-.disclosure>summary {
+.disclosure > summary {
   align-items: center;
   color: var(--accent-interactive);
   cursor: pointer;
@@ -6,18 +6,18 @@
   min-height: 44px;
 }
 
-.inline-disclosure>summary {
+.inline-disclosure > summary {
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
   width: fit-content;
 }
 
-.disclosure>summary::-webkit-details-marker {
+.disclosure > summary::-webkit-details-marker {
   display: none;
 }
 
-.disclosure>summary::after {
+.disclosure > summary::after {
   content: "+";
   flex: 0 0 auto;
   font-size: 1rem;
@@ -25,11 +25,11 @@
   width: 1rem;
 }
 
-.disclosure[open]>summary::after {
+.disclosure[open] > summary::after {
   content: "−";
 }
 
-.inline-disclosure>summary:hover {
+.inline-disclosure > summary:hover {
   color: var(--accent-primary);
 }
 

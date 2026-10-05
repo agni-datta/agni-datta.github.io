@@ -2,9 +2,9 @@
 
 use crate::{
     bibliography,
-    content::{load_toml, Author, Link},
+    content::{Author, Link, load_toml},
 };
-use anyhow::{ensure, Context, Result};
+use anyhow::{Context, Result, ensure};
 use biblatex::{ChunksExt, Entry};
 use serde::{Deserialize, Serialize};
 use std::{cmp::Reverse, collections::BTreeMap, fs, path::Path};
@@ -216,7 +216,7 @@ fn paper_links(entry: &Entry) -> Result<Vec<Link>> {
 
 #[cfg(test)]
 mod tests {
-    use super::{from_bibtex, Config};
+    use super::{Config, from_bibtex};
 
     fn config() -> Config {
         toml::from_str("heading = 'Publications'").unwrap()
@@ -241,10 +241,12 @@ mod tests {
         let edited =
             from_bibtex(&NEWER.replace("A new paper", "A revised title"), &config).unwrap();
         assert_eq!(edited.entries[0].title, "A revised title");
-        assert!(from_bibtex("% No papers yet", &config)
-            .unwrap()
-            .entries
-            .is_empty());
+        assert!(
+            from_bibtex("% No papers yet", &config)
+                .unwrap()
+                .entries
+                .is_empty()
+        );
     }
 
     #[test]

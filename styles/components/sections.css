@@ -25,11 +25,11 @@
   text-transform: uppercase;
 }
 
-.section-disclosure:not([open])>summary {
+.section-disclosure:not([open]) > summary {
   margin-bottom: 0;
 }
 
-.section-disclosure>summary:hover .section-title {
+.section-disclosure > summary:hover .section-title {
   color: var(--accent-primary);
 }
 

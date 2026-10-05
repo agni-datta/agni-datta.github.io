@@ -1,5 +1,5 @@
 //! Cargo entry point for building, checking, formatting, and serving the site.
-use anyhow::{bail, Context, Result};
+use anyhow::{Context, Result, bail};
 use std::env;
 use std::path::{Path, PathBuf};
 

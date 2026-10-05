@@ -1,7 +1,7 @@
 //! Route rendering, Markdown filters, and sitemap generation.
 use crate::{assets, content::SiteData};
 use anyhow::{Context as AnyhowContext, Result};
-use pulldown_cmark::{html, Options, Parser};
+use pulldown_cmark::{Options, Parser, html};
 use serde::Serialize;
 use std::fs;
 use std::path::Path;

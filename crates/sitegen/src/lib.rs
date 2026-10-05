@@ -14,7 +14,7 @@ mod render;
 pub use assets::STYLE_MODULES;
 use assets::{build_cache_key, bundle_styles, copy_if_exists, copy_static};
 use calendar::current_utc_year;
-use render::{load_templates, render_page, write_sitemap, BuildInfo, PAGES};
+use render::{BuildInfo, PAGES, load_templates, render_page, write_sitemap};
 
 /// Configuration for one deterministic site build.
 #[derive(Clone, Debug)]

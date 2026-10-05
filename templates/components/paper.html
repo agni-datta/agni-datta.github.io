@@ -9,8 +9,8 @@
   </p>
   <div class="entry-actions">
     {% if paper.links | length > 0 %}
-    <span class="entry-links">{% for link in paper.links %}<a class="action-link" href="{{ link.url }}">{{ link.label
-        }}</a>{% endfor %}</span>
+    <span class="entry-links"
+    >{% for link in paper.links %}<a class="action-link" href="{{ link.url }}">{{ link.label }}</a>{% endfor %}</span>
     {% endif %} {% include "components/paper-citation.html" %}
   </div>
 </li>
