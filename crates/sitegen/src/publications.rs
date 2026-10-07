@@ -25,6 +25,7 @@ struct DisplayOverride {
     title: Option<String>,
     venue: Option<String>,
     year: Option<u16>,
+    arxiv: Option<String>,
 }
 
 #[derive(Debug, Serialize)]
@@ -104,7 +105,19 @@ fn from_bibtex(source: &str, config: &Config) -> Result<Publications> {
                 }
             })
             .collect();
-        let links = paper_links(entry)?;
+        let mut links = paper_links(entry)?;
+        if let Some(url) = display.and_then(|value| value.arxiv.as_ref()) {
+            ensure!(
+                url.strip_prefix("https://arxiv.org/abs/")
+                    .is_some_and(|id| !id.is_empty()),
+                "{}: arxiv must be an https://arxiv.org/abs/ URL with a paper identifier",
+                entry.key
+            );
+            links.push(Link {
+                label: "arXiv".into(),
+                url: url.clone(),
+            });
+        }
         let is_eprint = links.iter().any(|link| link.label == "ePrint");
         let status = display
             .and_then(|value| value.venue.clone())
@@ -278,6 +291,41 @@ mod tests {
         assert_eq!(paper.citation.entry, OLDER);
         // An old override cannot keep a removed paper on the site.
         assert_eq!(from_bibtex(NEWER, &config).unwrap().entries.len(), 1);
+    }
+
+    #[test]
+    fn arxiv_links_preserve_the_eprint_citation() {
+        let config: Config = toml::from_str(
+            "heading = 'Publications'\n[overrides.newer]\narxiv = 'https://arxiv.org/abs/2610.07351'",
+        )
+        .unwrap();
+        let result = from_bibtex(NEWER, &config).unwrap();
+        let paper = &result.entries[0];
+        assert_eq!(paper.links.len(), 2);
+        assert_eq!(paper.links[0].label, "ePrint");
+        assert_eq!(paper.links[0].url, "https://eprint.iacr.org/2026/2227");
+        assert_eq!(paper.links[1].label, "arXiv");
+        assert_eq!(paper.links[1].url, "https://arxiv.org/abs/2610.07351");
+        assert_eq!(paper.status, "Preprint");
+        assert_eq!(paper.citation.version, "ePrint version · 2026");
+        assert_eq!(paper.citation.entry, NEWER);
+    }
+
+    #[test]
+    fn rejects_incomplete_or_non_arxiv_secondary_links() {
+        for url in [
+            "https://arxiv.org/abs/",
+            "http://arxiv.org/abs/2610.07351",
+            "https://example.test/abs/2610.07351",
+        ] {
+            let config: Config = toml::from_str(&format!(
+                "heading = 'Publications'\n[overrides.newer]\narxiv = '{url}'"
+            ))
+            .unwrap();
+            let error = from_bibtex(NEWER, &config).unwrap_err().to_string();
+            assert!(error.contains("newer"), "{error}");
+            assert!(error.contains("arxiv"), "{error}");
+        }
     }
 
     #[test]
