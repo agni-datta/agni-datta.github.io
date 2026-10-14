@@ -1,11 +1,19 @@
+---
+title: AGENTS
+aliases: AGENTS
+linter-yaml-title-alias: AGENTS
+date created: Tuesday, September 15th 2026, 7:05:34 pm
+date modified: Wednesday, October 14th 2026, 3:27:48 am
+---
+
 <!-- @format -->
 
-# Website rules
+## Website rules
 
 - Never underline links in any state. Do not imitate underlines with borders, shadows, or background images on text links. Use color and visible focus outlines.
 - Preserve Albert Sans for body text, Space Mono for monospace text, and the Nocturne editorial design: darkened Nord for dark mode, sepia with Nord blue accents for light mode, and circular icon controls.
 - Collect no visitor data in website code. The only persistent preference is the light/dark theme cookie. Do not add analytics, tracking, browser storage, third-party embeds, or a collection backend. Load Albert Sans and Space Mono from Google Fonts, as requested by the author; do not bundle local font files. Google Fonts is the only permitted external subresource provider.
-- Keep the Privacy Note short and accurate, including the hosting provider's separate logging.
+- Keep the Privacy Note short and accurate, including the hosting provider’s separate logging.
 - Keep one content file, section template, and section stylesheet per homepage section. `templates/pages/home.html` only composes sections; reusable entries belong in `templates/components/`. See the section map in `README.md`.
 - Keep CSS ownership clear: tokens, foundation, layout, shared components, section styles, then responsive rules. `sitegen::STYLE_MODULES` defines the bundle order and audits reject unlisted CSS files. Edit the owning rule rather than appending a competing override layer.
 - Use the shared 2.5pt corner radius as the default throughout the site. Preserve the circular icon controls and portrait.
